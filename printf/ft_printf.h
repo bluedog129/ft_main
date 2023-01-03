@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:53:07 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/03 21:00:39 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/03 21:23:00 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int 	ft_type_checker(char c);
 int		ft_conversion(const char *format, size_t *index, options *string_info);
 int		ft_error(void);
 int 	ft_print_backslash(const char *format, int *index);
+void	ft_apply_type(va_list ap, options *string_info);
+
 
 int		count_digit_number_for_hexadecimal(int decimal);
 char	*decimal_to_string(int decimal);

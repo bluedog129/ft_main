@@ -1,6 +1,5 @@
 #include <stdio.h>
-
 int main()
 {
-    printf("%------d", 10);
+	printf("fff\12");
 }

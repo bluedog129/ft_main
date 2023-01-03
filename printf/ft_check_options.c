@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:58:21 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/03 20:59:36 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/03 21:22:36 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ void	ft_width_check(const char *format, size_t *index, options *string_info)
 	char c;
 
 	num = 0;
-	string_info->width = -1;
-	c = *(format + *(index));
-	if ((c < 0) || (c > 9))
+	c = *(format + (*index));
+	if ((c < '0') || (c > '9'))
 		return ;
-	while ((c >= 0) && (c <= 9))
+	while ((c >= '0') && (c <= '9'))
     {
 		num *= 10;
 		num += (c - '0');
@@ -69,11 +68,10 @@ void	ft_precision_check(const char *format, size_t *index, options *string_info)
 	char c;
 
 	num = 0;
-	string_info->precision = -1;
 	c = *(format + (*index));
-	if ((c < 0) || (c > 9))
+	if ((c < '0') || (c > '9'))
 		return ;
-	while ((c >= 0) && (c <= 9))
+	while ((c >= '0') && (c <= '9'))
     {
 		num *= 10;
 		num += (c - '0');
@@ -99,15 +97,15 @@ int ft_type_checker(char c)
 int	ft_conversion(const char *format, size_t *index, options *string_info)
 {
 	ft_memset(string_info, 0, sizeof(options));
-	while (ft_flag_checker(*(format + *(index))))  //flag check
+	while (ft_flag_checker(*(format + (*index))))  //flag check
 	{
-		ft_flag_check(*(format + *(index)), string_info);
+		ft_flag_check(*(format + (*index)), string_info);
 		(*index)++;
 	}
 	ft_width_check(format, index, string_info);  // width check
 	if (*(format + (*index)) == '.')
 		(*index)++;
-	ft_precision_check(format, index, string_info);
+	ft_precision_check(format, index, string_info);  //precision check
 	if (ft_type_checker(*(format + (*index))) == 0)  // type check
 		return (-1);
 	string_info->type = *(format + (*index));
