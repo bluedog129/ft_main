@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:54:10 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/03 20:36:38 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/03 20:55:26 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ int	ft_percent_or_other(char c)
 {
 	if (c == '%')
 		return (1);
-	else if (c == 92)  // 역슬래시
-		return (2);
 	else if (32 < c && c < 126)
-		return (3);
+		return (2);
 	return (-1);
 }
 
@@ -73,7 +71,7 @@ void	ft_precision_check(const char *format, size_t *index, options *string_info)
 
 	num = 0;
 	string_info->precision = -1;
-	c = *(format + *(index));
+	c = *(format + (*index));
 	if ((c < 0) || (c > 9))
 		return ;
 	while ((c >= 0) && (c <= 9))
@@ -81,7 +79,7 @@ void	ft_precision_check(const char *format, size_t *index, options *string_info)
 		num *= 10;
 		num += (c - '0');
 		(*index)++;
-		c = *(format + *(index));
+		c = *(format + (*index));
     }
 	string_info->precision = num;
 }
@@ -102,18 +100,18 @@ int ft_type_checker(char c)
 int	ft_conversion(const char *format, size_t *index, options *string_info)
 {
 	ft_memset(string_info, 0, sizeof(options));
-	while (ft_flag_checker(*(format + *(index))))
+	while (ft_flag_checker(*(format + *(index))))  //flag check
 	{
 		ft_flag_check(*(format + *(index)), string_info);
 		(*index)++;
 	}
-	ft_width_check(format, index, string_info);
-	if (*(format + *(index)) == '.')
+	ft_width_check(format, index, string_info);  // width check
+	if (*(format + (*index)) == '.')
 		(*index)++;
 	ft_precision_check(format, index, string_info);
-	if (ft_type_checker(*(format + *(index))) == 0)
+	if (ft_type_checker(*(format + (*index))) == 0)  // type check
 		return (-1);
-	string_info->type = *(format + *(index));
+	string_info->type = *(format + (*index));
 	// print
 	return (0);
 }
@@ -138,11 +136,10 @@ char *ft_apply_pointer(options *string_info, unsigned long long value)
 
 }
 
-int ft_print_backslash(const char *format, int *index)
+int ft_error(void)
 {
-	(*index)++;
-	if (ft_percent_or_other(*(format + *(index))) == 3)
-
+	write(1, "-1", 2);
+	return (-1);
 }
 
 int ft_printf(const char *format, ...)
@@ -156,10 +153,12 @@ int ft_printf(const char *format, ...)
 	va_start(ap, format); // format 다음 주소부터 시작
 	while (*(format + index))
 	{
+		if (ft_percent_or_other(*(format + index)) == -1) // 오류
+			ft_error();
 		if (ft_percent_or_other(*(format + index)) == 1) // %인 경우
 		{
 			if (ft_conversion(format, &index, string_info) == -1)
-				return (-1); //구조체에 type 정리, 오류 처리
+				ft_error(); //구조체에 type 정리, 오류 처리
 			if (ft_type_checker(string_info->type) == 1)
 				ft_apply_int(string_info, va_arg(ap, int));
 			else if (ft_type_checker(string_info->type) == 2)
@@ -169,17 +168,15 @@ int ft_printf(const char *format, ...)
 			else if (ft_type_checker(string_info->type) == 4)
 				ft_apply_pointer(string_info, va_arg(ap, unsigned long long));
 		}
-		else if (ft_percent_or_other(*(format + index)) == 2) // \인 경우
-		{
-			
-		}
-		
+		else if (ft_percent_or_other(*(format + index)) == 2) // 출력 가능한 문자인 경우
+			write(1, &*(format + index), 1);
 	}
 	// va_arg(ap, int) // int값만큼 값을 읽어옴
 	// ex) char *string;
 	// string = va_arg(ap, char *)  --> 시작부터 char*만큼 받아옴
 	// va_end : 끝
 	// 바이트패딩 
+	va_end(ap);
 }
 
 #include <stdio.h>
