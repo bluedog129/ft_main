@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:53:46 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/04 14:50:05 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/04 14:58:58 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void ft_apply_string(options *string_info, char *value)
 
 void ft_apply_pointer(options *string_info, unsigned long long value)
 {
+	// long long int -> (16 -> char *) -> 0X
 }
 
 void ft_apply_options(va_list ap, options *string_info)
