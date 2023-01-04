@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:15:31 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/03 18:55:02 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:44:56 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,23 @@ char	*decimal_to_lowcase_hexadecimal(int decimal)
 }
 
 char	*decimal_to_uppercase_hexadecimal(int decimal)
+{
+	char	*result;
+	int		digit_number;
+
+	digit_number = count_digit_number_for_hexadecimal(decimal);
+	result[digit_number] = '\0';
+	digit_number--;
+	while (decimal > 0)
+	{
+		result[digit_number] = "0123456789ABCDEF"[decimal % 16];
+		decimal /= 16;
+		digit_number--;
+	}
+	return (result);
+}
+
+char	*voidpointer_to_uppercase_hexadecimal(unsigned long long decimal)
 {
 	char	*result;
 	int		digit_number;
