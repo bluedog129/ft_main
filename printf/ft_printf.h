@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:53:07 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/04 14:32:02 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/04 14:50:05 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*decimal_to_uppercase_hexadecimal(int decimal);
 
 // ft_apply_options.c
 int 	ft_print_backslash(const char *format, int *index);
-void	ft_apply_type(va_list ap, options *string_info);
+void	ft_apply_options(va_list ap, options *string_info);
 
 
 

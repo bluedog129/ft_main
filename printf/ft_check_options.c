@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 20:58:21 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/04 14:29:26 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/04 14:55:19 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ int ft_type_checker(char c)
 	return (0);
 }
 
+int ft_option_error(options *string_info)
+{
+	if 
+}
+
 int	ft_conversion(const char *format, size_t *index, options *string_info)
 {
 	ft_memset(string_info, 0, sizeof(options));
@@ -111,7 +116,7 @@ int	ft_conversion(const char *format, size_t *index, options *string_info)
 	string_info->type = *(format + (*index));
 	if (string_info->flag_zero == 1 && string_info->flag_minus == 1)
 		return (-1);  // -0 flag 불가능
-	return (0);
+	return (ft_option_error(string_info));
 }
 
 int ft_error(void)
