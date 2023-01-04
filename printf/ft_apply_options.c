@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 13:53:46 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/04 14:58:58 by minkim3          ###   ########.fr       */
+/*   Created: 2023/01/04 19:18:56 by minkim3           #+#    #+#             */
+/*   Updated: 2023/01/04 20:42:16 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,41 @@
 
 void ft_apply_precision(options *string_info)
 {
+	char *string;
 
+	if (string_info->precision_have == 0)
+		return ;
+	ft_new_string(string, string_info->precision + 1);
+	ft_strlcpy(string, (const char)(string_info->value), (string_info->precision) + 1);
+	string_info->value = string;
+	free(string);
 }
 
 void ft_apply_width(options *string_info)
 {
+	char	*string;
+	int		strlen;
+	int		copy_len;
 
+	if (string_info->width_have == 0)
+		return ;
+	strlen = ft_strlen(string_info->value);
+	ft_new_string(string, string_info->width + 1);
+	ft_memset(string, ' ', string_info->width + 1);
+	copy_len = string_info->width - strlen;
+	if (copy_len > 0)
+	{
+		ft_strlcpy(string + copy_len, string_info->value, strlen);
+		string_info->value = string;
+	}
+	free(string);
 }
 
 void ft_apply_flag(options* string_info)
 {
-
-}
-
-void ft_apply_int(options *string_info, int value)
-{
-	char *string;
-
-	if (string_info->type == 'd' || (string_info->type == 'i')\
-	|| (string_info->type == 'u'))
-		string_info->value = decimal_to_string(value);
-	if (string_info->type == 'x')
-		string_info->value = decimal_to_lowcase_hexadecimal(value);
-	if (string_info->type == 'X')
-		string_info->value = decimal_to_uppercase_hexadecimal(value);
-	if (string_info->type == 'c')
-	{
-		string_info->value = ft_memset(string, (char)value, 1);
-		string_info->value = ft_memset(string + 1, '\n', 1);
-	}
-}
-
-void ft_apply_percent(options *string_info, char value)
-{
-	char *string;
-
-	string_info->value = ft_memset(string, (char)value, 1);
-	string_info->value = ft_memset(string + 1, '\n', 1);
-}
-
-void ft_apply_string(options *string_info, char *value)
-{
-	string_info->value = value;
-}
-
-void ft_apply_pointer(options *string_info, unsigned long long value)
-{
-	// long long int -> (16 -> char *) -> 0X
-}
-
-void ft_apply_options(va_list ap, options *string_info)
-{
-	if (ft_type_checker(string_info->type) == 1)
-		ft_apply_int(string_info, va_arg(ap, int));
-	else if (ft_type_checker(string_info->type) == 2)
-		ft_apply_percent(string_info, '%');
-	else if (ft_type_checker(string_info->type) == 3)
-		ft_apply_string(string_info, va_arg(ap, char *));
-	else if (ft_type_checker(string_info->type) == 4)
-		ft_apply_pointer(string_info, va_arg(ap, unsigned long long));
-	ft_apply_precision(string_info);
-	ft_apply_width(string_info);
-	ft_apply_flag(string_info);
+	ft_apply_flag_minus(string_info);
+	ft_apply_flag_plus(string_info);
+	ft_apply_flag_space(string_info);
+	ft_apply_flag_zero(string_info);
+	ft_apply_flag_hash(string_info);
 }
