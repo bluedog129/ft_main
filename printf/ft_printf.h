@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:53:07 by minkim3           #+#    #+#             */
-/*   Updated: 2023/01/03 21:23:00 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/01/03 21:27:37 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # define FT_PRINTF_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <string.h>
 # include <stdarg.h>
 # include "libft/libft.h"
