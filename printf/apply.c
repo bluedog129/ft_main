@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 16:31:31 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/24 20:22:14 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:50:24 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,13 @@ void	apply_conversion(t_options *options_check, va_list args, t_arrayList *array
 		apply_d(options_check, args, arraylist);
 	// else if (options_check->conversion == UNSIGNED_DECIMAL)
 	// 	apply_unsigned_decimal();
-	// else if (options_check->conversion == POINTER)
-	// 	apply_pointer();
+	else if (options_check->conversion == POINTER)
+		apply_pointer(options_check, args, arraylist);
 	// else if (options_check->conversion == UPPER_HEX)
 	// 	apply_upper_hex();
 	// else if (options_check->conversion == LOWER_HEX)
 	// 	apply_lower_hex();
 }
-
-// void	apply_precision(options *options_check, ArrayList *arraylist)
-// {
-// 	if (options_check->conversion == 's')
-// 		apply_precision_s(arraylist);
-// 	else if (options_check->conversion == 'd')
-// 		apply_precision_d(arraylist);
-// 	else if (options_check->conversion == 'i')
-// 		apply_precision_i(arraylist);
-// 	else if (options_check->conversion == 'u')
-// 		apply_precision_u(arraylist);
-// 	else
-// 		return ;
-// }
 
 int	app_op_and_conv(t_options *options_check, va_list args)
 {

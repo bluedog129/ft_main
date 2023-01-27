@@ -4,18 +4,8 @@
 
 int main()
 {
-	// printf("ret : %d\n", printf());
-    // printf("ret : %d\n", ft_printf());
+	char *s = (char *)12;
 
-	// printf("*% 9.7d*\n", -15);
-	// ft_printf("*% 9.7d*\n", -15);
-
-	// printf("*%-5.d*\n", 0);
-	// ft_printf("*%-5.d*", 0);
-
-	// printf("*%-32s*\n", "abc");
-	// ft_printf("*%-32s*\n", "abc");
-
-	printf("real : *%5.0d*\n", 0);
-	ft_printf("mine : *%5.0d*\n", 0);
+	printf("42%4p42\n", NULL);
+	ft_printf("42%4p42\n", NULL);
 }

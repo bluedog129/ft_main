@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:38:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/26 16:16:20 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:53:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	apply_str_f_minus(t_options *options_check, t_arrayList *arraylist)
 	}
 }
 
-void	apply_d_f_minus(t_options *options_check, t_arrayList *arraylist)
+void	apply_dp_f_minus(t_options *options_check, t_arrayList *arraylist)
 {
 	int	width_count;
 
@@ -111,12 +111,12 @@ void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist)
 
 void	apply_d_f_space(t_options *options_check, t_arrayList *arraylist)
 {
-	if (al_get(arraylist, 0) != '-')
+	if (al_get(arraylist, 0) != '-' && al_get(arraylist, 0) != ' ')
 		al_insert_front(arraylist, ' ');
 }
 
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist)
 {
-	if (al_get(arraylist, 0) != '-')
+	if (al_get(arraylist, 0) != '-' && al_get(arraylist, 0) != ' ')
 		al_insert_front(arraylist, '+');
 }

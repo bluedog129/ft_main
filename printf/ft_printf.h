@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:13:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/25 18:19:58 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:53:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,12 @@ void	apply_str_width(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_f_minus(t_options *options_check, t_arrayList *arraylist);
 void	apply_d(t_options *options_check, va_list args, t_arrayList *arraylist);
 void	apply_d_precision(t_options *options_check, t_arrayList *arraylist);
-void	apply_d_width(t_options *options_check, t_arrayList *arraylist);
-void	apply_d_f_minus(t_options *options_check, t_arrayList *arraylist);
+void	apply_dp_width(t_options *options_check, t_arrayList *arraylist);
+void	apply_dp_f_minus(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_space(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist);
-
+void	apply_pointer(t_options *options_check, va_list args, t_arrayList *arraylist);
+void	put_pointer_to_al(unsigned long long hex_arg, t_arrayList *arraylist);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:18:51 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/26 16:11:19 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/27 17:53:27 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	apply_str_width(t_options *options_check, t_arrayList *arraylist)
 	}
 }
 
-void	apply_d_width(t_options *options_check, t_arrayList *arraylist)
+void	apply_dp_width(t_options *options_check, t_arrayList *arraylist)
 {
 	int	width_len;
 	int str_len;
