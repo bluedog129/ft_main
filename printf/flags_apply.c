@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:38:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/27 17:53:40 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/28 18:23:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist)
 			width_count++;
 		al_remove_front(arraylist);
 	}
-	while (width_count--)
+	if (options_check->flag_space == SWITCH_ON && minus_flag == 0)
+		width_count--;
+	while (width_count-- > 0)
 		al_insert_front(arraylist, '0');
 	if (minus_flag == 1)
 		al_insert_front(arraylist, '-');
@@ -111,12 +113,52 @@ void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist)
 
 void	apply_d_f_space(t_options *options_check, t_arrayList *arraylist)
 {
-	if (al_get(arraylist, 0) != '-' && al_get(arraylist, 0) != ' ')
+	// - arg, '-'
+	if (al_get(arraylist, 0) == ' ' || al_get(arraylist, 0) == '-')
+		return ;
+	// - flag
+	if (options_check->flag_minus == SWITCH_ON)
+	{
+		if (al_get(arraylist, arraylist->size - 1) == ' ')
+			al_remove_back(arraylist);
 		al_insert_front(arraylist, ' ');
+		return ;
+	}
+	al_insert_front(arraylist, ' ');
 }
 
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist)
 {
-	if (al_get(arraylist, 0) != '-' && al_get(arraylist, 0) != ' ')
+	int	removed_count;
+
+	removed_count = 0;
+	// find '-'
+	if (ft_strchr(arraylist->data, '-'))
+		return ;
+	// - flag
+	if (options_check->flag_minus == SWITCH_ON)
+	{
+		if (al_get(arraylist, arraylist->size - 1) == ' ')
+			al_remove_back(arraylist);
 		al_insert_front(arraylist, '+');
+		return ;
+	}
+	// '0'
+	if (ft_strchr(arraylist->data, '0') && options_check->width > 1 && \
+		options_check->flag_zero == SWITCH_ON)
+	{
+		// al_remove_front(arraylist);
+		al_insert_front(arraylist, '+');
+		return ;
+	}
+	// normal
+	while (al_get(arraylist, 0) == ' ')
+	{
+		al_remove_front(arraylist);
+		removed_count++;
+	}
+	al_insert_front(arraylist, '+');
+	removed_count--;
+	while(removed_count-- > 0)
+		al_insert_front(arraylist, ' ');
 }

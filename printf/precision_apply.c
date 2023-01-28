@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:58:58 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/26 16:36:07 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:50:19 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	apply_str_precision(t_options *options_check, t_arrayList *arraylist)
 	}
 }
 
-void	apply_d_precision(t_options *options_check, t_arrayList *arraylist)
+void	apply_du_precision(t_options *options_check, t_arrayList *arraylist)
 {
 	int	str_len;
 	int	precision_len;

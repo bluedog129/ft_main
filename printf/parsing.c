@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 15:47:43 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/21 15:20:01 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:44:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	check_conversion(const char *format, t_options *options_check)
 	format++;
 }
 
-int	parse_format_placehoder_syntax(const char **format, va_list args)
+int	parse_format_placehoder_syntax(const char **format, va_list *args)
 {
 	int			syntax_len;
 	t_options	*options_check;

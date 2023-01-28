@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:21:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/21 15:19:22 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:44:30 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_printf(const char *format, ...)
 		if (check_format(*format) == PLACEHOLDER)
 		{
 			format++;
-			placeholder_width = parse_format_placehoder_syntax(&format, args);
+			placeholder_width = parse_format_placehoder_syntax(&format, &args);
 			if (placeholder_width == ERROR)
 				return (ERROR);
 			total_width += placeholder_width;

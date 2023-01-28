@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:13:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/27 17:53:40 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:44:20 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,17 @@ typedef struct options_type {
 	char	*minus_or_space;
 }	t_options;
 
-int		parse_format_placehoder_syntax(const char **format, va_list args);
+int		parse_format_placehoder_syntax(const char **format, va_list *args);
 int		ft_printf(const char *format, ...);
 int		check_format(const char format);
 void	check_options(const char **format, t_options *options_check);
 void	check_conversion(const char *format, t_options *options_check);
 void	apply_conversion(t_options *options_check, \
-						va_list args, t_arrayList *arraylist);
-int		app_op_and_conv(t_options *options_check, va_list args);
-void	apply_character(t_options *options_check, va_list args, \
+						va_list *args, t_arrayList *arraylist);
+int		app_op_and_conv(t_options *options_check, va_list *args);
+void	apply_character(t_options *options_check, va_list *args, \
 						t_arrayList *arraylist);
-void	apply_string(t_options *options_check, va_list args, \
+void	apply_string(t_options *options_check, va_list *args, \
 					t_arrayList *arraylist);
 void	get_width(const char format, t_options *options_check);
 void	get_precision(const char **format, t_options *options_check);
@@ -90,14 +90,16 @@ void	apply_percent_f_zero(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_precision(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_width(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_f_minus(t_options *options_check, t_arrayList *arraylist);
-void	apply_d(t_options *options_check, va_list args, t_arrayList *arraylist);
-void	apply_d_precision(t_options *options_check, t_arrayList *arraylist);
+void	apply_d(t_options *options_check, va_list *args, t_arrayList *arraylist);
+void	apply_du_precision(t_options *options_check, t_arrayList *arraylist);
 void	apply_dp_width(t_options *options_check, t_arrayList *arraylist);
 void	apply_dp_f_minus(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_space(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist);
-void	apply_pointer(t_options *options_check, va_list args, t_arrayList *arraylist);
+void	apply_pointer(t_options *options_check, va_list *args, t_arrayList *arraylist);
 void	put_pointer_to_al(unsigned long long hex_arg, t_arrayList *arraylist);
+void	apply_unsigned_decimal(t_options *options_check, va_list *args, t_arrayList *arraylist);
+void	put_ud_to_al(unsigned int ui_arg, t_arrayList *arraylist);
 
 #endif
