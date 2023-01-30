@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:13:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:42:47 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:42:07 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef FT_PRINTF_BONUS_H
+# define FT_PRINTF_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
 # include "libft/libft.h"
-# include "ft_arraylist.h"
+# include "ft_arraylist_bonus.h"
 
 enum e_format_check {
 	NOT_PLACEHOLDER = 1,

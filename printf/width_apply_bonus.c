@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_apply.c                                      :+:      :+:    :+:   */
+/*   width_apply_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:18:51 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 18:48:30 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:44:34 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	get_width(const char format, t_options *options_check)
 {

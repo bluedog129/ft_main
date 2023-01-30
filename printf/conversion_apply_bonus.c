@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conversion_apply.c                                 :+:      :+:    :+:   */
+/*   conversion_apply_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:02:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:09:38 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:43:36 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	apply_percent(t_options *options_check, t_arrayList *arraylist)
 {

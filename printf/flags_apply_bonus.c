@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_apply.c                                      :+:      :+:    :+:   */
+/*   flags_apply_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:38:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:13:13 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:43:55 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	apply_percent_f_minus(t_options *options_check, t_arrayList *arraylist)
 {

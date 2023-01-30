@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   precision_apply.c                                  :+:      :+:    :+:   */
+/*   precision_apply_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:58:58 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 18:48:23 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:44:29 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 void	get_precision(const char **format, t_options *options_check)
 {
