@@ -8,6 +8,6 @@
 - [히히(요게 보이는 링크)][THIS]
 
 
-<ins src = "./image/fu.png">
+<img src = "./image/fu.png">
 
 [THIS]: https://github.com/bluedog129/42_seoul/tree/master/ft_printf
