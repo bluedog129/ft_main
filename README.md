@@ -5,9 +5,9 @@
 **이건 진한 글씨**
 *기울기*
 
-- [히히(요게 보이는 링크))][아무거나_명칭]
+- [히히(요게 보이는 링크)][THIS]
 
 
+<ins src = "./image/fu.png">
 
-
-[이무거나_명칭]: https://github.com/bluedog129/42_seoul/tree/master/ft_printf
+[THIS]: https://github.com/bluedog129/42_seoul/tree/master/ft_printf
