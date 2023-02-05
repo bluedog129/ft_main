@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:13:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:42:47 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:50:00 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	get_width(const char format, t_options *options_check);
 void	get_precision(const char **format, t_options *options_check);
 void	apply_percent(t_options *options_check, t_arrayList *arraylist);
 void	apply_percent_width(t_options *options_check, t_arrayList *arraylist);
-void	apply_percent_f_minus(t_options *options_check, t_arrayList *arraylist);
+void	apply_percent_f_minus(t_arrayList *arraylist);
 void	apply_percent_f_zero(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_precision(t_options *options_check, t_arrayList *arraylist);
 void	apply_str_width(t_options *options_check, t_arrayList *arraylist);
@@ -94,7 +94,7 @@ void	apply_d(t_options *options_check, va_list *args, \
 		t_arrayList *arraylist);
 void	apply_du_precision(t_options *options_check, t_arrayList *arraylist);
 void	apply_dp_width(t_options *options_check, t_arrayList *arraylist);
-void	apply_dp_f_minus(t_options *options_check, t_arrayList *arraylist);
+void	apply_dp_f_minus(t_arrayList *arraylist);
 void	apply_d_f_zero(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_space(t_options *options_check, t_arrayList *arraylist);
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist);
