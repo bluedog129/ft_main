@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 18:58:40 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:03:13 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:56:08 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	apply_pointer(t_options *options_check, va_list *args, \
 	if (options_check->width_switch == SWITCH_ON)
 		apply_dp_width(options_check, arraylist);
 	if (options_check->flag_minus == SWITCH_ON)
-		apply_dp_f_minus(options_check, arraylist);
+		apply_dp_f_minus(arraylist);
 }
 
 void	put_ud_to_al(unsigned int ui_arg, t_arrayList *arraylist)
@@ -69,7 +69,7 @@ void	apply_unsigned_decimal(t_options *options_check, va_list *args, \
 	if (options_check->width_switch == SWITCH_ON)
 		apply_dp_width(options_check, arraylist);
 	if (options_check->flag_minus == SWITCH_ON)
-		apply_dp_f_minus(options_check, arraylist);
+		apply_dp_f_minus(arraylist);
 	if (options_check->flag_zero == SWITCH_ON && \
 		options_check->precision_switch == SWITCH_OFF)
 		apply_d_f_zero(options_check, arraylist);

@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 23:02:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:09:38 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:50:44 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	apply_percent(t_options *options_check, t_arrayList *arraylist)
 	if (options_check->width_switch == SWITCH_ON)
 		apply_percent_width(options_check, arraylist);
 	if (options_check->flag_minus == SWITCH_ON)
-		apply_percent_f_minus(options_check, arraylist);
+		apply_percent_f_minus(arraylist);
 	if (options_check->flag_zero == SWITCH_ON)
 		apply_percent_f_zero(options_check, arraylist);
 }
@@ -93,14 +93,13 @@ void	apply_d(t_options *options_check, va_list *args, t_arrayList *arraylist)
 	if (options_check->width_switch == SWITCH_ON)
 		apply_dp_width(options_check, arraylist);
 	if (options_check->flag_minus == SWITCH_ON)
-		apply_dp_f_minus(options_check, arraylist);
+		apply_dp_f_minus(arraylist);
 	if (options_check->flag_zero == SWITCH_ON && \
 		options_check->precision_switch == SWITCH_OFF)
 		apply_d_f_zero(options_check, arraylist);
 	if (options_check->flag_space == SWITCH_ON && \
 		options_check->flag_plus == SWITCH_OFF)
 		apply_d_f_space(options_check, arraylist);
-	if (options_check->flag_plus == SWITCH_ON && \
-		options_check->flag_space == SWITCH_OFF)
+	if (options_check->flag_plus == SWITCH_ON)
 		apply_d_f_plus(options_check, arraylist);
 }

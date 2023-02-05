@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 18:38:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:13:13 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:46:30 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	apply_percent_f_minus(t_options *options_check, t_arrayList *arraylist)
+void	apply_percent_f_minus(t_arrayList *arraylist)
 {
 	int	width_count;
 
@@ -71,7 +71,7 @@ void	apply_str_f_minus(t_options *options_check, t_arrayList *arraylist)
 	}
 }
 
-void	apply_dp_f_minus(t_options *options_check, t_arrayList *arraylist)
+void	apply_dp_f_minus(t_arrayList *arraylist)
 {
 	int	width_count;
 

@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 22:18:51 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 18:48:30 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:52:25 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	apply_str_width(t_options *options_check, t_arrayList *arraylist)
 	int		i;
 	int		width_len;
 	int		str_len;
-	char	*pre_tmp;
 
 	width_len = options_check->width;
 	str_len = arraylist->size;
@@ -53,7 +52,6 @@ void	apply_str_width(t_options *options_check, t_arrayList *arraylist)
 void	apply_dp_width(t_options *options_check, t_arrayList *arraylist)
 {
 	int	width_len;
-	int	str_len;
 
 	width_len = options_check->width - arraylist->size;
 	if (options_check->width > arraylist->size)

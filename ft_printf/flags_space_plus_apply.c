@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:12:56 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:16:31 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:59:29 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,26 @@ static void	apply_d_f_switch(t_options *options_check, t_arrayList *arraylist)
 {
 	if (options_check->precision_switch == SWITCH_OFF && \
 		options_check->width_switch == SWITCH_ON && \
-		options_check->flag_zero == SWITCH_ON && \
-		al_get(arraylist, 0) == '0')
+		options_check->flag_zero == SWITCH_ON)
 	{
 		al_remove_front(arraylist);
 		al_insert_front(arraylist, '+');
 		return ;
 	}
+	al_insert_front(arraylist, '+');
+}
+
+static void	apply_d_f_plus_normal(t_arrayList *arraylist, int removed_count)
+{
+	while (al_get(arraylist, 0) == ' ')
+	{
+		al_remove_front(arraylist);
+		removed_count++;
+	}
+	al_insert_front(arraylist, '+');
+	removed_count--;
+	while (removed_count-- > 0)
+		al_insert_front(arraylist, ' ');
 }
 
 void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist)
@@ -53,14 +66,10 @@ void	apply_d_f_plus(t_options *options_check, t_arrayList *arraylist)
 		al_insert_front(arraylist, '+');
 		return ;
 	}
-	apply_d_f_switch(options_check, arraylist);
-	while (al_get(arraylist, 0) == ' ')
+	if (al_get(arraylist, 0) == '0')
 	{
-		al_remove_front(arraylist);
-		removed_count++;
+		apply_d_f_switch(options_check, arraylist);
+		return ;
 	}
-	al_insert_front(arraylist, '+');
-	removed_count--;
-	while (removed_count-- > 0)
-		al_insert_front(arraylist, ' ');
+	apply_d_f_plus_normal(arraylist, removed_count);
 }

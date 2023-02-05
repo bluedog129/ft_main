@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 19:04:48 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/30 19:06:21 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:57:00 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	put_upper_hex_to_al(unsigned int up_hex_arg, t_arrayList *arraylist)
 
 void	apply_up_hex_hash(t_options *options_check, t_arrayList *arraylist)
 {
-	if (options_check->width >= ft_strlen(options_check->str))
+	if (options_check->width >= (int)ft_strlen(options_check->str))
 	{
 		while (al_get(arraylist, 0) == ' ')
 			al_remove_front(arraylist);
@@ -56,7 +56,7 @@ void	apply_upper_hex(t_options *options_check, va_list *args, \
 	if (options_check->width_switch == SWITCH_ON)
 		apply_dp_width(options_check, arraylist);
 	if (options_check->flag_minus == SWITCH_ON)
-		apply_dp_f_minus(options_check, arraylist);
+		apply_dp_f_minus(arraylist);
 	if (options_check->flag_zero == SWITCH_ON && \
 		options_check->precision_switch == SWITCH_OFF)
 		apply_d_f_zero(options_check, arraylist);
