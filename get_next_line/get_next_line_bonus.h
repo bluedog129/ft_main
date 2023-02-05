@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 15:47:05 by minkim3           #+#    #+#             */
-/*   Updated: 2023/02/05 15:51:43 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/02/05 21:23:32 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <limits.h>
-
-// # define BUFFER_SIZE 1  ///tyjrtnuytgvyuh
 
 char	*get_next_line(int fd);
 ssize_t	find_char(const char *s, int c);
