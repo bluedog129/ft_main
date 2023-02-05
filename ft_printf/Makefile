@@ -6,10 +6,11 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/28 13:10:23 by hyojocho          #+#    #+#              #
-#    Updated: 2023/01/30 20:59:44 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/02/02 11:27:32 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
 SOURCES = ft_printf.c apply.c conversion_apply.c flags_apply.c ft_arraylist.c\
 		 parsing.c precision_apply.c width_apply.c conversion_low_hex_apply.c\
