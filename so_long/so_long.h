@@ -14,6 +14,6 @@ typedef struct map_type
 
 }	t_map_info;
 
-t_map_info *open_map(t_map_info *map);
+int map_init(t_map_info *map_info);
 
 #endif

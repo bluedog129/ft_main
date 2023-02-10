@@ -1,48 +1,52 @@
 #include "so_long.h"
 
-static void	copy_map(char (*tmp)[1000], t_map_info *map)
+static void	copy_map(char (*tmp)[1000], t_map_info *map_info)
 {
 	int	i;
 
-	map->map = malloc(sizeof(char *) * map->heigth);
+	map_info->map = malloc(sizeof(char *) * map_info->heigth);
 	i = 0;
-	while (i < map->heigth)
+	while (i < map_info->heigth)
 	{
-		map->map[i] = malloc(sizeof(char) * map->width);
-		ft_memcpy(map->map[i], tmp[i], map->width);
+		map_info->map[i] = malloc(sizeof(char) * map_info->width);
+		ft_memcpy(map_info->map[i], tmp[i], map_info->width);
 		i++;
 	}
 }
 
-t_map_info *open_map(t_map_info *map)
+static int open_map(char (*tmp)[1000], t_map_info *map_info)
 {
-	char	tmp[1000][1000];
 	char	*line;
 	int		fd;
 	int		i;
 	int		j;
 
 	fd = open("./map.txt", O_RDONLY);
+	if (fd < 0)
+		return (-1);
 	i = 0;
 	while(1)
 	{
-		j = 0;
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
-		while(*(line + j))
-		{
-			tmp[i][j] = (char)*(line + j);
-			j++;
-		}
-		if (i == 0)
-			map->width = j;
-		if (map->width != j)
-			break;
+			break ;
+		j = -1;
+		while(line[++j])
+			tmp[i][j] = line[j];
 		i++;
 		free(line);
 	}
-	map->heigth = i;
-	copy_map(tmp, map);
-	return (map);
+	map_info->width = j;
+	map_info->heigth = i;
+	return (0);
+}
+
+int map_init(t_map_info *map_info)
+{
+	char	tmp[1000][1000];
+
+	if (open_map(tmp, map_info) == -1)
+		return (-1);
+	copy_map(tmp, map_info);
+	return (1);
 }

@@ -19,14 +19,14 @@ static void print_map(char **map, int height, int width)
 		i++;
 		printf("\n");
 	}
-	printf("=======================================\n");
+	printf("\n=======================================\n");
 }
 
 int main(void)
 {
 	t_map_info *map_info;
 	map_info = malloc(sizeof(t_map_info));
-	open_map(map_info);
+	map_init(map_info);
 	print_map(map_info->map, map_info->heigth, map_info->width);
 	return 0;
 }
