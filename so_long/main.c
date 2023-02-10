@@ -1,37 +1,32 @@
 
 #include "so_long.h"
 
-int open_map()
+static void print_map(char **map, int height, int width)
 {
-	char	*line;
-	int		fd;
-	char	map[1000][1000];
-	int		i;
-	int		j;
+	int i;
+	int	j;
 
-	fd = open("./text.txt", O_RDONLY);
 	i = 0;
-	while(1)
+	printf("\n============== print map ==============\n\n");
+	while (i < height)
 	{
 		j = 0;
-		line = get_next_line(fd);
-		if (line == NULL)
-			return (-1);
-		while(*(line + j))
+		while (j < width)
 		{
-			map[i][j] = (char)*(line + j);
-			j++;
 			printf("%c ", map[i][j]);
+			j++;
 		}
 		i++;
 		printf("\n");
-		free(line);
 	}
+	printf("=======================================\n");
 }
 
 int main(void)
-{	
-	open_map();
-	//printf("%d\n", check_component(map));
+{
+	t_map_info *map_info;
+	map_info = malloc(sizeof(t_map_info));
+	open_map(map_info);
+	print_map(map_info->map, map_info->heigth, map_info->width);
 	return 0;
 }
