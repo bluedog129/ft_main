@@ -4,9 +4,16 @@
 # include "./libft/libft.h"
 # include "./get_next_line/get_next_line.h"
 # include <fcntl.h>
-# include <stdio.h>   ///// 무조권 지워라 
+# include <stdio.h>   ///// 무조권 지워라
 
-int	check_map(char **map);
-int check_component(char **map);
+typedef struct map_type
+{
+	char **map;
+	int width;
+	int heigth;
+
+}	t_map_info;
+
+t_map_info *open_map(t_map_info *map);
 
 #endif
