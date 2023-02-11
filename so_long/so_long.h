@@ -14,6 +14,8 @@ typedef struct map_type
 
 }	t_map_info;
 
-int map_init(t_map_info *map_info);
+int 	map_init(t_map_info *map_info);
+void	so_long(t_map_info *map_info);
+int		check_map(t_map_info *map_info);
 
 #endif
