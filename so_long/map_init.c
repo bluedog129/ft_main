@@ -43,7 +43,7 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 	int		i;
 	int		j;
 
-	fd = open("./map.txt", O_RDONLY);
+	fd = open("./docs/map.txt", O_RDONLY);
 	if (fd < 0)
 		return (-1);
 	i = 0;
