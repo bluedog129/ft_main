@@ -1,8 +1,8 @@
 CFLAGS = -Wall -Wextra -Werror
 NAME = so_long.a
-SOURCES = map_init.c
+SOURCES = map_init.c so_long.c
 B_SOURCES = 
-		 
+
 OBJECT = $(SOURCES:.c=.o)
 B_OBJECT = $(B_SOURCES:.c=.o)
 
