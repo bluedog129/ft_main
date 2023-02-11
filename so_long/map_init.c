@@ -1,5 +1,27 @@
 #include "so_long.h"
 
+static int check_wall_validate(char (*tmp)[1000], t_map_info *map_info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map_info->heigth)
+	{
+		j = 0;
+		while (tmp[i][j])
+		{
+			j++;
+		}
+		if (map_info->heigth == i + 1)
+			j++;
+		if (map_info->width + 1 != j)
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
 static void	copy_map(char (*tmp)[1000], t_map_info *map_info)
 {
 	int	i;
@@ -33,6 +55,7 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 		j = -1;
 		while(line[++j])
 			tmp[i][j] = line[j];
+		tmp[i][j] = '\0';
 		i++;
 		free(line);
 	}
@@ -47,6 +70,11 @@ int map_init(t_map_info *map_info)
 
 	if (open_map(tmp, map_info) == -1)
 		return (-1);
+	if (check_wall_validate(tmp, map_info) == -1)
+	{
+		write(1, "wall_validate_error", 19);
+		return (-1);
+	}
 	copy_map(tmp, map_info);
 	return (1);
 }
