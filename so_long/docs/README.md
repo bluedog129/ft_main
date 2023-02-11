@@ -1,7 +1,7 @@
 # so_long
 
 ## 구성 함수
-- [ ] so_long() : so_long 본 함수
+- [x] so_long() : so_long 본 함수
 
 --> 2/10일까지
 - [x] map_init() : game_map 배열 만들고 초기화 시키는 함수
