@@ -43,7 +43,7 @@ P for the player’s starting position.
 The map must contain 1 exit, at least 1 collectible, and 1 starting position to
 be valid.  
 If the map contains a duplicates characters (exit/start), you should
-display an error message.  
+display an error message.
 
 • The map must be rectangular.
 • The map must be closed/surrounded by walls. If it’s not, the program must return
@@ -67,7 +67,10 @@ your choice.
 • Display the movement count directly on screen instead of writing it in the shell.
 
 ### mandatory
-1. 다 먹고 나가야함
+1. 맵이 직사각형 형태여야 한다.
+2. 맵 테두리가 벽으로 이루어져야 한다.
+3. 맵에 적어도 하나씩의 collectible, exit, player의 시작 위치가 있어야 한다.
+4. collectible을 다 먹어야 player는 exit에 접근할 수 있고 그 후 게임을 끝낼 수 있어야 한다.
 
 ### bonus
 1. 적에 닿으면 죽음
