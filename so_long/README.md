@@ -6,6 +6,7 @@
 --> 2/10일까지
 - [x] map_init() : game_map 배열 만들고 초기화 시키는 함수
 	- [x] open_map() : txt를 read로 읽어오는 함수
+	- [x] check_wall_validate() : 읽어온 map의 width 유효성을 판단하는 함수
 	- [x] copy_map() : 읽어온 txt를 map으로 copy하는 함수
 --> 2/10일 완료! 
 
