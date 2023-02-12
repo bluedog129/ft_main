@@ -1,6 +1,6 @@
 CFLAGS = -Wall -Wextra -Werror
 NAME = so_long.a
-SOURCES = map_init.c so_long.c
+SOURCES = map_init.c so_long.c check_map.c
 B_SOURCES = 
 
 OBJECT = $(SOURCES:.c=.o)
@@ -20,6 +20,7 @@ $(NAME) : $(OBJECTS)
 	make -C ./get_next_line all
 	cp ./get_next_line/get_next_line.a ./$(NAME)
 	ar -rcs $@ $^
+	cc main.c libft/libft.a get_next_line/get_next_line.a so_long.a -o so_long.out
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)

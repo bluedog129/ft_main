@@ -1,22 +1,20 @@
 #include "so_long.h"
 
-static int check_wall_validate(char (*tmp)[1000], t_map_info *map_info)
+static int check_rectangular(char (*tmp)[1000], t_map_info *map_info)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map_info->heigth)
+	while (i < map_info->height)
 	{
 		j = 0;
 		while (tmp[i][j])
-		{
 			j++;
-		}
-		if (map_info->heigth == i + 1)
+		if (map_info->height == i + 1)
 			j++;
 		if (map_info->width + 1 != j)
-			return (-1);
+			return (ERROR);
 		i++;
 	}
 	return (1);
@@ -26,9 +24,9 @@ static void	copy_map(char (*tmp)[1000], t_map_info *map_info)
 {
 	int	i;
 
-	map_info->map = malloc(sizeof(char *) * map_info->heigth);
+	map_info->map = malloc(sizeof(char *) * map_info->height);
 	i = 0;
-	while (i < map_info->heigth)
+	while (i < map_info->height)
 	{
 		map_info->map[i] = malloc(sizeof(char) * map_info->width);
 		ft_memcpy(map_info->map[i], tmp[i], map_info->width);
@@ -45,7 +43,7 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 
 	fd = open("./docs/map.txt", O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		return (ERROR);
 	i = 0;
 	while(1)
 	{
@@ -60,7 +58,7 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 		free(line);
 	}
 	map_info->width = j;
-	map_info->heigth = i;
+	map_info->height = i;
 	return (0);
 }
 
@@ -68,12 +66,12 @@ int map_init(t_map_info *map_info)
 {
 	char	tmp[1000][1000];
 
-	if (open_map(tmp, map_info) == -1)
-		return (-1);
-	if (check_wall_validate(tmp, map_info) == -1)
+	if (open_map(tmp, map_info) == ERROR)
+		return (ERROR);
+	if (check_rectangular(tmp, map_info) == ERROR)
 	{
 		write(1, "wall_validate_error", 19);
-		return (-1);
+		return (ERROR);
 	}
 	copy_map(tmp, map_info);
 	return (1);
