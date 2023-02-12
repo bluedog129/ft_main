@@ -1,9 +1,7 @@
 #include "so_long.h"
 
-static int	dfs(char **map, char component, int x, int y)
+static void	dfs(char **map, char component, int x, int y)
 {
-	int count;
-
 	if (map[x][y] == '1')
 		return (0);
 	if (map[x][y] != 'x')
@@ -14,12 +12,11 @@ static int	dfs(char **map, char component, int x, int y)
 			return (1);
 		}
 		map[x][y] = 'x';
-		count = 0;
-		count += dfs(map, component, x + 1, y);
-		count += dfs(map, component, x, y + 1);
-		count += dfs(map, component, x - 1, y);
-		count += dfs(map, component, x, y - 1);
-		return (count);
+		dfs(map, component, x + 1, y);
+		dfs(map, component, x, y + 1);
+		dfs(map, component, x - 1, y);
+		dfs(map, component, x, y - 1);
+		return (0);
 	}
 	return (0);
 }
@@ -28,11 +25,19 @@ static void map_duplicate(char **map, int height, \
 			int width, char map_dup[height][width])
 {
 	int	i;
+	int	j;
 
 	i = 0;
-    while (i < height) 
+    while (i < height)
 	{
-		ft_memcpy(map_dup[i], map[i], width * sizeof(char));
+		j = 0;
+		while (j < width)
+		{
+			map_dup[i][j] = map[i][j];
+			printf("%c ", map_dup[i][j]);
+			j++;
+		}
+		printf("\n");
 		i++;
     }
 }
@@ -41,12 +46,17 @@ static int	check_route(t_map_info *map_info, int player_pos[2])
 {
 	int		collect_count;
 	int		exit_count;
+	char	collect_exit[2];
 	char	map_dup[map_info->height][map_info->width];
 
+	ft_memset(collect_exit, 0, sizeof(collect_exit));
 	ft_memset(map_dup, 0, sizeof(map_dup));
 	map_duplicate(map_info->map, map_info->height, map_info->width, map_dup);
-	collect_count = dfs((char **)map_dup, 'c', player_pos[1], player_pos[0]);
-	exit_count = dfs((char **)map_dup, 'e', player_pos[1], player_pos[0]);
+	printf("ok\n");
+	collect_exit[0] = 'C';
+	collect_exit[1] = 'E';
+	dfs((char **)map_dup, 'c', player_pos[1], player_pos[0]);
+	dfs((char **)map_dup, 'e', player_pos[1], player_pos[0]);
 	if (collect_count < 1)
 		return (ERROR);
 	if (exit_count != 1)
@@ -111,7 +121,6 @@ int	check_map(t_map_info *map_info)
 	if (is_surrounded_by_wall(map_info->map, map_info->height, \
 			map_info->width) == ERROR)
 		return (ERROR);
-	printf("ok\n");
 	if (check_route(map_info, player_position) == ERROR)
 		return (ERROR);
 	return 0;
