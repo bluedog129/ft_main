@@ -11,9 +11,9 @@ static int check_rectangular(char (*tmp)[1000], t_map_info *map_info)
 		j = 0;
 		while (tmp[i][j])
 			j++;
-		if (map_info->height == i + 1)
-			j++;
-		if (map_info->width + 1 != j)
+		if (i != map_info->height - 1)
+			j--;
+		if (map_info->width != j)
 			return (ERROR);
 		i++;
 	}
@@ -53,7 +53,6 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 		j = -1;
 		while(line[++j])
 			tmp[i][j] = line[j];
-		tmp[i][j] = '\0';
 		i++;
 		free(line);
 	}

@@ -20,6 +20,7 @@ enum e_return_value
 	ERROR = -1
 };
 
+void	print_map(char **map, int height, int width); // 지우기
 int 	map_init(t_map_info *map_info);
 void	so_long(t_map_info *map_info);
 int		check_map(t_map_info *map_info);
