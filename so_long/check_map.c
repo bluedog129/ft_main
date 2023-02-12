@@ -80,10 +80,26 @@ static int get_player_position(t_map_info *map_info, int *player_position)
 	return (ERROR);
 }
 
-// static int	is_surrounded_by_wall(char **map, int height, int width)
-// {
+static int	is_surrounded_by_wall(char **map, int height, int width)
+{
+	int	i;
 	
-// }
+	i = 0;
+	while (i < height)
+	{
+		if (map[i][0] != '1' || map[i][width -1] != '1')
+			return (ERROR);
+		i++;
+	}
+	i = 0;
+	while (i < width)
+	{
+		if (map[0][i] != '1' || map[height - 1][i] != '1')
+			return (ERROR);
+		i++;
+	}
+	return (0);
+}
 
 int	check_map(t_map_info *map_info)
 {
@@ -92,7 +108,10 @@ int	check_map(t_map_info *map_info)
 	ft_memset(player_position, 0, sizeof(player_position));
 	if (get_player_position(map_info, player_position) == ERROR)
 		return (ERROR);
-	// if (surround_wall)
+	if (is_surrounded_by_wall(map_info->map, map_info->height, \
+			map_info->width) == ERROR)
+		return (ERROR);
+	printf("ok\n");
 	if (check_route(map_info, player_position) == ERROR)
 		return (ERROR);
 	return 0;
