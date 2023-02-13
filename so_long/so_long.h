@@ -13,6 +13,7 @@ typedef struct map_type
 	int height;
 	int x;
 	int y;
+	int collect_exit_player[3];
 }	t_map_info;
 
 enum e_return_value
@@ -24,5 +25,6 @@ void	print_map(char **map, int height, int width); // 지우기
 int 	map_init(t_map_info *map_info);
 void	so_long(t_map_info *map_info);
 int		check_map(t_map_info *map_info);
+int		check_route(t_map_info *map_info, int player_pos[2]);
 
 #endif
