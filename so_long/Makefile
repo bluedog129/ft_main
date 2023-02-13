@@ -15,12 +15,11 @@ endif
 all : $(NAME)
 
 $(NAME) : $(OBJECTS)
-	make -C ./libft all
+	make all -C ./libft
 	cp ./libft/libft.a ./$(NAME)
-	make -C ./get_next_line all
-	cp ./get_next_line/get_next_line.a ./$(NAME)
+	make all -C ./mlx 2> /dev/null
 	ar -rcs $@ $^
-	cc main.c libft/libft.a get_next_line/get_next_line.a so_long.a -o so_long.out
+	cc main.c -Lmlx -lmlx libft/libft.a so_long.a -o so_long.out
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
@@ -28,11 +27,11 @@ bonus :
 	make WITH_BONUS=1 all
 clean :
 	rm -rf $(OBJECT) $(B_OBJECT)
-	make -C libft clean
-	make -C get_next_line clean
+	make clean -C mlx
+	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./get_next_line/get_next_line.a ./libft/libft.a
+	rm -rf $(NAME) ./libft/libft.a
 
 re :
 	make fclean
