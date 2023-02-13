@@ -2,7 +2,7 @@
 # define SO_LONG_H
 
 # include "./libft/libft.h"
-# include "./get_next_line/get_next_line.h"
+# include "mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>   ///// 무조권 지워야 함
 
@@ -23,7 +23,7 @@ enum e_return_value
 
 void	print_map(char **map, int height, int width); // 지우기
 int 	map_init(t_map_info *map_info);
-void	so_long(t_map_info *map_info);
+void	so_long(void);
 int		check_map(t_map_info *map_info);
 int		check_route(t_map_info *map_info, int player_pos[2]);
 
