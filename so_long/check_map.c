@@ -1,25 +1,29 @@
 #include "so_long.h"
 
-static void	dfs(char **map, char component, int x, int y)
+static int	dfs(int width, char map[][width], char collect_or_exit, \
+int x, int y)
 {
-	if (map[x][y] == '1')
-		return (0);
+	int count;
+
+	count = 0;
+	if (map[x][y] == '1' || map[x][y] == 'x')
+		return 0;
 	if (map[x][y] != 'x')
 	{
-		if (map[x][y] == component)
+		if (map[x][y] == collect_or_exit)
 		{
 			map[x][y] = 'x';
-			return (1);
+			return 1;
 		}
 		map[x][y] = 'x';
-		dfs(map, component, x + 1, y);
-		dfs(map, component, x, y + 1);
-		dfs(map, component, x - 1, y);
-		dfs(map, component, x, y - 1);
-		return (0);
+		count += dfs(width, map, collect_or_exit, x + 1, y);
+		count += dfs(width, map, collect_or_exit, x, y + 1);
+		count += dfs(width, map, collect_or_exit, x - 1, y);
+		count += dfs(width, map, collect_or_exit, x, y - 1);
 	}
-	return (0);
+	return count;
 }
+
 
 static void map_duplicate(char **map, int height, \
 			int width, char map_dup[height][width])
@@ -33,36 +37,37 @@ static void map_duplicate(char **map, int height, \
 		j = 0;
 		while (j < width)
 		{
+			// printf("%c ", map_dup[i][j]);
 			map_dup[i][j] = map[i][j];
-			printf("%c ", map_dup[i][j]);
+			// printf("%c ", map_dup[i][j]);
 			j++;
 		}
-		printf("\n");
+		// printf("\n");
 		i++;
     }
 }
 
 static int	check_route(t_map_info *map_info, int player_pos[2])
 {
-	int		collect_count;
-	int		exit_count;
-	char	collect_exit[2];
+	int		collect;
+	int		exit;
 	char	map_dup[map_info->height][map_info->width];
 
-	ft_memset(collect_exit, 0, sizeof(collect_exit));
+	collect = 0;
+	exit = 0;
 	ft_memset(map_dup, 0, sizeof(map_dup));
 	map_duplicate(map_info->map, map_info->height, map_info->width, map_dup);
-	printf("ok\n");
-	collect_exit[0] = 'C';
-	collect_exit[1] = 'E';
-	dfs((char **)map_dup, 'c', player_pos[1], player_pos[0]);
-	dfs((char **)map_dup, 'e', player_pos[1], player_pos[0]);
-	if (collect_count < 1)
+	collect += dfs(map_info->width, map_dup, 'C', player_pos[1], player_pos[0]);
+	map_duplicate(map_info->map, map_info->height, map_info->width, map_dup);
+	exit += dfs(map_info->width, map_dup, 'E', player_pos[1], player_pos[0]);
+	printf("collect = %d, exit = %d\n", collect, exit);
+	if (collect < 1)
 		return (ERROR);
-	if (exit_count != 1)
+	if (exit != 1)
 		return (ERROR);
 	return 0;
 }
+
 
 static int get_player_position(t_map_info *map_info, int *player_position)
 {
