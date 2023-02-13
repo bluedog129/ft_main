@@ -6,16 +6,18 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:48:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/29 14:27:33 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:48:39 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFFER_SIZE 10
 
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
 
 typedef struct s_list
 {
@@ -23,6 +25,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	*get_next_line(int fd);
+ssize_t	find_char(const char *s, int c);
+size_t	ft_strlen(const char *s);
+char	*append_buffer(char const *s1, char const *s2, size_t len);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
 int		ft_isalpha(char c);
