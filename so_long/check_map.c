@@ -77,17 +77,16 @@ static int check_component(t_map_info *map_info)
 
 int	check_map(t_map_info *map_info)
 {
-	int player_position[2];
-
-	ft_memset(player_position, 0, sizeof(player_position));
+	ft_memset(map_info->player_position, 0, \
+	sizeof(map_info->player_position));
 	if (check_component(map_info) == ERROR)
 		return (ERROR);
-	if (get_player_position(map_info, player_position) == ERROR)
+	if (get_player_position(map_info, map_info->player_position) == ERROR)
 		return (ERROR);
 	if (is_surrounded_by_wall(map_info->map, map_info->height, \
 			map_info->width) == ERROR)
 		return (ERROR);
-	if (check_route(map_info, player_position) == ERROR)
+	if (check_route(map_info, map_info->player_position) == ERROR)
 		return (ERROR);
 	return (0);
 }
