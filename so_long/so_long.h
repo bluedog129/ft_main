@@ -3,10 +3,10 @@
 # define KEW_RELEASE	0
 # define KEY_PRESS		1
 # define KEY_ESC		53
-# define KEY_LEFT		123
-# define KEY_RIGHT		124
-# define KEY_DOWN		125
-# define KEY_UP			126
+# define KEY_LEFT		0
+# define KEY_RIGHT		1
+# define KEY_DOWN		2
+# define KEY_UP			3
 
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
