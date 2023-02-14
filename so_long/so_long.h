@@ -1,8 +1,15 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define KEW_RELEASE	0
+# define KEY_PRESS		1
+# define KEY_ESC		53
+# define KEY_LEFT		123
+# define KEY_RIGHT		124
+# define KEY_DOWN		125
+# define KEY_UP			126
 
 # include "./libft/libft.h"
-# include "mlx/mlx.h"
+# include "./mlx/mlx.h"
 # include <fcntl.h>
 # include <stdio.h>   ///// 무조권 지워야 함
 
