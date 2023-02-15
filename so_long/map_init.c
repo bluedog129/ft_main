@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static int check_rectangular(char (*tmp)[1000], t_map_info *map_info)
+static int check_rectangular(char (*tmp)[1000], t_game *map_info)
 {
 	int	i;
 	int	j;
@@ -20,7 +20,7 @@ static int check_rectangular(char (*tmp)[1000], t_map_info *map_info)
 	return (1);
 }
 
-static void	copy_map(char (*tmp)[1000], t_map_info *map_info)
+static void	copy_map(char (*tmp)[1000], t_game *map_info)
 {
 	int	i;
 
@@ -34,7 +34,7 @@ static void	copy_map(char (*tmp)[1000], t_map_info *map_info)
 	}
 }
 
-static int open_map(char (*tmp)[1000], t_map_info *map_info)
+static int open_map(char (*tmp)[1000], t_game *map_info)
 {
 	char	*line;
 	int		fd;
@@ -61,7 +61,7 @@ static int open_map(char (*tmp)[1000], t_map_info *map_info)
 	return (0);
 }
 
-int map_init(t_map_info *map_info)
+int map_init(t_game *map_info)
 {
 	char	tmp[1000][1000];
 

@@ -2,8 +2,8 @@
 
 void	so_long(void)
 {
-	t_map_info *map_info;
-	map_info = malloc(sizeof(t_map_info));
+	t_game *map_info;
+	map_info = malloc(sizeof(t_game));
 
 	map_init(map_info);
 	if (check_map(map_info) == ERROR)
@@ -11,8 +11,10 @@ void	so_long(void)
 		write(1, "map error\n", 11);
 		return ;
 	}
-	print_map(map_info->map, map_info->height, map_info->width);
 
+	print_map(map_info->map, map_info->height, map_info->width);
+	open_image(map_info);
+	display_image(map_info);
 
 	free(map_info);
 	return ;

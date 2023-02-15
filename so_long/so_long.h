@@ -18,21 +18,31 @@ enum definition
 	KEY_PRESS = 2
 };
 
-typedef struct map_type
+typedef struct game_type
 {
-	char **map;
-	int width;
-	int height;
-	int x;
-	int y;
-	int collect_exit_player[3];
-	int player_position[2];
-}	t_map_info;
+	char	**map;
+	int		width;
+	int		height;
+	int		collect_exit_player[3];
+	int		player_position[2];
+	void	*mlx;
+	void	*dino_advanture;
+	void	*dino_left[15];
+	void	*dino_right[15];
+	void	*enemy[2];
+	void	*wall;
+	void	*road;
+	void	*item;
+	void	*spellbook;
+	int		left;
+}	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
-int 	map_init(t_map_info *map_info);
+int 	map_init(t_game *map_info);
 void	so_long(void);
-int		check_map(t_map_info *map_info);
-int		check_route(t_map_info *map_info, int player_pos[2]);
+int		check_map(t_game *map_info);
+int		check_route(t_game *map_info, int player_pos[2]);
+void	open_image(t_game *image);
+int		display_image(t_game *map_info);
 
 #endif

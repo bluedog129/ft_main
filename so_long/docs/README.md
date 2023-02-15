@@ -1,5 +1,7 @@
 # so_long
 
+https://imagy.app/image-resizer/
+
 ## 구성 함수
 - [x] so_long() : so_long 본 함수
 
@@ -20,10 +22,6 @@
 --> 2월 13일 완료! 
 
 --> 2월 14일
-
-
-* 제안) space를 누르면 바로 앞에 있는 적이 죽는데,
-그러면 적이 두 배로 생성되게 하는 규칙 만들어볼까?! 
 - [ ] keyboard_controller : 키보드의 키를 누르면서 조작하는 함수
 	- ecs : 누르면 종료
 	- 방향키 위 : 위로 이동

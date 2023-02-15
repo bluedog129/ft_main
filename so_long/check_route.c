@@ -44,7 +44,7 @@ static void map_duplicate(char **map, int height, \
     }
 }
 
-int	check_route(t_map_info *map_info, int player_pos[2])
+int	check_route(t_game *map_info, int player_pos[2])
 {
 	int		collect;
 	int		exit;

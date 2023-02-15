@@ -1,6 +1,7 @@
 CFLAGS = -Wall -Wextra -Werror
 NAME = so_long.a
-SOURCES = map_init.c so_long.c check_map.c help.c check_route.c
+SOURCES = map_init.c so_long.c check_map.c help.c check_route.c\
+	open_image.c display_image.c
 B_SOURCES = 
 
 OBJECT = $(SOURCES:.c=.o)

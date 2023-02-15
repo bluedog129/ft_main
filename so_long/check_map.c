@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static int get_player_position(t_map_info *map_info, int *player_position)
+static int get_player_position(t_game *map_info, int *player_position)
 {
 	char **map;
 	int y;
@@ -47,7 +47,7 @@ static int	is_surrounded_by_wall(char **map, int height, int width)
 	return (0);
 }
 
-static int check_component(t_map_info *map_info)
+static int check_component(t_game *map_info)
 {
 	int i;
 	int j;
@@ -75,7 +75,7 @@ static int check_component(t_map_info *map_info)
 	return (0);
 }
 
-int	check_map(t_map_info *map_info)
+int	check_map(t_game *map_info)
 {
 	ft_memset(map_info->player_position, 0, \
 	sizeof(map_info->player_position));
