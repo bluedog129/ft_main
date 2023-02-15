@@ -69,7 +69,7 @@ int map_init(t_map_info *map_info)
 		return (ERROR);
 	if (check_rectangular(tmp, map_info) == ERROR)
 	{
-		write(1, "wall_validate_error", 19);
+		write(1, "invalid_map_error", 18);
 		return (ERROR);
 	}
 	copy_map(tmp, map_info);

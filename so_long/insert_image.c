@@ -1,3 +1,6 @@
+#include "so_long.h"
+
+
 int open_image()
 {
 	void *mlx;
@@ -14,13 +17,13 @@ int open_image()
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 500, 500, "my_mlx");
-	img = mlx_xpm_file_to_image(mlx, "./images/land.xpm", &img_width, &img_height);
-	img2 = mlx_xpm_file_to_image(mlx, "./images/wall.xpm", &img_width, &img_height);
-	img3 = mlx_xpm_file_to_image(mlx, "./images/chara.xpm", &img_width, &img_height);
-	img4 = mlx_xpm_file_to_image(mlx, "./images/chest.xpm", &img_width, &img_height);
-	img5 = mlx_xpm_file_to_image(mlx, "./images/chest_open.xpm", &img_width, &img_height);
-	img6 = mlx_xpm_file_to_image(mlx, "./images/rune.xpm", &img_width, &img_height);
-	img7 = mlx_xpm_file_to_image(mlx, "./images/rune_light.xpm", &img_width, &img_height);
+	img = mlx_xpm_file_to_image(mlx, "./images/character.xpm", &img_width, &img_height);
+	img2 = mlx_xpm_file_to_image(mlx, "./images/enemy1.xpm", &img_width, &img_height);
+	img3 = mlx_xpm_file_to_image(mlx, "./images/enemy2.xpm", &img_width, &img_height);
+	img4 = mlx_xpm_file_to_image(mlx, "./images/Item.xpm", &img_width, &img_height);
+	img5 = mlx_xpm_file_to_image(mlx, "./images/road.xpm", &img_width, &img_height);
+	img6 = mlx_xpm_file_to_image(mlx, "./images/spellbook.xpm", &img_width, &img_height);
+	img7 = mlx_xpm_file_to_image(mlx, "./images/wall.xpm", &img_width, &img_height);
 	mlx_put_image_to_window(mlx, win, img, 0, 0);
 	mlx_put_image_to_window(mlx, win, img2, 64, 0);
 	mlx_put_image_to_window(mlx, win, img3, 128, 0);
@@ -32,29 +35,6 @@ int open_image()
 	return (0);
 }
 
-void	map_read(char *filename, t_game *game)
-{
-	int  fd;
-	char *line;
-
-	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
-	game->hei = 0;
-	game->wid = ft_strlen(line) - 1;
-	game->str_line = ft_strdup_without_newline(line);
-	free(line);
-	while (line)
-	{
-		game->hei++;
-		line = get_next_line(fd);
-		if (line)
-		{
-			game->str_line = ft_strjoin_without_newline(game->str_line, line);
-		}
-	}
-	close(fd);
-	printf("%s\n", game->str_line);
-}
 
 void	setting_img(t_game game)
 {

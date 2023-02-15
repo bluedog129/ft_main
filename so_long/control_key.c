@@ -7,7 +7,7 @@ static int	move_player(int keycode, t_map_info *map_info)
 
 	x = map_info->player_position[0];
 	y = map_info->player_position[1];
-	if (keycode == KEY_UP && map_info->map[y + 1][x] != 1)
+	if (keycode == KEY_UP && map_info->map[y + 1][x] != '1')
 		y++;
 	else if (keycode == KEY_DOWN && map_info->map[y - 1][x] != 1)
 		y--;
