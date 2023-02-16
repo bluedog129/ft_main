@@ -10,6 +10,16 @@ void	print_error(char *msg)
 	write(2, msg, len);
 }
 
+void	print_messages(char *msg)
+{
+	int	len;
+
+	len = 0;
+	while (msg[len])
+		len++;
+	write(1, msg, len);
+}
+
 void	print_map(char **map, int height, int width)
 {
 	int i;

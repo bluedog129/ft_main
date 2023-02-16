@@ -19,7 +19,7 @@ static void move_result(t_game *map_info, int x, int y)
 	{
 		if (map_info->collect_exit_player[0] != 0)
 			return;
-		write(1, "Congulatulations! mission complete :D\n", 38);
+		print_messages("Congulatulations! mission complete :D\n");
 		map_info->game_finish = 1;
 	}
 	map_info->map[y][x] = 'P';
@@ -40,14 +40,14 @@ static void move_player(t_game *map_info, int keycode)
 		move_result(map_info, 1, 0);
 }
 
-static int key_handler(int keycode, void *param)
+static int handle_keys(int keycode, void *param)
 {
 	t_game	*map_info;
 	
 	map_info = (t_game *)param;
 	if (keycode == KEY_ESC)
 	{
-		write(1, "You pressed exit_button!\n", 25);
+		print_messages("You pressed exit_button!\n");
 		exit(0);
 	}
 	move_player(map_info, keycode);
@@ -61,16 +61,16 @@ static int render_loop(t_game *loop)
 	return (0);
 }
 
-int handle_close_button()
+static int handle_close_button()
 {
-	write(1, "You clicked close button!\n", 26);
+	print_messages("You clicked close button!\n");
     exit(0);
 }
 
 int game_controller(t_game *map_info)
 {
 	mlx_hook(map_info->dino_advanture, 17, 0, handle_close_button, NULL);
-	mlx_key_hook(map_info->dino_advanture, key_handler, map_info);
+	mlx_key_hook(map_info->dino_advanture, handle_keys, map_info);
 	mlx_loop_hook(map_info->mlx, render_loop, map_info);
     return (0);
 }
