@@ -61,9 +61,8 @@ static int render_loop(t_game *loop)
 	return (0);
 }
 
-int handle_close_button(void *param)
+int handle_close_button()
 {
-	(void)param;
 	write(1, "You clicked close button!\n", 26);
     exit(0);
 }
