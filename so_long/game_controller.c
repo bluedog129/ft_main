@@ -45,6 +45,11 @@ static int key_handler(int keycode, void *param)
 	t_game	*map_info;
 	
 	map_info = (t_game *)param;
+	if (keycode == KEY_ESC)
+	{
+		write(1, "you pressed exit_button!\n", 25);
+		exit(0);
+	}
 	move_player(map_info, keycode);
 	return (0);
 }
