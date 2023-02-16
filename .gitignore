@@ -1,3 +1,5 @@
 so_long.out
 *.o
 *.a
+*.d
+*.dSYM
