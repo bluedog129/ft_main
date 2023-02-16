@@ -47,6 +47,7 @@ void	open_image(t_game *image);
 int		display_image(t_game *map_info);
 int		game_controller(t_game *map_info);
 void	print_error(char *msg);
+void	print_messages(char *msg);
 
 
 #endif
