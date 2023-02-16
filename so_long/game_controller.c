@@ -61,9 +61,17 @@ static int render_loop(t_game *loop)
 	return (0);
 }
 
+int handle_close_button(void *param)
+{
+	(void)param;
+	write(1, "You clicked close button!\n", 26);
+    exit(0);
+}
+
 int game_controller(t_game *map_info)
 {
-    mlx_key_hook(map_info->dino_advanture, key_handler, map_info);
-    mlx_loop_hook(map_info->mlx, render_loop, map_info);
+	mlx_hook(map_info->dino_advanture, 17, 0, handle_close_button, NULL);
+	mlx_key_hook(map_info->dino_advanture, key_handler, map_info);
+	mlx_loop_hook(map_info->mlx, render_loop, map_info);
     return (0);
 }
