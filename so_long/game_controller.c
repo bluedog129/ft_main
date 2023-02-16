@@ -19,7 +19,7 @@ static void move_result(t_game *map_info, int x, int y)
 	{
 		if (map_info->collect_exit_player[0] != 0)
 			return;
-		write(1, "congulatulation! mission complete :D\n", 37);
+		write(1, "Congulatulations! mission complete :D\n", 38);
 		map_info->game_finish = 1;
 	}
 	map_info->map[y][x] = 'P';
@@ -47,7 +47,7 @@ static int key_handler(int keycode, void *param)
 	map_info = (t_game *)param;
 	if (keycode == KEY_ESC)
 	{
-		write(1, "you pressed exit_button!\n", 25);
+		write(1, "You pressed exit_button!\n", 25);
 		exit(0);
 	}
 	move_player(map_info, keycode);
