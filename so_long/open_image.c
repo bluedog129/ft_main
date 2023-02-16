@@ -46,7 +46,6 @@ static void open_dino_left(t_game *image)
 	image->dino_left[14] = xpm_to_image(image, "./images/dino/left/15.xpm");
 }
 
-
 static void open_components(t_game *image)
 {
 	image->enemy[0] = xpm_to_image(image, "./images/enemy/1.xpm");

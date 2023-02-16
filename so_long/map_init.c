@@ -69,7 +69,7 @@ int map_init(t_game *map_info, char *map_file)
 		return (ERROR);
 	if (check_rectangular(tmp, map_info) == ERROR)
 	{
-		write(1, "map_init_error\n", 19);
+		write(1, "map_init_error\n", 16);
 		return (ERROR);
 	}
 	copy_map(tmp, map_info);

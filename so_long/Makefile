@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 NAME = so_long.a
 SOURCES = map_init.c so_long.c check_map.c help.c check_route.c\
 	open_image.c display_image.c
@@ -27,7 +27,7 @@ $(NAME) : $(OBJECTS)
 bonus :
 	make WITH_BONUS=1 all
 clean :
-	rm -rf $(OBJECT) $(B_OBJECT)
+	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d)
 	make clean -C mlx
 	make clean -C libft
 
@@ -39,3 +39,5 @@ re :
 	make all
 
 .PHONY : all clean fclean re
+
+-include $(OBJECTS:.o=.d)

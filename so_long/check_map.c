@@ -80,13 +80,25 @@ int	check_map(t_game *map_info)
 	ft_memset(map_info->player_position, 0, \
 	sizeof(map_info->player_position));
 	if (check_component(map_info) == ERROR)
+	{
+		write(1, "map error\n", 11);
 		return (ERROR);
+	}
 	if (get_player_position(map_info, map_info->player_position) == ERROR)
+	{
+		write(1, "map error\n", 11);
 		return (ERROR);
+	}
 	if (is_surrounded_by_wall(map_info->map, map_info->height, \
 			map_info->width) == ERROR)
+	{
+		write(1, "map error\n", 11);
 		return (ERROR);
+	}
 	if (check_route(map_info, map_info->player_position) == ERROR)
+	{
+		write(1, "map error\n", 11);
 		return (ERROR);
+	}
 	return (0);
 }
