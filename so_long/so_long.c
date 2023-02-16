@@ -3,10 +3,10 @@
 void	so_long(char *map_file)
 {
 	t_game *map_info;
-	map_info = malloc(sizeof(t_game));
 
-	map_init(map_info, map_file);
-	if (check_map(map_info) == ERROR)
+	map_info = malloc(sizeof(t_game));
+	map_info->init_check = map_init(map_info, map_file);
+	if (map_info->init_check == ERROR || check_map(map_info) == ERROR)
 	{
 		write(1, "map error\n", 11);
 		return ;

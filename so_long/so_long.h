@@ -6,7 +6,7 @@
 # include <fcntl.h>
 # include <stdio.h>   ///// 무조권 지워야 함
 
-enum definition
+enum e_definition
 {
 	ERROR = -1,
 	KEY_LEFT = 0,
@@ -35,11 +35,12 @@ typedef struct game_type
 	void	*item;
 	void	*spellbook;
 	int		left;
+	int		init_check;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
-int 	map_init(t_game *map_info);
-void	so_long(void);
+int 	map_init(t_game *map_info, char *map_file);
+void	so_long(char *map_file);
 int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
