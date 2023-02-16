@@ -16,7 +16,7 @@ int x, int y)
 		if (map[y][x] == collect)
 		{
 			map[y][x] = 'x';
-			return (1);
+			count++;
 		}
 		map[y][x] = 'x';
 		count += dfs(width, map, collect, x + 1, y);
