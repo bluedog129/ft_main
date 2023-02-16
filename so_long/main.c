@@ -93,9 +93,14 @@
 
 
 
-int main(void)
+int main(int ac, char **av)
 {
-	so_long();
+	if (ac < 2)
+	{
+		write(1, "arg err", 1);
+		return (0);
+	}
+	so_long(av[1]);
 
 	return (0);
 }

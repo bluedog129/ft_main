@@ -34,14 +34,14 @@ static void	copy_map(char (*tmp)[1000], t_game *map_info)
 	}
 }
 
-static int open_map(char (*tmp)[1000], t_game *map_info)
+static int open_map(char (*tmp)[1000], t_game *map_info, char *map_file)
 {
 	char	*line;
 	int		fd;
 	int		i;
 	int		j;
 
-	fd = open("./docs/map.ber", O_RDONLY);
+	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
 		return (ERROR);
 	i = 0;
@@ -61,11 +61,11 @@ static int open_map(char (*tmp)[1000], t_game *map_info)
 	return (0);
 }
 
-int map_init(t_game *map_info)
+int map_init(t_game *map_info, char *map_file)
 {
 	char	tmp[1000][1000];
 
-	if (open_map(tmp, map_info) == ERROR)
+	if (open_map(tmp, map_info, map_file) == ERROR)
 		return (ERROR);
 	if (check_rectangular(tmp, map_info) == ERROR)
 	{
