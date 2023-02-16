@@ -6,16 +6,19 @@ int x, int y)
 	int count;
 
 	count = 0;
-	if (map[x][y] == '1' || map[x][y] == 'x')
+	if (collect == 'C')
+		if (map[y][x] == 'E')
+			return (0);
+	if (map[y][x] == '1' || map[y][x] == 'x')
 		return (0);
-	if (map[x][y] != 'x')
+	if (map[y][x] != 'x')
 	{
-		if (map[x][y] == collect)
+		if (map[y][x] == collect)
 		{
-			map[x][y] = 'x';
+			map[y][x] = 'x';
 			return (1);
 		}
-		map[x][y] = 'x';
+		map[y][x] = 'x';
 		count += dfs(width, map, collect, x + 1, y);
 		count += dfs(width, map, collect, x, y + 1);
 		count += dfs(width, map, collect, x - 1, y);

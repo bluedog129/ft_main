@@ -12,8 +12,7 @@ void	so_long(char *map_file)
 	print_map(map_info->map, map_info->height, map_info->width);
 	open_image(map_info);
 	display_image(map_info);
-	// control_player();
-	// mlx_hook(map_info->dino_advanture, KEY_PRESS, );
+	game_controller(map_info);
 	mlx_loop(map_info->mlx);
 	free(map_info);
 	return ;

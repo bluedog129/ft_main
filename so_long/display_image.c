@@ -43,6 +43,5 @@ int	display_image(t_game *map_info)
 	display_map(map_info);
 	display_player(map_info);
 	// display_enemy(map_info);
-	mlx_loop(map_info->mlx);
 	return (0);
 }

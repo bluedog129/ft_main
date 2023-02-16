@@ -10,8 +10,8 @@ enum e_definition
 {
 	ERROR = -1,
 	KEY_LEFT = 0,
-	KEY_RIGHT = 1,
-	KEY_DOWN = 2,
+	KEY_RIGHT = 2,
+	KEY_DOWN = 1,
 	KEY_UP = 13,
 	KEY_ESC = 53,
 	KEY_RELEASE = 3,
@@ -35,7 +35,7 @@ typedef struct game_type
 	void	*item;
 	void	*spellbook;
 	int		left;
-	int		init_check;
+	int		game_finish;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
@@ -45,5 +45,7 @@ int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
 int		display_image(t_game *map_info);
+int		game_controller(t_game *map_info);
+
 
 #endif
