@@ -66,10 +66,13 @@ int map_init(t_game *map_info, char *map_file)
 	char	tmp[1000][1000];
 
 	if (open_map(tmp, map_info, map_file) == ERROR)
+	{
+		print_error("open error\n");
 		return (ERROR);
+	}
 	if (check_rectangular(tmp, map_info) == ERROR)
 	{
-		write(1, "map_init_error\n", 16);
+		print_error("map_init_error\n");
 		return (ERROR);
 	}
 	copy_map(tmp, map_info);

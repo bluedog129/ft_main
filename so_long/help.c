@@ -1,5 +1,15 @@
 #include "so_long.h"
 
+void	print_error(char *msg)
+{
+	int	len;
+
+	len = 0;
+	while (msg[len])
+		len++;
+	write(2, msg, len);
+}
+
 void print_map(char **map, int height, int width)
 {
 	int i;

@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 21:24:53 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/05 21:24:55 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:56:44 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ ssize_t	find_char(const char *s, int c)
 	if ((char)c == '\0')
 		return (index);
 	return (-1);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	count;
-
-	count = 0;
-	while (s[count])
-		count++;
-	return (count);
 }
 
 char	*append_buffer(char const *s1, char const *s2, size_t len)
