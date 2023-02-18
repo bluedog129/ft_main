@@ -24,6 +24,8 @@ static void display_map(t_game *map_info)
 				put_image(map_info, x, y, map_info->item);
 			else if (map_info->map[y][x] == 'E')
 				put_image(map_info, x, y, map_info->spellbook);
+			else if (map_info->map[y][x] == 'M')
+				put_image(map_info, x, y, map_info->enemy[0]);
 			x++;
 		}
 		y++;
@@ -36,12 +38,16 @@ static void display_player(t_game *map_info, int index)
 		map_info->player_position[0], map_info->dino_right[index]);
 }
 
-// static void display_enemy(t_game *map_info);
+// static void display_enemy(t_game *map_info, int index)
+// {
+// 	put_image(map_info, map_info->player_position[1], \
+// 		map_info->player_position[0], map_info->dino_right[index]);
+// }
 
 int	display_image(t_game *map_info, int index)
 {
 	display_map(map_info);
 	display_player(map_info, index);
-	// display_enemy(map_info);
+	// display_enemy(map_info, index);
 	return (0);
 }

@@ -17,7 +17,7 @@ enum e_definition
 	KEY_RELEASE = 3,
 	KEY_PRESS = 2,
 	FRAME_RATE = 240,
-	FRAME_TIME_US = (1000000 / FRAME_RATE)
+	FRAME_TIME_US = (50000 / FRAME_RATE)
 };
 
 typedef struct game_type
@@ -39,6 +39,7 @@ typedef struct game_type
 	int		left;
 	int		game_finish;
 	int     image_index;
+	int		moving_count;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기

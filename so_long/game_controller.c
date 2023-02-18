@@ -1,5 +1,6 @@
 #include "so_long.h"
 
+
 static void move_result(t_game *map_info, int x, int y)
 {
     char new_location;
@@ -15,6 +16,11 @@ static void move_result(t_game *map_info, int x, int y)
         return;
     if (new_location == 'C')
         map_info->collect_exit_player[0]--;
+	if (new_location == 'M')
+	{
+		print_messages("bye bye dino...\n");
+		exit(0);
+	}
     else if (new_location == 'E')
     {
         if (map_info->collect_exit_player[0] != 0)
@@ -40,7 +46,7 @@ static void move_player(t_game *map_info, int keycode)
         move_result(map_info, 1, 0);
 }
 
-static int handle_keys(int keycode, void *param)
+static int handle_close_button(int keycode, void *param)
 {
     t_game *map_info;
 
@@ -64,16 +70,9 @@ static int render_loop(t_game *loop)
     return (0);
 }
 
-static int handle_close_button()
-{
-    print_messages("You clicked close button!\n");
-    exit(0);
-}
-
 int game_controller(t_game *map_info)
 {
-    mlx_hook(map_info->dino_advanture, 17, 0, handle_close_button, NULL);
-    mlx_key_hook(map_info->dino_advanture, handle_keys, map_info);
+    mlx_key_hook(map_info->dino_advanture, handle_close_button, map_info);
     mlx_loop_hook(map_info->mlx, render_loop, map_info);
     while (1)
     {
