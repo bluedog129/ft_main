@@ -15,7 +15,9 @@ enum e_definition
 	KEY_UP = 13,
 	KEY_ESC = 53,
 	KEY_RELEASE = 3,
-	KEY_PRESS = 2
+	KEY_PRESS = 2,
+	FRAME_RATE = 240,
+	FRAME_TIME_US = (1000000 / FRAME_RATE)
 };
 
 typedef struct game_type
@@ -36,6 +38,7 @@ typedef struct game_type
 	void	*spellbook;
 	int		left;
 	int		game_finish;
+	int     image_index;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
@@ -44,7 +47,7 @@ void	so_long(char *map_file);
 int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
-int		display_image(t_game *map_info);
+int		display_image(t_game *map_info, int index);
 int		game_controller(t_game *map_info);
 void	print_error(char *msg);
 void	print_messages(char *msg);

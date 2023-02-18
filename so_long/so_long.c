@@ -11,7 +11,6 @@ void	so_long(char *map_file)
 		return ;
 	print_map(map_info->map, map_info->height, map_info->width);
 	open_image(map_info);
-	display_image(map_info);
 	game_controller(map_info);
 	mlx_loop(map_info->mlx);
 	free(map_info);

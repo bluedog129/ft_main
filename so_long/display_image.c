@@ -30,18 +30,18 @@ static void display_map(t_game *map_info)
 	}
 }
 
-static void display_player(t_game *map_info)
+static void display_player(t_game *map_info, int index)
 {
 	put_image(map_info, map_info->player_position[1], \
-		map_info->player_position[0], map_info->dino_right[0]);
+		map_info->player_position[0], map_info->dino_right[index]);
 }
 
 // static void display_enemy(t_game *map_info);
 
-int	display_image(t_game *map_info)
+int	display_image(t_game *map_info, int index)
 {
 	display_map(map_info);
-	display_player(map_info);
+	display_player(map_info, index);
 	// display_enemy(map_info);
 	return (0);
 }
