@@ -1,6 +1,5 @@
 #include "so_long.h"
 
-
 static void move_result(t_game *map_info, int x, int y)
 {
     char new_location;
@@ -26,7 +25,7 @@ static void move_result(t_game *map_info, int x, int y)
         if (map_info->collect_exit_player[0] != 0)
             return;
         print_messages("Congulatulations! mission complete :D\n");
-        map_info->game_finish = 1;
+		exit(0);
     }
     map_info->map[y][x] = 'P';
     map_info->map[previous_y][previous_x] = 0;
@@ -41,7 +40,7 @@ static void move_player(t_game *map_info, int keycode)
 		map_info->moving_count++;
 		print_messages("\nDino's foot print : ");
 		ft_putnbr_fd(map_info->moving_count, 1);
-		
+		print_messages("\n");
 	}
     if (keycode == KEY_UP)
         move_result(map_info, 0, -1);

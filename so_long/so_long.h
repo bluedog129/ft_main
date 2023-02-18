@@ -40,6 +40,7 @@ typedef struct game_type
 	int		game_finish;
 	int     image_index;
 	int		moving_count;
+	int		enemy_position[2];
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
@@ -52,6 +53,6 @@ int		display_image(t_game *map_info, int index);
 int		game_controller(t_game *map_info);
 void	print_error(char *msg);
 void	print_messages(char *msg);
-
+void	move_enemy(t_game *map_info);
 
 #endif
