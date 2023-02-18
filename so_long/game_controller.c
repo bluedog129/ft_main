@@ -36,6 +36,13 @@ static void move_result(t_game *map_info, int x, int y)
 
 static void move_player(t_game *map_info, int keycode)
 {
+	if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_RIGHT)
+	{
+		map_info->moving_count++;
+		print_messages("\nDino's foot print : ");
+		ft_putnbr_fd(map_info->moving_count, 1);
+		
+	}
     if (keycode == KEY_UP)
         move_result(map_info, 0, -1);
     else if (keycode == KEY_DOWN)
