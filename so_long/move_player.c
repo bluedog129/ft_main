@@ -33,13 +33,12 @@ static void	move_result(t_game *map_info, int new_x, int new_y)
 	previous_y = map_info->player_position[0];
 	new_x += previous_x;
 	new_y += previous_y;
-	if (move_posisible(map_info, new_x, new_y) != -1)
-	{
-		map_info->map[new_y][new_x] = 'P';
-		map_info->map[previous_y][previous_x] = 0;
-		map_info->player_position[1] = new_x;
-		map_info->player_position[0] = new_y;
-	}
+	if (move_posisible(map_info, new_x, new_y) == -1)
+		return ;
+	map_info->map[new_y][new_x] = 'P';
+	map_info->map[previous_y][previous_x] = 0;
+	map_info->player_position[1] = new_x;
+	map_info->player_position[0] = new_y;
 }
 
 static void press_keyboard(t_game *map_info, int keycode)

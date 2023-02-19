@@ -4,10 +4,9 @@ static int render_loop(t_game *map_info)
 {
     static int	img_index;
 	
-	img_index = 0;
     mlx_clear_window(map_info->mlx, map_info->dino_advanture);
-    display_image(map_info, img_index);
     img_index = (img_index + 1) % 15;
+    display_image(map_info, img_index);
 	move_enemy(map_info);
     return (0);
 }
