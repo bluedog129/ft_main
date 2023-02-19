@@ -1,14 +1,14 @@
 #include "so_long.h"
 
-static void *xpm_to_image(t_game *image, char *address)
+static void	*xpm_to_image(t_game *image, char *address)
 {
 	int	width;
 	int	height;
 
-	return(mlx_xpm_file_to_image(image->mlx, address, &width, &height));
+	return (mlx_xpm_file_to_image(image->mlx, address, &width, &height));
 }
 
-static void open_dino_right(t_game *image)
+static void	open_dino_right(t_game *image)
 {
 	image->dino_right[0] = xpm_to_image(image, "./images/dino/right/1.xpm");
 	image->dino_right[1] = xpm_to_image(image, "./images/dino/right/2.xpm");
@@ -27,7 +27,7 @@ static void open_dino_right(t_game *image)
 	image->dino_right[14] = xpm_to_image(image, "./images/dino/right/15.xpm");
 }
 
-static void open_dino_left(t_game *image)
+static void	open_dino_left(t_game *image)
 {
 	image->dino_left[0] = xpm_to_image(image, "./images/dino/left/1.xpm");
 	image->dino_left[1] = xpm_to_image(image, "./images/dino/left/2.xpm");
@@ -46,7 +46,7 @@ static void open_dino_left(t_game *image)
 	image->dino_left[14] = xpm_to_image(image, "./images/dino/left/15.xpm");
 }
 
-static void open_components(t_game *image)
+static void	open_components(t_game *image)
 {
 	image->enemy[0] = xpm_to_image(image, "./images/enemy/1.xpm");
 	image->enemy[1] = xpm_to_image(image, "./images/enemy/2.xpm");
@@ -56,7 +56,7 @@ static void open_components(t_game *image)
 	image->wall = xpm_to_image(image, "./images/wall.xpm");
 }
 
-void open_image(t_game *image)
+void	open_image(t_game *image)
 {
 	image->mlx = mlx_init();
 	image->dino_advanture = mlx_new_window(image->mlx, \

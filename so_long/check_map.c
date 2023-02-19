@@ -1,17 +1,17 @@
 #include "so_long.h"
 
-static int get_player_position(t_game *map_info, int *player_position)
+static int	get_player_position(t_game *map_info, int *player_position)
 {
-	char **map;
-	int y;
-	int x;
+	char	**map;
+	int		y;
+	int		x;
 
 	map = map_info->map;
 	y = 0;
-	while(map[y])
+	while (map[y])
 	{
 		x = 0;
-		while(map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'P')
 			{
@@ -29,7 +29,7 @@ static int get_player_position(t_game *map_info, int *player_position)
 static int	is_surrounded_by_wall(char **map, int height, int width)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < height)
 	{
@@ -47,10 +47,10 @@ static int	is_surrounded_by_wall(char **map, int height, int width)
 	return (0);
 }
 
-static int check_component(t_game *map_info)
+static int	check_component(t_game *map_info)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	ft_memset(map_info->collect_exit_player, 0, \

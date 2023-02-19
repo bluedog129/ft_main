@@ -10,9 +10,9 @@ void	print_error(char *msg)
 	write(2, msg, len);
 }
 
-void print_map(char **map, int height, int width)
+void	print_map(char **map, int height, int width)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;

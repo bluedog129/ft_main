@@ -1,9 +1,9 @@
 #include "so_long.h"
 
 static int	dfs(int width, char map[][width], char collect, \
-int x, int y)
+				int x, int y)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (collect == 'C')
@@ -27,15 +27,14 @@ int x, int y)
 	return (count);
 }
 
-
-static void map_duplicate(char **map, int height, \
+static void	map_duplicate(char **map, int height, \
 			int width, char map_dup[height][width])
 {
 	int	i;
 	int	j;
 
 	i = 0;
-    while (i < height)
+	while (i < height)
 	{
 		j = 0;
 		while (j < width)
@@ -44,7 +43,7 @@ static void map_duplicate(char **map, int height, \
 			j++;
 		}
 		i++;
-    }
+	}
 }
 
 int	check_route(t_game *map_info, int player_pos[2])
@@ -64,4 +63,3 @@ int	check_route(t_game *map_info, int player_pos[2])
 		return (ERROR);
 	return (0);
 }
-

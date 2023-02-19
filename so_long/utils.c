@@ -20,9 +20,9 @@ void	print_messages(char *msg)
 	write(1, msg, len);
 }
 
-int handle_close_button(void *param)
+int	handle_close_button(void *param)
 {
 	(void)param;
 	print_messages("You clicked close button!\n");
-    exit(0);
+	exit(0);
 }
