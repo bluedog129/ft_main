@@ -53,7 +53,7 @@ int	display_image(t_game *map_info, int index)
 	moving_count_str = ft_itoa(map_info->moving_count);
 	display_map(map_info);
 	display_player(map_info, index);
-    mlx_string_put(map_info->mlx, map_info->dino_advanture, 100, 100, 0x0000FF, moving_count_str);
+    mlx_string_put(map_info->mlx, map_info->dino_advanture, 20, 20, 0x0000FF, moving_count_str);
     free(moving_count_str);
 	return (0);
 }
