@@ -45,8 +45,7 @@ static void	move_result(t_game *map_info, int new_x, int new_y)
 	print_messages("\n");
 }
 
-
-static void press_keyboard(t_game *map_info, int keycode)
+static void	press_keyboard(t_game *map_info, int keycode)
 {
 	if (keycode == KEY_ESC)
 	{
@@ -69,11 +68,11 @@ static void press_keyboard(t_game *map_info, int keycode)
 		move_result(map_info, 0, 1);
 }
 
-int move_player(int keycode, void *param)
+int	move_player(int keycode, void *param)
 {
-    t_game *map_info;
+	t_game	*map_info;
 
-    map_info = (t_game *)param;
+	map_info = (t_game *)param;
 	press_keyboard(map_info, keycode);
-    return (0);
+	return (0);
 }

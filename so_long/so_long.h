@@ -8,8 +8,7 @@
 
 # define SPRITE_SIZE 32
 # define MOVEMENT_SPEED 4
-# define FRAME_RATE 60
-# define FRAME_TIME_US (1000000 / FRAME_RATE)
+# define FRAME_TIME_US 50000
 # define MOVE_THRESHOLD 10
 
 enum e_definition
@@ -42,13 +41,13 @@ typedef struct game_type
 	void	*spellbook;
 	int		left;
 	int		game_finish;
-	int     image_index;
+	int		image_index;
 	int		moving_count;
 	int		enemy_position[2];
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
-int 	map_init(t_game *map_info, char *map_file);
+int		map_init(t_game *map_info, char *map_file);
 void	so_long(char *map_file);
 int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
