@@ -38,7 +38,7 @@ static void move_player(t_game *map_info, int keycode)
 	if (keycode == KEY_UP || keycode == KEY_DOWN || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 	{
 		map_info->moving_count++;
-		print_messages("\nDino's foot print : ");
+		print_messages("\nDino's footprint : ");
 		ft_putnbr_fd(map_info->moving_count, 1);
 		print_messages("\n");
 	}
@@ -59,7 +59,7 @@ static int handle_close_button(int keycode, void *param)
     map_info = (t_game *)param;
     if (keycode == KEY_ESC)
     {
-        print_messages("You pressed exit_button!\n");
+        print_messages("You pressed the exit_button!\n");
         exit(0);
     }
     move_player(map_info, keycode);
