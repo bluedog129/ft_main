@@ -7,6 +7,11 @@
 # include <time.h>
 # include <stdio.h>   ///// 무조권 지워야 함
 
+# define SPRITE_SIZE 32
+# define MOVEMENT_SPEED 4
+# define FRAME_RATE 60
+# define FRAME_TIME_US (1000000 / FRAME_RATE)
+
 enum e_definition
 {
 	ERROR = -1,
@@ -16,9 +21,7 @@ enum e_definition
 	KEY_UP = 13,
 	KEY_ESC = 53,
 	KEY_RELEASE = 3,
-	KEY_PRESS = 2,
-	FRAME_RATE = 240,
-	FRAME_TIME_US = (50000 / FRAME_RATE)
+	KEY_PRESS = 2
 };
 
 typedef struct game_type
@@ -53,7 +56,7 @@ void	open_image(t_game *image);
 int		display_image(t_game *map_info, int index);
 void	print_error(char *msg);
 void	print_messages(char *msg);
-void	move_enemy(t_game *map_info);
 int		move_player(int keycode, void *param);
+void	move_enemy(t_game *map_info);
 
 #endif
