@@ -26,7 +26,6 @@ void	so_long(char *map_file)
 		return ;
 	if (check_map(map_info) == ERROR)
 		return ;
-	print_map(map_info->map, map_info->height, map_info->width);
 	open_image(map_info);
 	game_controller(map_info);
 	free(map_info);

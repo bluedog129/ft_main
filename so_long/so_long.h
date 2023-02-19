@@ -5,7 +5,6 @@
 # include "./mlx/mlx.h"
 # include <fcntl.h>
 # include <time.h>
-# include <stdio.h>   ///// 무조권 지워야 함
 
 # define SPRITE_SIZE 32
 # define MOVEMENT_SPEED 4

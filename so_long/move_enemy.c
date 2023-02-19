@@ -83,7 +83,7 @@ void move_enemy(t_game *map_info)
     int move_direction;
     int can_move;
     int enemy_position[2];
-    static int enemy_move_counter = 0; // new variable to track number of moves
+    static int enemy_move_counter = 0;
 
     srand(time(NULL));
     ft_memset(enemy_position, 0, sizeof(enemy_position));
@@ -114,5 +114,4 @@ void move_enemy(t_game *map_info)
     enemy_position[1] = new_x;
     enemy_position[0] = new_y;
     usleep(500000);
-    fflush(stdout);
 }
