@@ -11,6 +11,7 @@
 # define MOVEMENT_SPEED 4
 # define FRAME_RATE 60
 # define FRAME_TIME_US (1000000 / FRAME_RATE)
+# define MOVE_THRESHOLD 10
 
 enum e_definition
 {
@@ -53,10 +54,11 @@ void	so_long(char *map_file);
 int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
-int		display_image(t_game *map_info, int index);
+int		display_image(t_game *map_info);
 void	print_error(char *msg);
 void	print_messages(char *msg);
 int		move_player(int keycode, void *param);
 void	move_enemy(t_game *map_info);
+int		handle_close_button(void *param);
 
 #endif

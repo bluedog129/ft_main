@@ -2,24 +2,18 @@
 
 static int render_loop(t_game *map_info)
 {
-    static int	img_index;
-	
     mlx_clear_window(map_info->mlx, map_info->dino_advanture);
-    img_index = (img_index + 1) % 15;
-    display_image(map_info, img_index);
+    display_image(map_info);
 	move_enemy(map_info);
     return (0);
 }
 
 static int game_controller(t_game *map_info)
 {
+	mlx_hook(map_info->dino_advanture, 17, 0, handle_close_button, NULL);
     mlx_key_hook(map_info->dino_advanture, move_player, map_info);
     mlx_loop_hook(map_info->mlx, render_loop, map_info);
-    while (1)
-    {
-        usleep(FRAME_TIME_US);
-		mlx_loop(map_info->mlx);
-    }
+	mlx_loop(map_info->mlx);
     return (0);
 }
 
