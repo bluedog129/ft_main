@@ -35,6 +35,7 @@ static int find_enemy(t_game *map_info, int start_x, int start_y, int enemy_posi
 			{
 				enemy_position[0] = y;
 				enemy_position[1] = x;
+
 				return (1);
 			}
 			x++;
@@ -43,38 +44,6 @@ static int find_enemy(t_game *map_info, int start_x, int start_y, int enemy_posi
 	}
 	return (-1);
 }
-
-// void move_enemy(t_game *map_info)
-// {
-//     int	new_x;
-//     int	new_y;
-//     int	move_direction;
-//     int	can_move;
-//     int enemy_position[2];
-	
-//     srand(time(NULL));
-//     ft_memset(enemy_position, 0, sizeof(enemy_position));
-//     if (find_enemy(map_info, enemy_position[1], enemy_position[0], enemy_position) == -1)
-//         return;
-// 	move_direction = rand() % 4;
-// 	new_x = enemy_position[1];
-// 	new_y = enemy_position[0];
-// 	if (move_direction == 0)
-// 		new_y--;
-// 	else if (move_direction == 1)
-// 		new_x++;
-// 	else if (move_direction == 2)
-// 		new_y++;
-// 	else
-// 		new_x--;
-// 	can_move = move_possible_than_move(map_info, new_x, new_y, enemy_position);
-//     if (can_move == -1)
-// 		return ;
-//     enemy_position[1] = new_x;
-//     enemy_position[0] = new_y;
-//     usleep(500000);
-//     fflush(stdout);
-// }
 
 void move_enemy(t_game *map_info)
 {
@@ -90,7 +59,6 @@ void move_enemy(t_game *map_info)
     if (find_enemy(map_info, enemy_position[1], enemy_position[0], enemy_position) == -1)
         return;
 
-    // increment move counter and reset to 0 when it reaches the threshold
     enemy_move_counter++;
     if (enemy_move_counter >= MOVE_THRESHOLD)
         enemy_move_counter = 0;
@@ -113,5 +81,5 @@ void move_enemy(t_game *map_info)
         return;
     enemy_position[1] = new_x;
     enemy_position[0] = new_y;
-    usleep(500000);
+	usleep(500000);
 }
