@@ -1,7 +1,7 @@
 CFLAGS = -Wall -Wextra -Werror -MMD
 NAME = so_long.a
 SOURCES = map_init.c so_long.c check_map.c print_utils.c check_route.c\
-	open_image.c display_image.c game_controller.c enemy_move.c
+	open_image.c display_image.c move_player.c move_enemy.c
 B_SOURCES = 
 
 OBJECT = $(SOURCES:.c=.o)

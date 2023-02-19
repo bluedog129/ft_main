@@ -25,7 +25,7 @@ static void display_map(t_game *map_info)
 			else if (map_info->map[y][x] == 'E')
 				put_image(map_info, x, y, map_info->spellbook);
 			else if (map_info->map[y][x] == 'M')
-				put_image(map_info, x, y, map_info->enemy[0]);
+				put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 			x++;
 		}
 		y++;
@@ -34,17 +34,26 @@ static void display_map(t_game *map_info)
 
 static void display_player(t_game *map_info, int index)
 {
-	put_image(map_info, map_info->player_position[1], \
-		map_info->player_position[0], map_info->dino_right[index]);
+	if (map_info->left == 1)
+	{
+		put_image(map_info, map_info->player_position[1], \
+			map_info->player_position[0], map_info->dino_left[index]);
+	}
+	else
+	{
+		put_image(map_info, map_info->player_position[1], \
+			map_info->player_position[0], map_info->dino_right[index]);
+	}
 }
 
 int	display_image(t_game *map_info, int index)
 {
+	char	*moving_count_str;
+
+	moving_count_str = ft_itoa(map_info->moving_count);
 	display_map(map_info);
 	display_player(map_info, index);
-	// move_enemy(map_info);
-	char *moving_count_str = ft_itoa(map_info->moving_count);
-    mlx_string_put(map_info->mlx, map_info->dino_advanture, 30, 30, 0x0000FF, moving_count_str);
+    mlx_string_put(map_info->mlx, map_info->dino_advanture, 100, 100, 0x0000FF, moving_count_str);
     free(moving_count_str);
 	return (0);
 }

@@ -4,6 +4,7 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 # include <fcntl.h>
+# include <time.h>
 # include <stdio.h>   ///// 무조권 지워야 함
 
 enum e_definition
@@ -50,9 +51,9 @@ int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
 int		display_image(t_game *map_info, int index);
-int		game_controller(t_game *map_info);
 void	print_error(char *msg);
 void	print_messages(char *msg);
 void	move_enemy(t_game *map_info);
+int		move_player(int keycode, void *param);
 
 #endif
