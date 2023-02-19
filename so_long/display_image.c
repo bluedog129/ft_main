@@ -1,4 +1,4 @@
-#include "so_long.h"
+# include "so_long.h"
 
 static void	put_image(t_game *map_info, int x, int y, void *img)
 {
@@ -25,37 +25,33 @@ static void	display_player(t_game *map_info)
 
 static void	display_map(t_game *map_info)
 {
-	int	y;
-	int	x;
+	int		y;
+	int		x;
 
-	y = -1;
-	while (++y < map_info->height)
+	y = 0;
+	while (y < map_info->height)
 	{
-		x = -1;
-		while (++x < map_info->width)
+		x = 0;
+		while (x < map_info->width)
 		{
 			if (map_info->map[y][x] == '1')
 				put_image(map_info, x, y, map_info->wall);
-			else if (map_info->map[y][x] == 'C')
+			else
+				put_image(map_info, x, y, map_info->road);
+			if (map_info->map[y][x] == 'C')
 				put_image(map_info, x, y, map_info->item);
 			else if (map_info->map[y][x] == 'E')
 				put_image(map_info, x, y, map_info->spellbook);
+			else if (map_info->map[y][x] == 'M' && (rand() % 5 == 0))
+				put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 			else if (map_info->map[y][x] == 'M')
-				display_monster(map_info, x, y);
+				put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 			else if (map_info->map[y][x] == 'P')
-				display_player(map_info, x, y);
-			else
-				put_image(map_info, x, y, map_info->road);
+				display_player(map_info);
+			x++;
 		}
+		y++;
 	}
-}
-
-static void	display_monster(t_game *map_info, int x, int y)
-{
-	if (rand() % 5 == 0)
-		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
-	else
-		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 }
 
 int	display_image(t_game *map_info)
