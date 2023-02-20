@@ -4,7 +4,6 @@
 # include "./libft/libft.h"
 # include "./mlx/mlx.h"
 # include <fcntl.h>
-# include <time.h>
 
 # define SPRITE_SIZE 32
 # define MOVEMENT_SPEED 4
