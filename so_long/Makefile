@@ -33,7 +33,7 @@ clean :
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./libft/libft.a
+	rm -rf $(NAME) ./libft/libft.a ./so_long.out
 
 re :
 	make fclean
