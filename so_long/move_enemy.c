@@ -81,14 +81,16 @@ void	move_enemy(t_game *map_info)
 	int			direction;
 
 	ft_memset(enemy_position, 0, sizeof(enemy_position));
-	if (find_enemy(map_info, enemy_position[1], \
-		enemy_position[0], enemy_position) == -1)
-		return ;
-	enemy_move_counter++;
-	if (enemy_move_counter < MOVE_THRESHOLD)
-		return ;
-	enemy_move_counter = 0;
-	direction = get_random_direction();
-	if (!move_enemy_in_direction(map_info, direction, enemy_position))
-		return ;
+	while (find_enemy(map_info, enemy_position[1], \
+		enemy_position[0], enemy_position) == 1)
+	{
+		enemy_move_counter++;
+		if (enemy_move_counter < MOVE_THRESHOLD)
+			return ;
+		enemy_move_counter = 0;
+		direction = get_random_direction();
+		if (!move_enemy_in_direction(map_info, direction, enemy_position))
+			return ;
+	}
+	return ;
 }

@@ -5,6 +5,7 @@ static int	render_loop(t_game *map_info)
 	mlx_clear_window(map_info->mlx, map_info->dino_advanture);
 	display_image(map_info);
 	move_enemy(map_info);
+	move_enemy(map_info);
 	return (0);
 }
 
