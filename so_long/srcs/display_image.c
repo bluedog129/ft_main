@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:53 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 11:56:54 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:56:02 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,11 @@ int	display_image(t_game *map_info)
 	static int	prev_moving_count;
 	char		*moving_count_str;
 
-	if (prev_moving_count == 0 || map_info->moving_count != prev_moving_count)
-	{
-		moving_count_str = ft_itoa(map_info->moving_count);
-		mlx_string_put(map_info->mlx, map_info->dino_advanture, \
-						20, 20, 0x0000FF, moving_count_str);
-		free(moving_count_str);
-		prev_moving_count = map_info->moving_count;
-	}
 	display_map(map_info);
+	moving_count_str = ft_itoa(map_info->moving_count);
+	mlx_string_put(map_info->mlx, map_info->dino_advanture, \
+					20, 20, 0x0000FF, moving_count_str);
+	free(moving_count_str);
+	prev_moving_count = map_info->moving_count;
 	return (0);
 }
