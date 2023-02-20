@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_route.c                                      :+:      :+:    :+:   */
+/*   check_route_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:56 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 11:56:57 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:07:25 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	dfs(char **map, char collect, int x, int y)
 {

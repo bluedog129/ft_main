@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_image.c                                    :+:      :+:    :+:   */
+/*   display_image_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:53 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 12:56:02 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:56:57 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	put_image(t_game *map_info, int x, int y, void *img)
 {

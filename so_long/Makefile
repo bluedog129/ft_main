@@ -1,9 +1,13 @@
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror
 NAME = so_long.a
 SOURCES = ./srcs/map_init.c ./srcs/so_long.c ./srcs/check_map.c \
 			./srcs/utils.c ./srcs/check_route.c ./srcs/open_image.c \
 			./srcs/display_image.c ./srcs/move_player.c ./srcs/move_enemy.c
-B_SOURCES = 
+B_SOURCES = ./bonus_srcs/map_init_bonus.c ./bonus_srcs/so_long_bonus.c \
+			./bonus_srcs/check_map_bonus.c ./bonus_srcs/utils_bonus.c \
+			./bonus_srcs/check_route_bonus.c ./bonus_srcs/open_image_bonus.c \
+			./bonus_srcs/display_image_bonus.c ./bonus_srcs/move_player_bonus.c \
+			./bonus_srcs/move_enemy_bonus.c
 
 OBJECT = $(SOURCES:.c=.o)
 B_OBJECT = $(B_SOURCES:.c=.o)
@@ -28,17 +32,15 @@ $(NAME) : $(OBJECTS)
 bonus :
 	make WITH_BONUS=1 all
 clean :
-	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d)
+	rm -rf $(OBJECT) $(B_OBJECT)
 	make clean -C mlx
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./libft/libft.a
+	rm -rf $(NAME) ./libft/libft.a ./so_long.out
 
 re :
 	make fclean
 	make all
 
 .PHONY : all clean fclean re
-
--include $(OBJECTS:.o=.d)

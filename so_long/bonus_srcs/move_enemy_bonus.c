@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_enemy.c                                       :+:      :+:    :+:   */
+/*   move_enemy_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:44 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 11:56:45 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:07:11 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static int	find_enemy(t_game *map_info, int start_x, \
 	int start_y, int enemy_position[2])

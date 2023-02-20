@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_image.c                                       :+:      :+:    :+:   */
+/*   open_image_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:38 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 11:56:39 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 12:07:05 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	*xpm_to_image(t_game *image, char *address)
 {
