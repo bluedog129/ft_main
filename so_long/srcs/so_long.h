@@ -1,8 +1,8 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "./libft/libft.h"
-# include "./mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 
 # define SPRITE_SIZE 32
@@ -40,7 +40,6 @@ typedef struct game_type
 	void	*spellbook;
 	int		left;
 	int		moving_count;
-	int		enemy_count;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기
