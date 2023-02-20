@@ -40,10 +40,8 @@ typedef struct game_type
 	void	*item;
 	void	*spellbook;
 	int		left;
-	int		game_finish;
-	int		image_index;
 	int		moving_count;
-	int		enemy_position[2];
+	int		enemy_count;
 }	t_game;
 
 void	print_map(char **map, int height, int width); // 지우기

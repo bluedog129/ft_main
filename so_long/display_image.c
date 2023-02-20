@@ -6,23 +6,6 @@ static void	put_image(t_game *map_info, int x, int y, void *img)
 		map_info->dino_advanture, img, x * 64, y * 64);
 }
 
-static void	display_player(t_game *map_info)
-{
-	static int	index;
-
-	index = (index + 1) % 15;
-	if (map_info->left == 1)
-	{
-		put_image(map_info, map_info->player_position[1], \
-			map_info->player_position[0], map_info->dino_left[index]);
-	}
-	else
-	{
-		put_image(map_info, map_info->player_position[1], \
-			map_info->player_position[0], map_info->dino_right[index]);
-	}
-}
-
 static void	display_map_tiles(t_game *map_info, int x, int y)
 {
 	if (map_info->map[y][x] == '1')
@@ -37,8 +20,10 @@ static void	display_map_tiles(t_game *map_info, int x, int y)
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 	else if (map_info->map[y][x] == 'M')
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
-	else if (map_info->map[y][x] == 'P')
-		display_player(map_info);
+	else if (map_info->map[y][x] == 'P' && map_info->left == 1)
+		put_image(map_info, x, y, map_info->dino_left[(x + y) % 2]);
+	else if (map_info->map[y][x] == 'P' && map_info->left == 0)
+		put_image(map_info, x, y, map_info->dino_right[(x + y) % 2]);
 }
 
 static void	display_map(t_game *map_info)
