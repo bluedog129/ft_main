@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:56:56 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 11:56:57 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/20 14:10:53 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	check_route(t_game *map_info, int player_pos[2])
 	if (map_dup == NULL)
 		return (ERROR);
 	collect += dfs(map_dup, 'C', player_pos[1], player_pos[0]);
+	free_array(map_dup, map_info->height);
 	map_duplicate(map_info->map, map_info->height, map_info->width, &map_dup);
 	exit += dfs(map_dup, 'E', player_pos[1], player_pos[0]);
 	free_array(map_dup, map_info->height);
