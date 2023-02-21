@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:03:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:03:33 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:35:34 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,39 @@ static int	is_surrounded_by_wall(char **map, int height, int width)
 	return (0);
 }
 
+static int	check_forbidden_component(t_game *map_info)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map_info->height)
+	{
+		j = 0;
+		while (j < map_info->width)
+		{
+			if (map_info->map[i][j] != 'P' && \
+				map_info->map[i][j] != 'C' && \
+				map_info->map[i][j] != 'E' && \
+				map_info->map[i][j] != 'M' && \
+				map_info->map[i][j] != '0' && \
+				map_info->map[i][j] != '1')
+				return (ERROR);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 static int	check_component(t_game *map_info)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	ft_memset(map_info->collect_exit_player, 0, \
-		sizeof(map_info->collect_exit_player));
+	if (check_forbidden_component(map_info) == ERROR)
+		return (ERROR);
 	while (++i < map_info->height)
 	{
 		j = -1;
@@ -89,8 +114,6 @@ static int	check_component(t_game *map_info)
 
 int	check_map(t_game *map_info)
 {
-	ft_memset(map_info->player_position, 0, \
-	sizeof(map_info->player_position));
 	if (check_component(map_info) == ERROR)
 	{
 		print_error("map error\n");
