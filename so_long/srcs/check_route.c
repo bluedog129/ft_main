@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:56 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 14:10:53 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:03:15 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:03:17 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,6 @@ static int	dfs(char **map, char collect, int x, int y)
 	return (count);
 }
 
-static void	free_array(char **array, int size)
-{
-	int	i;
-
-	if (array == NULL)
-		return ;
-	i = 0;
-	while (i < size)
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 static void	map_duplicate(char **map, int height, int width, char ***map_dup)
 {
 	int	i;
@@ -67,7 +52,7 @@ static void	map_duplicate(char **map, int height, int width, char ***map_dup)
 		(*map_dup)[i] = malloc(width * sizeof(char));
 		if ((*map_dup)[i] == NULL)
 		{
-			free_array(*map_dup, i - 1);
+			free_array(*map_dup, i);
 			return ;
 		}
 		j = 0;

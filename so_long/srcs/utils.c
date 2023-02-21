@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:23 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 15:14:59 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:02:32 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:02:34 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,11 @@ void	free_array(char **array, int size)
 	while (size--)
 		free(array[size]);
 	free(array);
+}
+
+void	finish_game(t_game *map_info)
+{
+	free_array(map_info->map, map_info->height);
+	free(map_info);
+	exit(0);
 }

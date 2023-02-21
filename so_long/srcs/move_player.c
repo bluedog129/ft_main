@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:41 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 15:17:24 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:02:54 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:02:56 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	move_possible(t_game *map_info, int new_x, int new_y)
 	else if (new_location == 'M')
 	{
 		print_messages("bye bye dino...\n");
-		exit(0);
+		finish_game(map_info);
 	}
 	else if (new_location == 'E')
 	{
 		if (map_info->collect_exit_player[0] != 0)
 			return (-1);
 		print_messages("Congratulations! Mission complete :D\n");
-		exit(0);
+		finish_game(map_info);
 	}
 	return (1);
 }
@@ -62,7 +62,7 @@ static void	press_keyboard(t_game *map_info, int keycode)
 	if (keycode == KEY_ESC)
 	{
 		print_messages("You pressed the exit_button!\n");
-		exit(0);
+		finish_game(map_info);
 	}
 	if (keycode == KEY_LEFT)
 	{

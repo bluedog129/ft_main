@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:44 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 15:17:51 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:01:51 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:01:53 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	is_valid_move(t_game *map_info, int new_x, int new_y)
 	if (new_location == 'P')
 	{
 		print_messages("bye bye dino...\n");
-		exit(0);
+		finish_game(map_info);
 	}
 	return (1);
 }

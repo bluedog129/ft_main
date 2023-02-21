@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:53 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 15:19:05 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:02:03 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:02:05 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,20 @@ static void	put_image(t_game *map_info, int x, int y, void *img)
 {
 	mlx_put_image_to_window(map_info->mlx, \
 		map_info->dino_advanture, img, x * 64, y * 64);
+}
+
+static void	load_dino_sprites(t_game *map_info, int x, int y)
+{
+	static int	frame = 0;
+	static int	delay = 3;
+
+	if (map_info->left == 1)
+		put_image(map_info, x, y, \
+			map_info->dino_left[frame / delay % 15]);
+	else
+		put_image(map_info, x, y, \
+			map_info->dino_right[frame / delay % 15]);
+	frame++;
 }
 
 static void	display_map_tiles(t_game *map_info, int x, int y)
@@ -32,10 +46,6 @@ static void	display_map_tiles(t_game *map_info, int x, int y)
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 	else if (map_info->map[y][x] == 'M')
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
-	else if (map_info->map[y][x] == 'P' && map_info->left == 1)
-		put_image(map_info, x, y, map_info->dino_left[(x + y) % 2]);
-	else if (map_info->map[y][x] == 'P' && map_info->left == 0)
-		put_image(map_info, x, y, map_info->dino_right[(x + y) % 2]);
 }
 
 static void	display_map(t_game *map_info)
@@ -62,6 +72,8 @@ int	display_image(t_game *map_info)
 	char		*moving_count_str;
 
 	display_map(map_info);
+	load_dino_sprites(map_info, \
+	map_info->player_position[1], map_info->player_position[0]);
 	moving_count_str = ft_itoa(map_info->moving_count);
 	mlx_string_put(map_info->mlx, map_info->dino_advanture, \
 					20, 20, 0x0000FF, moving_count_str);

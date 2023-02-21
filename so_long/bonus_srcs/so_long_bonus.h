@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:56:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/20 15:15:29 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/21 16:01:27 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/21 16:01:29 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 
-# define SPRITE_SIZE 32
-# define MOVEMENT_SPEED 4
-# define FRAME_TIME_US 50000
 # define MOVE_THRESHOLD 10
 
 enum e_definition
@@ -30,8 +27,6 @@ enum e_definition
 	KEY_DOWN = 1,
 	KEY_UP = 13,
 	KEY_ESC = 53,
-	KEY_RELEASE = 3,
-	KEY_PRESS = 2
 };
 
 typedef struct game_type
@@ -54,7 +49,6 @@ typedef struct game_type
 	int		moving_count;
 }	t_game;
 
-void	print_map(char **map, int height, int width); // 지우기
 int		map_init(t_game *map_info, char *map_file);
 void	so_long(char *map_file);
 int		check_map(t_game *map_info);
@@ -66,5 +60,7 @@ void	print_messages(char *msg);
 int		move_player(int keycode, void *param);
 void	move_enemy(t_game *map_info);
 int		handle_close_button(void *param);
+void	free_array(char **array, int size);
+void	finish_game(t_game *map_info);
 
 #endif
