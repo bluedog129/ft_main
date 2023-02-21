@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:02:37 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:02:39 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:30:16 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	print_error(char *msg);
 void	print_messages(char *msg);
 int		move_player(int keycode, void *param);
 void	move_enemy(t_game *map_info);
-int		handle_close_button(void *param);
+int		handle_close_button(void);
 void	free_array(char **array, int size);
 void	finish_game(t_game *map_info);
 

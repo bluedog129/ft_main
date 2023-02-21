@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:02:32 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:02:34 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:30:19 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void	print_messages(char *msg)
 	write(1, msg, len);
 }
 
-int	handle_close_button(void *param)
+int	handle_close_button(void)
 {
-	(void)param;
 	print_messages("You clicked close button!\n");
 	exit(0);
 }
