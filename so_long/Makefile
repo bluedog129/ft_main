@@ -25,7 +25,7 @@ $(NAME) : $(OBJECTS)
 	cp ./libft/libft.a ./$(NAME)
 	make all -C ./mlx 2> /dev/null
 	ar -rcs $@ $^
-	cc ./srcs/main.c -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
+	cc ./main.c -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
@@ -37,7 +37,7 @@ clean :
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./libft/libft.a ./so_long.out
+	rm -rf $(NAME) ./libft/libft.a so_long.a so_long.out
 
 re :
 	make fclean
