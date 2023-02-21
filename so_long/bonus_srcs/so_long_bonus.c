@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:01:32 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:01:34 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:09:33 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	so_long(char *map_file)
 
 	map_info = malloc(sizeof(t_game));
 	if (map_init(map_info, map_file) == ERROR)
-		finish_game(map_info);
+		exit(0);
 	if (check_map(map_info) == ERROR)
 		finish_game(map_info);
 	open_image(map_info);
