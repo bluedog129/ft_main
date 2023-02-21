@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:58:02 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:16:17 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:02:20 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ static int	validate_arg(int ac, char **av)
 		print_error("arg error\n");
 		return (ERROR);
 	}
-	if (ft_strncmp(ft_strrchr(av[1], '.'), ".ber", \
-		ft_strlen(ft_strrchr(av[1], '.'))) != 0)
+	if (ft_strchr(av[1], '.') == 0)
+	{
+		print_error("arg error\n");
+		return (ERROR);
+	}
+	if (ft_strncmp(ft_strrchr(av[1], '.'), \
+		".ber", ft_strlen(ft_strrchr(av[1], '.'))) != 0)
 	{
 		print_error("arg error\n");
 		return (ERROR);
