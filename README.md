@@ -1,3 +1,6 @@
+## Inner Circle
+![image](/image/ft_circle.png)
+
 ### Circle One
 - [Libft][libft]
 - [Born2beroot][born2beroot]
