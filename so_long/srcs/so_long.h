@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:02:37 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 12:53:56 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:33:20 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 
-# define MOVE_THRESHOLD 10
+# define MOVE_THRESHOLD 50
 
 enum e_definition
 {

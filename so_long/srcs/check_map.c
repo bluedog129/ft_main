@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:03:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 12:50:46 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:34:50 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	count_component(char component, t_game *map_info)
 	return (1);
 }
 
-static int	check_component(t_game *map_info)
+int	check_component(t_game *map_info)
 {
 	int	y;
 	int	x;
