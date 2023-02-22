@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:01:45 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:01:47 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/22 20:33:32 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	move_possible(t_game *map_info, int new_x, int new_y)
 	if (new_location == '1')
 		return (-1);
 	if (new_location == 'C')
-		map_info->collect_exit_player[0]--;
+		map_info->num_cepm[0]--;
 	else if (new_location == 'M')
 	{
 		print_messages("bye bye dino...\n");
@@ -28,7 +28,7 @@ static int	move_possible(t_game *map_info, int new_x, int new_y)
 	}
 	else if (new_location == 'E')
 	{
-		if (map_info->collect_exit_player[0] != 0)
+		if (map_info->num_cepm[0] != 0)
 			return (-1);
 		print_messages("Congratulations! Mission complete :D\n");
 		finish_game(map_info);
@@ -51,6 +51,7 @@ static void	move_result(t_game *map_info, int new_x, int new_y)
 	map_info->map[previous_y][previous_x] = '0';
 	map_info->player_position[1] = new_x;
 	map_info->player_position[0] = new_y;
+	put_image(map_info, previous_x, previous_y, map_info->road);
 	map_info->moving_count++;
 	print_messages("\nDino's footprint : ");
 	ft_putnbr_fd(map_info->moving_count, 1);
