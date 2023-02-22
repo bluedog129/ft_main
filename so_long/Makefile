@@ -1,5 +1,7 @@
 CFLAGS = -Wall -Wextra -Werror
 NAME = so_long.a
+SRCS = srcs/main.c
+BNS_SRCS = bonus_srcs/main_bonus.c
 SOURCES = ./srcs/map_init.c ./srcs/so_long.c ./srcs/check_map.c \
 			./srcs/utils.c ./srcs/check_route.c ./srcs/open_image.c \
 			./srcs/display_image.c ./srcs/move_player.c ./srcs/move_enemy.c \
@@ -15,8 +17,10 @@ B_OBJECT = $(B_SOURCES:.c=.o)
 
 ifdef WITH_BONUS
 	OBJECTS = $(OBJECT) $(B_OBJECT)
+	SRC = $(BNS_SRCS)
 else
 	OBJECTS = $(OBJECT)
+	SRC = $(SRCS)
 endif
 
 all : $(NAME)
@@ -26,7 +30,7 @@ $(NAME) : $(OBJECTS)
 	cp ./libft/libft.a ./$(NAME)
 	make all -C ./mlx 2> /dev/null
 	ar -rcs $@ $^
-	cc ./srcs/main.c -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
+	cc ./$(SRC) -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
