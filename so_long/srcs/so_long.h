@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:02:37 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 17:58:09 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:53:56 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct game_type
 	char	**map;
 	int		width;
 	int		height;
-	int		collect_exit_player[3];
+	int		num_cepm[4];
 	int		player_position[2];
 	void	*mlx;
 	void	*dino_advanture;
@@ -47,6 +47,7 @@ typedef struct game_type
 	void	*spellbook;
 	int		left;
 	int		moving_count;
+	int		game_start;
 }	t_game;
 
 int		map_init(t_game *map_info, char *map_file);
@@ -63,5 +64,9 @@ int		handle_close_button(void);
 void	free_array(char **array, int size);
 void	finish_game(t_game *map_info);
 int		validate_arg(int ac, char **av);
+void	load_dino_sprites(t_game *map_info, int x, int y);
+void	put_image(t_game *map_info, int x, int y, void *img);
+void	display_map(t_game *map_info);
+int		display_footprint(t_game *map_info);
 
 #endif
