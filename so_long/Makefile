@@ -16,7 +16,7 @@ OBJECT = $(SOURCES:.c=.o)
 B_OBJECT = $(B_SOURCES:.c=.o)
 
 ifdef WITH_BONUS
-	OBJECTS = $(OBJECT) $(B_OBJECT)
+	OBJECTS = $(B_OBJECT)
 	SRC = $(BNS_SRCS)
 else
 	OBJECTS = $(OBJECT)
