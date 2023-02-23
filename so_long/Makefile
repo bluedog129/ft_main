@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD
 NAME = so_long.a
 SRCS = srcs/main.c
 BNS_SRCS = bonus_srcs/main_bonus.c
@@ -25,19 +25,19 @@ endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJECTS)
+$(NAME) : $(OBJECTS) $(SRC)
 	make all -C ./libft
 	cp ./libft/libft.a ./$(NAME)
 	make all -C ./mlx 2> /dev/null
 	ar -rcs $@ $^
-	cc ./$(SRC) -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
+	cc ./$(SRC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
 bonus :
 	make WITH_BONUS=1 all
 clean :
-	rm -rf $(OBJECT) $(B_OBJECT)
+	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d) so_long.d
 	make clean -C mlx
 	make clean -C libft
 
@@ -49,3 +49,5 @@ re :
 	make all
 
 .PHONY : all clean fclean re
+
+-include $(OBJECTS:.o=.d)
