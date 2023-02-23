@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:03:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:03:07 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:37 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:32 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ static void	copy_map(char (*tmp)[1000], t_game *map_info)
 	int	i;
 
 	map_info->map = malloc(sizeof(char *) * map_info->height);
+	if (map_info->map == NULL)
+		exit(0);
 	i = 0;
 	while (i < map_info->height)
 	{
 		map_info->map[i] = malloc(sizeof(char) * map_info->width);
+		if (map_info->map[i] == NULL)
+			exit(0);
 		ft_memcpy(map_info->map[i], tmp[i], map_info->width);
 		i++;
 	}
@@ -78,15 +82,9 @@ int	map_init(t_game *map_info, char *map_file)
 	char	tmp[1000][1000];
 
 	if (open_map(tmp, map_info, map_file) == ERROR)
-	{
-		print_error("open error\n");
-		return (ERROR);
-	}
+		error_exit("open error\n");
 	if (check_rectangular(tmp, map_info) == ERROR)
-	{
-		print_error("map_init_error\n");
-		return (ERROR);
-	}
+		error_exit("check_rectangular_error\n");
 	copy_map(tmp, map_info);
 	return (1);
 }

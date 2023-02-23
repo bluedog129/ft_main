@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:02:32 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/21 16:30:19 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:39:11 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:37 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_error(char *msg)
+void	error_exit(char *msg)
 {
 	int	len;
 
@@ -20,6 +20,7 @@ void	print_error(char *msg)
 	while (msg[len])
 		len++;
 	write(2, msg, len);
+	exit(0);
 }
 
 void	print_messages(char *msg)
@@ -32,8 +33,9 @@ void	print_messages(char *msg)
 	write(1, msg, len);
 }
 
-int	handle_close_button(void)
+int	handle_close_button(void *param)
 {
+	(void)param;
 	print_messages("You clicked close button!\n");
 	exit(0);
 }

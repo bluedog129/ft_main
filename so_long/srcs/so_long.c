@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:02:42 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 13:33:52 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:58 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:35 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	so_long(char *map_file)
 	t_game	*map_info;
 
 	map_info = malloc(sizeof(t_game));
+	if (!map_info)
+		return ;
 	ft_memset(map_info, 0, sizeof(t_game));
 	if (map_init(map_info, map_file) == ERROR)
 		exit(0);

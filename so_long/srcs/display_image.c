@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:03:11 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 12:45:09 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:30 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:31 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	display_map_tiles(t_game *map_info, int x, int y)
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
 	else if (map_info->map[y][x] == 'M')
 		put_image(map_info, x, y, map_info->enemy[(x + y) % 2]);
+	else if (map_info->map[y][x] == 'P')
+		put_image(map_info, x, y, map_info->dino_right[0]);
 }
 
 void	display_map(t_game *map_info)

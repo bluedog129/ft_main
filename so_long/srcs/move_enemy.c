@@ -5,40 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:02:59 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 13:34:19 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:42 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:33 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int	find_enemy(t_game *game, int start_x, \
-	int start_y, int enemy_position[2])
-{
-	int	y;
-	int	x;
-
-	y = start_y;
-	x = start_x;
-	while (y < game->height)
-	{
-		if (y != start_y)
-			x = 0;
-		while (x < game->width)
-		{
-			if (game->map[y][x] == 'M')
-			{
-				enemy_position[0] = y;
-				enemy_position[1] = x;
-				return (1);
-			}
-			x++;
-		}
-		y++;
-		x = 0;
-	}
-	return (-1);
-}
 
 static int	is_valid_move(t_game *game, int new_x, int new_y)
 {
@@ -75,8 +47,10 @@ static int	move_enemy_in_direction(t_game *game, \
 		new_x++;
 	else if (direction == 2)
 		new_y++;
-	else
+	else if (direction == 3)
 		new_x--;
+	else
+		return (0);
 	if (!is_valid_move(game, new_x, new_y))
 		return (0);
 	game->map[new_y][new_x] = 'M';
@@ -88,29 +62,41 @@ static int	move_enemy_in_direction(t_game *game, \
 	return (1);
 }
 
+static int	move_randomely(t_game *game, int *enemy_position)
+{
+	int			direction;
+
+	if (find_enemy(game, enemy_position[1], \
+		enemy_position[0], enemy_position) == -1)
+		return (-1);
+	direction = get_random_direction();
+	move_enemy_in_direction(game, direction, &enemy_position[0]);
+	return (1);
+}
+
 void	move_enemy(t_game *game)
 {
 	static int	enemy_move_counter;
-	int			enemy_position[2];
-	int			direction;
-	int			num_enemy;
+	static int	enemy_position[2];
+	static int	count;
+	int			move_num;
 
-	num_enemy = game->num_cepm[3];
-	ft_memset(enemy_position, 0, sizeof(enemy_position));
 	enemy_move_counter++;
+	if (count == 0)
+	{
+		count = game->num_cepm[3];
+		ft_memset(enemy_position, 0, sizeof(enemy_position));
+	}
 	if (enemy_move_counter < MOVE_THRESHOLD)
 		return ;
 	enemy_move_counter = 0;
-	while (num_enemy)
+	move_num = 3;
+	while (move_num)
 	{
-		if (find_enemy(game, enemy_position[1], \
-			enemy_position[0], enemy_position) == -1)
-			return ;
-		direction = get_random_direction();
-		if (!move_enemy_in_direction(game, direction, &enemy_position[0]))
-			continue ;
-		num_enemy--;
+		move_randomely(game, enemy_position);
 		enemy_position[1]++;
+		move_num--;
 	}
+	count--;
 	return ;
 }
