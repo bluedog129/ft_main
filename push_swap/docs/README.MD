@@ -1,14 +1,27 @@
 # push_swap
 
-## 구현해야할 것들
+## Main fuctions flow
 - [ ] args_parsing
 	- [ ] validate_args
-		- [ ] dup
-		- [ ] INT_MIN ~ INT_MAX
-	- [ ] 
+		- [ ] not duplicate
+		- [ ] validate_not_int
+		- [ ] validate_int_range(INT_MIN ~ INT_MAX)
+	- [ ] put_args_to_stack 
+		- [ ] pick_last_char_from_args
+		- [ ] put_num_to_stack
+			- [ ] ft_atoi
+			- [ ] put_to_stack
 
-- [ ] make_command
+- [ ] checker
 
-- [ ] make_stacks
+- [ ] push_swap (main_function)
 
-- [ ] 
+
+
+
+## Tools to make
+- [ ] make_stack (exactly daeque, and it will create two in this project)
+	- [ ] create, delete, enque_front, enque_rear, deque_front, deque_rear
+
+- [ ] make_command (using stack)
+	- [ ] pa, pb, ss, sb, rr, ra, rrr, rra, rrb
