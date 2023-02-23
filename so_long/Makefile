@@ -30,19 +30,19 @@ $(NAME) : $(OBJECTS) $(SRC)
 	cp ./libft/libft.a ./$(NAME)
 	make all -C ./mlx 2> /dev/null
 	ar -rcs $@ $^
-	cc ./$(SRC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long.out
+	cc ./$(SRC) $(CFLAGS) -Lmlx -lmlx -framework OpenGL -framework AppKit libft/libft.a so_long.a -o so_long
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
 bonus :
 	make WITH_BONUS=1 all
 clean :
-	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d) so_long.d
+	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d) $(B_OBJECT:.o=.d) so_long.d
 	make clean -C mlx
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./libft/libft.a $(OBJECTS:.o=.d) so_long.a so_long.out
+	rm -rf $(NAME) ./libft/libft.a $(OBJECTS:.o=.d) $(B_OBJECT:.o=.d) so_long.a so_long
 
 re :
 	make fclean
