@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:01:27 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 20:34:50 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:39:05 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 17:04:37 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_BONUS_H
-# define SO_LONG_BONUS_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 
-# define MOVE_THRESHOLD 50
+# define MOVE_THRESHOLD 10
 
 enum e_definition
 {
@@ -55,18 +55,19 @@ void	so_long(char *map_file);
 int		check_map(t_game *map_info);
 int		check_route(t_game *map_info, int player_pos[2]);
 void	open_image(t_game *image);
-int		display_image(t_game *map_info);
-void	print_error(char *msg);
+int		display_footprint(t_game *map_info);
+void	display_map(t_game *map_info);
+void	error_exit(char *msg);
 void	print_messages(char *msg);
 int		move_player(int keycode, void *param);
 void	move_enemy(t_game *map_info);
-int		handle_close_button(void);
+int		handle_close_button(void *param);
 void	free_array(char **array, int size);
 void	finish_game(t_game *map_info);
-int		validate_arg(int ac, char **av);
 void	load_dino_sprites(t_game *map_info, int x, int y);
 void	put_image(t_game *map_info, int x, int y, void *img);
-void	display_map(t_game *map_info);
-int		display_footprint(t_game *map_info);
+int		find_enemy(t_game *game, int start_x, \
+			int start_y, int enemy_position[2]);
+int		validate_arg(int ac, char **av);
 
 #endif

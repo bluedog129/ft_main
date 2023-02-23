@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:01:39 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 20:33:56 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:53 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 19:49:46 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 static void	*xpm_to_image(t_game *image, char *address)
 {
-	int	width;
-	int	height;
+	int		width;
+	int		height;
+	void	*put_image;
 
-	return (mlx_xpm_file_to_image(image->mlx, address, &width, &height));
+	put_image = mlx_xpm_file_to_image(image->mlx, address, &width, &height);
+	if (put_image == NULL)
+		error_exit("error : cannot open_image\n");
+	return (put_image);
 }
 
 static void	open_dino_right(t_game *image)

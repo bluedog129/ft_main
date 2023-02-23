@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:02:13 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 20:10:57 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/23 16:38:16 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/23 19:50:08 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,20 +80,39 @@ int	check_component(t_game *map_info)
 int	check_map(t_game *map_info)
 {
 	if (check_component(map_info) == ERROR)
-	{
-		print_error("map error\n");
-		return (ERROR);
-	}
+		error_exit("map error\n");
 	if (is_surrounded_by_wall(map_info->map, map_info->height, \
 			map_info->width) == ERROR)
-	{
-		print_error("map error\n");
-		return (ERROR);
-	}
+		error_exit("map error\n");
 	if (check_route(map_info, map_info->player_position) == ERROR)
-	{
-		print_error("map error\n");
-		return (ERROR);
-	}
+		error_exit("map error\n");
 	return (0);
+}
+
+int	find_enemy(t_game *game, int start_x, \
+	int start_y, int enemy_position[2])
+{
+	int	y;
+	int	x;
+
+	y = start_y;
+	x = start_x;
+	while (y < game->height)
+	{
+		if (y != start_y)
+			x = 0;
+		while (x < game->width)
+		{
+			if (game->map[y][x] == 'M')
+			{
+				enemy_position[0] = y;
+				enemy_position[1] = x;
+				return (1);
+			}
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+	return (-1);
 }

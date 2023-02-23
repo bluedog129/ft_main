@@ -6,59 +6,42 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:57:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/22 20:10:10 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:50:12 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static int	find_end_ber(char *str, char *ber)
+static int print_arg_error(void)
 {
-	int	start_ber;
-
-	start_ber = ft_strlen(str) - 4;
-	while (str[start_ber])
-	{
-		if (str[start_ber] != *ber)
-			return (ERROR);
-		ber++;
-		start_ber++;
-	}
-	return (1);
-}
-
-static int	validate_form(char *str, char c)
-{
-	int	count;
-
-	count = 0;
-	if (*str == '.')
-		str++;
-	while (*str)
-	{
-		if (*str == c)
-			count++;
-		str++;
-	}
-	return (count == 1);
+	error_exit("arg error\n");
+	return (ERROR);
 }
 
 int	validate_arg(int ac, char **av)
 {
+	int		index;
+	char	*start;
+	char	*slash;
+	char	*str;
+	
+	index = 0;
+	start = NULL;
+	str = ".ber";
 	if (ac != 2)
+		return (print_arg_error());
+	start = ft_strnstr(av[1], str, ft_strlen(av[1]));
+	if (start == NULL)
+		return (print_arg_error());
+	if (start[4] != '\0')
+		return (print_arg_error());
+	slash = ft_strrchr(av[1], '/');
+	if (slash == NULL)
+		return (1);
+	while (++slash != start)
 	{
-		print_error("arg error\n");
-		return (ERROR);
-	}
-	if (validate_form(av[1], '.') == 0)
-	{
-		print_error("arg error\n");
-		return (ERROR);
-	}
-	if (find_end_ber(av[1], ".ber") == ERROR)
-	{
-		print_error("arg error\n");
-		return (ERROR);
+		if (*slash == '.')
+			return (print_arg_error());
 	}
 	return (1);
 }
