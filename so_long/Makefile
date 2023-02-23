@@ -42,7 +42,7 @@ clean :
 	make clean -C libft
 
 fclean : clean
-	rm -rf $(NAME) ./libft/libft.a so_long.a so_long.out
+	rm -rf $(NAME) ./libft/libft.a $(OBJECTS:.o=.d) so_long.a so_long.out
 
 re :
 	make fclean
