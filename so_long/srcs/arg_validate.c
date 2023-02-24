@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:57:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/23 17:04:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:22:09 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int print_arg_error(void)
+static int	print_arg_error(void)
 {
 	error_exit("arg error\n");
 	return (ERROR);
@@ -24,7 +24,7 @@ int	validate_arg(int ac, char **av)
 	char	*start;
 	char	*slash;
 	char	*str;
-	
+
 	index = 0;
 	start = NULL;
 	str = ".ber";

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 16:39:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/23 17:04:37 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/02/24 13:23:12 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/02/24 13:23:46 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
