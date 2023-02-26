@@ -1,8 +1,10 @@
 ## Inner Circle
 ![image](/image/ft_circle.png)
 
-### Circle One
+### Circle Zero
 - [Libft][libft]
+
+### Circle One
 - [Born2beroot][born2beroot]
 - [ft_printf][printf]
 - [get_next_line][gnl]
