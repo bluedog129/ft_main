@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:54:19 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 18:32:48 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:51:06 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	validate_range(char **av)
 
 	while (av[i])
 	{
-		if (-2147483648 > ft_atoi(av[i]) || ft_atoi(av[i]) > 2147483647)
+		if (INT_MIN > ft_atoi(av[i]) || ft_atoi(av[i]) > INT_MAX)
 			return (ERROR);
 	}
 	return (VALIDATE_PASS);

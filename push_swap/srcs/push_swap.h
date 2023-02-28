@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:23:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 14:28:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:50:36 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+# include <limits.h>
 
 enum e_definition
 {
