@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:23:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 18:53:44 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:45:30 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
+# include "../dequeue/dequeue.h"
 # include <limits.h>
 
 enum e_definition

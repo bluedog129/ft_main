@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:54:19 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 18:51:06 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/02/28 20:34:25 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ static int	validate_not_digit(char **av)
 	i = 0;
 	while (av[i])
 	{
+		j = 0;
+		if (av[i][j] == '-')
+		{
+			if (av[i][j + 1] == '0')
+				return (ERROR);
+			j++;
+		}
 		while (av[i][j])
 		{
-			if(av[i][j] == '-')
-				j++;
 			if(ft_isdigit(av[i][j]) == 0)
 				return (ERROR);
 			j++;
@@ -56,11 +61,15 @@ static int	validate_not_duplicate(char **av)
 static int	validate_range(char **av)
 {
 	int	i;
+	int	arg_num;
 
+	i = 0;
 	while (av[i])
 	{
-		if (INT_MIN > ft_atoi(av[i]) || ft_atoi(av[i]) > INT_MAX)
+		arg_num = ft_atoi(av[i]);
+		if (INT_MIN > arg_num || arg_num > INT_MAX)
 			return (ERROR);
+		i++;
 	}
 	return (VALIDATE_PASS);
 }
