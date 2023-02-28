@@ -17,6 +17,7 @@
 		- [ ] sort_each_chunks (Push each chunk onto the stack in order, starting with the smallest chunk)
 		- [ ] merge the chunks (At each step, pop the top element from one of the stacks, compare it to the top element of the other stack, and push the smaller element onto the other stack and Repeat this process until one of the stacks is empty)
 
+## Tools to make
 - [ ] make_stack (exactly daeque, and it will create two in this project)
 	- [ ] create, delete, enque_front, enque_rear, deque_front, deque_rear
 
