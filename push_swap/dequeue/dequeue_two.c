@@ -6,11 +6,11 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:27:40 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 22:36:03 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:30:23 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../srcs/push_swap.h"
 
 int	pop_front(t_deque *deque)
 {
@@ -58,13 +58,13 @@ int	pop_back(t_deque *deque)
 
 void	print_deque(t_deque *deque)
 {
-	t_deque	*curr;
+	int	i;
 
-	curr = deque->head;
-	while (curr != NULL)
+	i = deque->front;
+	while (i != deque->rear)
 	{
-		ft_printf("%d ", curr->data);
-		curr = curr->next;
+		ft_printf("%d ", deque->arr[i]);
+		i = (i + 1) % deque->capacity;
 	}
-	ft_putchar('\n');
+	ft_printf("%d\n", deque->arr[i]);
 }
