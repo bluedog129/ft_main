@@ -6,9 +6,11 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:19:22 by hyojocho          #+#    #+#             */
-/*   Updated: 2022/11/28 21:44:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:50:36 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

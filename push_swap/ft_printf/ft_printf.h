@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 22:13:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/01 17:50:00 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:30:55 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 # include "ft_arraylist.h"
+# include "../srcs/push_swap.h"
 
 enum e_format_check {
 	NOT_PLACEHOLDER = 1,
-	PLACEHOLDER = 2,
-	ERROR = -1
+	PLACEHOLDER = 2
 };
 
 enum e_flag_check {
