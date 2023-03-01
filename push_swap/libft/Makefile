@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 12:05:39 by hyojocho          #+#    #+#              #
-#    Updated: 2023/02/28 18:02:14 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/03/01 18:55:09 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SOURCES = ft_bzero.c ft_isalnum.c ft_isalpha.c \
 			ft_itoa.c ft_strmapi.c ft_striteri.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 			ft_putnbr_fd.c ft_htoa.c ft_utoa.c ft_uitoa.c \
-			ft_uitoa_lower.c ft_strcmp.c
+			ft_uitoa_lower.c ft_strcmp.c ft_atol.c
 B_SOURCES = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
 			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
