@@ -1,31 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/28 13:23:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/01 13:26:23 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/03/01 21:47:58 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/03/01 21:47:59 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include "../libft/libft.h"
-# include "../ft_printf/ft_printf.h"
-# include "../dequeue/dequeue.h"
-# include <limits.h>
-
-enum e_definition
-{
-	ERROR = -1,
-	VALIDATE_PASS = 1
-};
-
-int		validate_args(int ac, char **av);
-void	print_error(char *str);
-void	push_swap(char **av);
-
-#endif

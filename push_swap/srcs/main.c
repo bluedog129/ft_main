@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 14:36:40 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/02/28 18:59:26 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:44:23 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	if (validate_args(ac, av))
+	if (validate_args(ac, av) == ERROR)
 		return (ERROR);
-	push_swap();
+	push_swap(av);
 	return (0);
 }
