@@ -21,8 +21,8 @@
 - [x] make_stack (exactly dequeue, and it will create two in this project)
 	- [x] create_deque, is_full, is_empty, push_front, push_back, pop_front, pop_back, print_deque
 
-- [ ] make_command (using stack)
-	- [ ] pa, pb, ss, sb, rr, ra, rrr, rra, rrb
+- [x] make_command (using stack)
+	- [x] pa, pb, ss, sb, rr, ra, rrr, rra, rrb
 
 - [ ] utils
 	- [x] print_error
