@@ -6,11 +6,11 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:02:41 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/01 19:11:57 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:35:14 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/push_swap.h"
+#include "../push_swap.h"
 
 t_deque	*create_deque(int capacity)
 {

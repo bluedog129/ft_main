@@ -6,11 +6,11 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:27:40 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/01 14:30:23 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:35:10 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../srcs/push_swap.h"
+#include "../push_swap.h"
 
 int	pop_front(t_deque *deque)
 {
