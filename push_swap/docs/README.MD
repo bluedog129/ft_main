@@ -26,6 +26,7 @@
 
 - [ ] utils
 	- [x] print_error
+	- [x] free_deque
 
 - [ ] checker (bonus)
 	- [ ] 
