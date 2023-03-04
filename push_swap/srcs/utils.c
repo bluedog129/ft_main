@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:03:38 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/01 17:43:52 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/04 12:40:11 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,10 @@ void	print_error(char *str)
 
 	str_len = ft_strlen(str);
 	write(2, str, str_len);
+}
+
+void	free_deque(t_deque	*deque)
+{
+	free(deque->arr);
+	free(deque);
 }
