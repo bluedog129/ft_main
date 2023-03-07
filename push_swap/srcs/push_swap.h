@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 13:23:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/02 21:51:27 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:36:32 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,10 @@ void	rr(t_deque *deque_a, t_deque *deque_b);
 void	rra(t_deque *deque);
 void	rrb(t_deque *deque);
 void	rrr(t_deque *deque_a, t_deque *deque_b);
+void	free_deque(t_deque	*deque);
+void	optimize_three_lefted_elements(t_deque *deque_a, int a, int b, int c);
+void	apply_greedy(t_deque *deque_a, t_deque *deque_b);
+void	optimize_two_elements(t_deque *deque_a);
+void	finish_push_swap(t_deque *deque_a, t_deque *deque_b);
 
 #endif
