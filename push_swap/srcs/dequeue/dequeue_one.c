@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:02:41 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/02 21:35:14 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/04 15:58:41 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_deque	*create_deque(int capacity)
 	deque->front = -1;
 	deque->rear = 0;
 	deque->arr = (int *)malloc(capacity * sizeof(int));
+	ft_memset(deque->arr, 0, capacity);
 	return (deque);
 }
 
