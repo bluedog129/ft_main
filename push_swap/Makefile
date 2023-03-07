@@ -4,7 +4,7 @@ SRCS = srcs/main.c
 BNS_SRCS = bonus_srcs/main_bonus.c
 SOURCES = ./srcs/dequeue/dequeue_one.c ./srcs/dequeue/dequeue_two.c ./srcs/push_swap.c \
 			./srcs/args_validate.c ./srcs/utils.c ./srcs/commands/command_s_p.c \
-			./srcs/commands/command_r.c ./srcs/commands/command_rrr.c
+			./srcs/commands/command_r.c ./srcs/commands/command_rrr.c ./srcs/optimize.c
 B_SOURCES = 
 
 OBJECT = $(SOURCES:.c=.o)
