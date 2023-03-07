@@ -13,13 +13,19 @@
 		- [x] put_num_to_deque (this is while roof)
 			- [x] ft_atoi
 			- [x] push_back
-	- [ ] divide_arrays_to_n_chunks (where n is a constant that depends on the size of the input array)
-	- [ ] sort_each_chunks (Push each chunk onto the stack in order, starting with the smallest chunk)
-	- [ ] merge the chunks (At each step, pop the top element from one of the stacks, compare it to the top element of the other stack, and push the smaller element onto the other stack and Repeat this process until one of the stacks is empty)
+	- [x] put_args_in_deque
+	- [x] optimize_two_elements
+	- [x] push_elements_a_to_b
+	- [x] optimize_three_lefted_elements
+	- [ ] apply_greedy
+		- [ ] get_priority_index
+			- [ ] count_command_use
+			- [ ] 
+	- [ ] 
 
 ## Tools to make
 - [x] make_stack (exactly dequeue, and it will create two in this project)
-	- [x] create_deque, is_full, is_empty, push_front, push_back, pop_front, pop_back, print_deque
+	- [x] create_deque, is_full, is_empty, push_front, push_back, pop_front, pop_back, 			print_deque
 
 - [x] make_command (using stack)
 	- [x] pa, pb, ss, sb, rr, ra, rrr, rra, rrb
@@ -27,6 +33,7 @@
 - [ ] utils
 	- [x] print_error
 	- [x] free_deque
+	- [x] finish_push_swap
 
 - [ ] checker (bonus)
 	- [ ] 
