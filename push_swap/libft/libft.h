@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:48:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/01 18:54:54 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:22:08 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include <string.h>
+# include "ft_printf/ft_printf.h"
+
+# define BUFFER_SIZE 10
 
 typedef struct s_list
 {
@@ -72,5 +76,9 @@ char		*ft_uitoa(unsigned int n);
 char		*ft_uitoa_lower(unsigned int n);
 int			ft_strcmp(const char *s1, const char *s2);
 long long	ft_atol(const char *str);
+long long	ft_atoi_extension(const char *str);
+char		*get_next_line(int fd);
+ssize_t		find_char(const char *s, int c);
+char		*append_buffer(char const *s1, char const *s2, size_t len);
 
 #endif

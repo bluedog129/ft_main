@@ -1,49 +1,90 @@
-CFLAGS = -Wall -Wextra -Werror -MMD
-NAME = push_swap.a
-SRCS = srcs/main.c
-BNS_SRCS = bonus_srcs/main_bonus.c
-SOURCES = ./srcs/dequeue/dequeue_one.c ./srcs/dequeue/dequeue_two.c ./srcs/push_swap.c \
-			./srcs/args_validate.c ./srcs/utils.c ./srcs/commands/command_s_p.c \
-			./srcs/commands/command_r.c ./srcs/commands/command_rrr.c ./srcs/optimize.c
-B_SOURCES = 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/15 18:00:13 by hyojocho          #+#    #+#              #
+#    Updated: 2023/03/15 19:33:12 by hyojocho         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-OBJECT = $(SOURCES:.c=.o)
-B_OBJECT = $(B_SOURCES:.c=.o)
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -MMD
+NAME		= push_swap.a
+AR			= ar -rcs
+RM			= rm -f
+HEADER		= push_swap.h
+LIBFT		= libft/libft.a
+SOURCES		= utils/stack_utils.c\
+			  utils/stack_utils2.c\
+			  utils/get_pivot.c\
+			  utils/exit.c\
+			  utils/doubly_linked_stack.c\
+			  utils/valid_args.c\
+			  utils/fill_stack.c\
+			  utils/pattern.c\
+			  utils/sort_numbers_a.c\
+			  utils/sort_numbers.c\
+			  utils/error_handle.c\
+			  greedy/apply_greedy.c\
+			  greedy/calculate_cost.c\
+			  greedy/move_init.c
+			  
+S_SOURCES	= push_swap.c\
+			  operations/push.c\
+			  operations/reverse.c\
+			  operations/rotate.c\
+			  operations/swap.c
 
-ifdef WITH_BONUS
-	OBJECTS = $(B_OBJECT)
-	SRC = $(BNS_SRCS)
-else
-	OBJECTS = $(OBJECT)
-	SRC = $(SRCS)
-endif
+B_SOURCES	= checker.c\
+			  checker_operations/push.c\
+			  checker_operations/reverse.c\
+			  checker_operations/rotate.c\
+			  checker_operations/swap.c
 
-all : $(NAME)
+OBJECTS    = $(SOURCES:.c=.o)
+S_OBJECTS  = $(S_SOURCES:.c=.o)
+B_OBJECTS  = $(B_SOURCES:.c=.o)
 
-$(NAME) : $(OBJECTS) $(SRC)
-	make all -C ./libft
-	cp ./libft/libft.a ./$(NAME)
-	make all -C ./ft_printf
-	cp ./ft_printf/libftprintf.a ./$(NAME)
-	ar -rcs $@ $^
-	cc ./$(SRC) $(CFLAGS) libft/libft.a ft_printf/libftprintf.a push_swap.a -o push_swap
+all:
+	make lib
+	make $(NAME)
+	make push_swap
 
-.c.o :
-	cc $(CFLAGS) -c $< -o $(<:.c=.o)
-bonus :
-	make WITH_BONUS=1 all
-clean :
-	rm -rf $(OBJECT) $(B_OBJECT) $(OBJECTS:.o=.d) $(B_OBJECT:.o=.d) push_swap.d
+$(NAME): $(OBJECTS)
+	$(AR) $@ $^
+
+$(OBJECTS): %.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+lib:
+	make -C libft
+
+clean:
+	$(RM) $(OBJECTS) $(OBJECTS:.o=.d) $(S_OBJECTS) $(S_OBJECTS:.o=.d) $(B_OBJECTS) $(B_OBJECTS:.o=.d)
 	make clean -C libft
-	make clean -C ft_printf
 
-fclean : clean
-	rm -rf $(NAME) ./libft/libft.a ./ft_printf/libftprintf.a $(OBJECTS:.o=.d) $(B_OBJECT:.o=.d) push_swap.a push_swap
+fclean: clean
+	$(RM) $(NAME) push_swap checker
+	make fclean -C libft
 
-re :
+re:
 	make fclean
 	make all
 
-.PHONY : all clean fclean re
+push_swap: $(S_OBJECTS) $(NAME)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT)
 
--include $(OBJECTS:.o=.d)
+checker: $(B_OBJECTS) $(NAME)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFT)
+
+bonus: 
+	make lib 
+	make $(NAME) 
+	make checker
+
+.PHONY: all lib clean fclean re bonus
+
+-include $(OBJECTS:.o=.d) $(S_OBJECTS:.o=.d) $(B_OBJECTS:.o=.d)

@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:47:29 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/15 20:19:03 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/03/15 19:37:21 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/03/15 19:37:22 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-long long	ft_atol(const char *str)
+static void	push_to(t_stack *from, t_stack *to)
 {
-	int			i;
-	int			sign;
-	long long	result;
+	int	data;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (from->top)
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
+		data = pop(from);
+		push(to, data);
 	}
-	while (('0' <= str[i]) && (str[i] <= '9'))
-	{
-		result *= 10;
-		result += (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
+}
+
+void	pa(t_stack *stack_a, t_stack *stack_b)
+{
+	push_to(stack_b, stack_a);
+}
+
+void	pb(t_stack *stack_a, t_stack *stack_b)
+{
+	push_to(stack_a, stack_b);
 }

@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:47:29 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/15 20:19:03 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/03/15 18:01:08 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/03/15 18:01:09 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../push_swap.h"
 
-long long	ft_atol(const char *str)
+void	destroy_stacks_and_exit(t_stack *stack_a, \
+		t_stack *stack_b, int exit_status)
 {
-	int			i;
-	int			sign;
-	long long	result;
+	destroy_stack(&stack_a);
+	destroy_stack(&stack_b);
+	exit(exit_status);
+}
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (('0' <= str[i]) && (str[i] <= '9'))
-	{
-		result *= 10;
-		result += (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
+void	error_exit(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_printf("Error\n");
+	if (stack_a != NULL)
+		destroy_stack(&stack_a);
+	if (stack_b != NULL)
+		destroy_stack(&stack_b);
+	exit(EXIT_FAILURE);
 }
