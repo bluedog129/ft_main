@@ -1,5 +1,5 @@
 ## Inner Circle
-![image](/image/ft_circle_solong_end.png)
+![image](/image/fin_push_swap.png)
 
 ### Circle Zero
 - [Libft][libft]
