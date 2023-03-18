@@ -25,6 +25,58 @@ s: down
 d: right  
 esc: exit the game
 
+### validate map Code
+Before rendering, the map is first validated to ensure that it is usable for the game.
+```c
+int	check_route(t_game *map_info, int player_pos[2])
+{
+	int		collect;
+	int		exit;
+	char	**map_dup;
+
+	collect = 0;
+	exit = 0;
+	map_dup = NULL;
+	map_duplicate(map_info->map, map_info->height, map_info->width, &map_dup);
+	if (map_dup == NULL)
+		return (ERROR);
+	collect += dfs(map_dup, 'C', player_pos[1], player_pos[0]);
+	free_array(map_dup, map_info->height);
+	map_duplicate(map_info->map, map_info->height, map_info->width, &map_dup);
+	exit += dfs(map_dup, 'E', player_pos[1], player_pos[0]);
+	free_array(map_dup, map_info->height);
+	if (collect != map_info->num_cepm[0] || exit != 1)
+		return (ERROR);
+	return (0);
+}
+
+static int	dfs(char **map, char collect, int x, int y)
+{
+	int	count;
+
+	count = 0;
+	if (collect == 'C')
+		if (map[y][x] == 'E')
+			return (0);
+	if (map[y][x] == '1' || map[y][x] == 'x')
+		return (0);
+	if (map[y][x] != 'x')
+	{
+		if (map[y][x] == collect)
+		{
+			map[y][x] = 'x';
+			count++;
+		}
+		map[y][x] = 'x';
+		count += dfs(map, collect, x + 1, y);
+		count += dfs(map, collect, x, y + 1);
+		count += dfs(map, collect, x - 1, y);
+		count += dfs(map, collect, x, y - 1);
+	}
+	return (count);
+}
+```
+
 ### rendering Code
 Instead of loading all the map images each time, update only the images at specific coordinates when game components (Dino, enemies, rings, spellbook) change.
 
