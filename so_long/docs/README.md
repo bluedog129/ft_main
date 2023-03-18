@@ -10,7 +10,7 @@ But be careful, there are poisonous mushrooms monsters lurking near the rings an
 
 **Move Dino with 'W', 'A', 'S', 'D', escape from the poisonous mushrooms, collect magic rings and activate the spell book.**  
 
-<img src = "./images/screen_shot.png">
+<img src = "./dino_ingame.mov">
 
 ### How to play
 **start**
