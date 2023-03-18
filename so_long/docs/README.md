@@ -27,6 +27,8 @@ esc: exit the game
 
 ### validate map Code
 Before rendering, the map is first validated to ensure that it is usable for the game.
+This code checks to see if Dino can get all the magic rings and reach EXIT.
+
 ```c
 int	check_route(t_game *map_info, int player_pos[2])
 {
