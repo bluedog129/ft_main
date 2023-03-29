@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 20:22:55 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/22 21:59:49 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:18:26 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_str_array(char **str_array)
 
 void	free_arg(t_arg *arg)
 {
-	free(arg->commands);
-	free(arg->c_paths);
+	free_str_array(arg->paths);
+	free_str_array(arg->commands);
 	free(arg);
 }

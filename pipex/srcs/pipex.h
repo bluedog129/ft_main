@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:37:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/23 19:22:15 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:40:48 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,36 @@
 enum e_pipex_enum
 {
 	SUCCESS = 1,
-	MIN_ARGS = 5
+	MIN_ARGS = 4
 };
 
 typedef struct arg
 {
 	char 	**commands;
 	char 	**paths;
-	char 	**c_paths;
+	char	**current_command;
+	char	*infile_str;
+	char	*outfile_str;
+	char	*full_path;
 	int		input_fd;
 	int		output_fd;
+	int		prev_fd;
+	int		command_count;
+	int		argc;
 }	t_arg;
 
-void	return_error_message(char *str);
-int		set_commands(t_arg *arg, char **argv, char **envp);
+// main
+void	apply_pipe(t_arg *arg);
+int		set_commands(t_arg *arg, int commands_idx);
+// file_open
+int		open_input_file(t_arg *arg);
+int		open_output_file(t_arg *arg);
+// process
+void	child_process(t_arg *arg, int pipe_fd[2], int index);
+void	parent_process(t_arg *arg, int pipe_fd[2]);
+// void	parent_process(t_arg *arg, int pipe_fd[2], int index);
+// utils
 void	free_str_array(char **str_array);
 void	free_arg(t_arg *arg);
-void	apply_pipe(t_arg *arg);
-int		open_file(t_arg *arg, char **argv);
 
-
-# endif
+#endif

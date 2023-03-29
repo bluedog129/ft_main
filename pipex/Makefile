@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 11:02:56 by hyojocho          #+#    #+#              #
-#    Updated: 2023/03/23 20:36:09 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/03/28 11:50:50 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ AR          = ar -rcs
 RM          = rm -f
 LIBS		= libft/libft.a
 SRCS		= ./srcs/pipex.c \
-				./srcs/error.c \
 				./srcs/command_setting.c \
 				./srcs/free_utils.c \
 				./srcs/pipe_apply.c \
-				./srcs/file_open.c
+				./srcs/file_open.c \
+				./srcs/parent_process.c \
+				./srcs/child_process.c
 SRCS_BONUS  = 
 OBJS        = $(SRCS:c=o)
 OBJS_BONUS  = $(SRCS_BONUS:.c=.o)

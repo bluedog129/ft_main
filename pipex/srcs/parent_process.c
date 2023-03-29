@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parent_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 18:10:38 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/21 21:35:21 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/03/27 17:26:09 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/03/29 20:40:29 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	return_error_message(char *str)
+void	parent_process(t_arg *arg, int pipe_fd[2])
 {
-	int	str_len;
-
-	str_len = 0;
-	while (str[str_len])
-		str_len++;
-	write(2, str, str_len);
+	close(pipe_fd[1]);
+	arg->prev_fd = pipe_fd[0];
 }
