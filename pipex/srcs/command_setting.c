@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:54:48 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/28 18:54:43 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:49:37 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@ static void	make_curr_command_info(t_arg *arg, int commands_idx)
 int	set_commands(t_arg *arg, int commands_idx)
 {
 	if (arg->paths == NULL)
-    {
-        perror("ERROR: PATH not set in environment variables\n");
-        return (ERROR);
-    }
+	{
+		perror("ERROR: PATH not set in environment variables\n");
+		return (ERROR);
+	}
 	if (arg->commands == NULL)
 	{
 		perror("ERROR: commands are invalid\n");
 		return (ERROR);
 	}
-	(void)commands_idx;
 	if (validate_commands(arg, commands_idx) == ERROR)
 	{
 		perror("ERROR: commands not found\n");

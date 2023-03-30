@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:26:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/29 20:40:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:45:53 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	parent_process(t_arg *arg, int pipe_fd[2])
 {
+	close(arg->prev_fd);
 	close(pipe_fd[1]);
 	arg->prev_fd = pipe_fd[0];
 }

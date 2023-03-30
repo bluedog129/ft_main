@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:39 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/28 20:56:46 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:01:01 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	**get_commands(t_arg *arg, char **argv)
 	int		arg_idx;
 	int		commands_idx;
 	char	**commands;
-	
+
 	arg_idx = 2;
 	while (argv[arg_idx])
 		arg_idx++;
@@ -43,7 +43,7 @@ static char	**get_commands(t_arg *arg, char **argv)
 	return (commands);
 }
 
-static char **get_paths(char **envp)
+static char	**get_paths(char **envp)
 {
 	while (*envp != NULL && ft_strncmp("PATH=", *envp, 5))
 		envp++;
@@ -55,19 +55,24 @@ static char **get_paths(char **envp)
 	return (ft_split(*envp + 5, ':'));
 }
 
-int	main(int argc, char **argv, char **envp) 
+static void	initialize_structs(int argc, char **argv, char **envp, t_arg *arg)
 {
-	t_arg	*arg;
-	
-	if (validate_args(argc) == ERROR)
-		return (EXIT_FAILURE);
-	arg = malloc(sizeof(t_arg));
 	arg->commands = get_commands(arg, argv);
 	arg->paths = get_paths(envp);
 	arg->argc = argc;
 	arg->infile_str = argv[1];
 	arg->outfile_str = argv[argc - 1];
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_arg	*arg;
+
+	if (validate_args(argc) == ERROR)
+		return (EXIT_FAILURE);
+	arg = malloc(sizeof(t_arg));
+	initialize_structs(argc, argv, envp, arg);
 	apply_pipe(arg);
 	free_arg(arg);
-    return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

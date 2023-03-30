@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:37:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/29 20:40:48 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/30 15:04:02 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ enum e_pipex_enum
 
 typedef struct arg
 {
-	char 	**commands;
-	char 	**paths;
+	char	**commands;
+	char	**paths;
 	char	**current_command;
 	char	*infile_str;
 	char	*outfile_str;
@@ -50,7 +50,6 @@ int		open_output_file(t_arg *arg);
 // process
 void	child_process(t_arg *arg, int pipe_fd[2], int index);
 void	parent_process(t_arg *arg, int pipe_fd[2]);
-// void	parent_process(t_arg *arg, int pipe_fd[2], int index);
 // utils
 void	free_str_array(char **str_array);
 void	free_arg(t_arg *arg);
