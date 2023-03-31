@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 20:54:48 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/30 14:49:37 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:04:56 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static int	validate_commands(t_arg *arg, int commands_idx)
 	int		paths_idx;
 
 	paths_idx = 0;
+	if (access(arg->commands[commands_idx], X_OK) == 0)
+	{
+		arg->full_path = ft_strdup(arg->commands[commands_idx]);
+		return (SUCCESS);
+	}
 	while (arg->paths[paths_idx])
 	{
 		commands_info = ft_split(arg->commands[commands_idx], ' ');
