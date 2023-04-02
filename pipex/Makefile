@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 11:02:56 by hyojocho          #+#    #+#              #
-#    Updated: 2023/03/28 11:50:50 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/04/02 15:15:02 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,14 @@ SRCS		= ./srcs/pipex.c \
 				./srcs/file_open.c \
 				./srcs/parent_process.c \
 				./srcs/child_process.c
-SRCS_BONUS  = 
+SRCS_BONUS  = ./bonus/pipex_bonus.c \
+				./bonus/command_setting_bonus.c \
+				./bonus/free_utils_bonus.c \
+				./bonus/pipe_apply_bonus.c \
+				./bonus/file_open_bonus.c \
+				./bonus/parent_process_bonus.c \
+				./bonus/child_process_bonus.c \
+				./bonus/here_doc_bonus.c
 OBJS        = $(SRCS:c=o)
 OBJS_BONUS  = $(SRCS_BONUS:.c=.o)
 

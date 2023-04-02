@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:17:39 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/02 16:00:00 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/04/02 13:37:03 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static int	validate_args(int argc)
 {
-	if (argc != 5)
+	if (argc < MIN_ARGS)
 	{
 		perror("ERROR : argument error\n");
 		return (ERROR);
@@ -29,14 +29,21 @@ static char	**get_commands(t_arg *arg, char **argv)
 	char	**commands;
 
 	arg_idx = 2;
+	if (arg->here_doc == 1)
+		arg_idx = 3;
 	while (argv[arg_idx])
 		arg_idx++;
 	arg->command_count = arg_idx - 3;
+	if (arg->here_doc == 1)
+		arg->command_count--;
 	commands = (char **)malloc(sizeof(char *) * (arg->command_count + 1));
 	commands_idx = 0;
 	while (commands_idx < arg->command_count)
 	{
-		commands[commands_idx] = ft_strdup(argv[commands_idx + 2]);
+		if (arg->here_doc == 1)
+			commands[commands_idx] = ft_strdup(argv[commands_idx + 3]);
+		else
+			commands[commands_idx] = ft_strdup(argv[commands_idx + 2]);
 		commands_idx++;
 	}
 	commands[commands_idx] = NULL;
@@ -57,10 +64,20 @@ static char	**get_paths(char **envp)
 
 static void	initialize_structs(int argc, char **argv, char **envp, t_arg *arg)
 {
+	if (strcmp(argv[1], "here_doc") == 0)
+	{
+		arg->here_doc = 1;
+		arg->infile_str = argv[2];
+		arg->limiter = ft_strjoin(argv[2], "\n");
+	}
+	else
+	{
+		arg->here_doc = 0;
+		arg->infile_str = argv[1];
+	}
 	arg->commands = get_commands(arg, argv);
 	arg->paths = get_paths(envp);
 	arg->argc = argc;
-	arg->infile_str = argv[1];
 	arg->outfile_str = argv[argc - 1];
 }
 
@@ -72,6 +89,7 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	arg = malloc(sizeof(t_arg));
 	initialize_structs(argc, argv, envp, arg);
+	apply_heredoc(arg);
 	apply_pipe(arg);
 	free_arg(arg);
 	return (EXIT_SUCCESS);
