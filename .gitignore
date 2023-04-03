@@ -5,3 +5,5 @@ so_long.out
 *.dSYM
 .DS_Store
 .vscode
+*.out
+*.txt
