@@ -12,7 +12,7 @@
 ### Circle Two
 - [so_long][so_long]
 - [push_swap][push_swap]
-- minitalk or pipex
+- [pipex][pipex]
 
 ### Circle Three
 - minishell
@@ -36,3 +36,4 @@
 [gnl]: https://github.com/bluedog129/ft_main/tree/master/get_next_line
 [so_long]: https://github.com/bluedog129/ft_main/tree/master/so_long
 [push_swap]: https://github.com/bluedog129/ft_main/tree/master/push_swap
+[pipex]: https://github.com/bluedog129/ft_main/tree/master/pipex
