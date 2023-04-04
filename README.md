@@ -1,5 +1,5 @@
 ## Inner Circle
-![image](/image/fin_push_swap.png)
+![image](/image/inner_pipex.png)
 
 ### Circle Zero
 - [Libft][libft]
