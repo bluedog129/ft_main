@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 11:02:56 by hyojocho          #+#    #+#              #
-#    Updated: 2023/04/02 15:15:02 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/04/02 16:33:24 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
 	$(RM) libft/libft.a
 
-re: 
+re:
 	make fclean
 	make all
 
