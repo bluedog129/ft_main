@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   chdir_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/07 18:25:24 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/26 18:27:54 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/04/26 13:25:37 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/04/26 16:00:05 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	export(char **args, t_arraylist *envp, t_arraylist *export,\
-				 int outfile_fd)
+int validate_chdir(char **args, char *pwd_value)
 {
-	(void)envp;
-	// 2. write envp to outfile_fd
-	if (args[2] == NULL)
+	if (chdir(args[2]) != 0)
 	{
-		print_export(export, outfile_fd);
-		return ;
+		ft_putstr_fd("bash: cd: ", 2);
+		ft_putstr_fd(args[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		free(pwd_value);
+		g_exit_code = 1;
+		return (ERROR);
 	}
-	// 3. input key and value to envp
-	get_args_to_envp(args, envp, export);
+	return (SUCCESS);
 }

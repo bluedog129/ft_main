@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 14:37:30 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/24 20:30:12 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:18:34 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	leaks(void)
 {
-	system("leaks --list minishell > tmp.txt");
+	system("leaks --list minishell");
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -47,10 +47,27 @@ int	main(int argc, char *argv[], char *envp[])
 	// }
 	// 
 	// return (0);
-	// atexit(leaks);
+	atexit(leaks);
 	(void) argc;
 	t_execute		*exe_tool;
 	
 	exe_tool = envp_init(envp);
 	built_in(argv, exe_tool);
+	int i = 0;
+	while (exe_tool->env->data[i])
+	{
+		free(exe_tool->env->data[i]);
+		i++;
+	}
+	free(exe_tool->env->data);
+	free(exe_tool->env);
+	i = 0;
+	while (exe_tool->export->data[i])
+	{
+		free(exe_tool->export->data[i]);
+		i++;
+	}
+	free(exe_tool->export->data);
+	free(exe_tool->export);
+	free(exe_tool);
 }

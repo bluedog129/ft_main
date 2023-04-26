@@ -6,12 +6,12 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 16:56:08 by minkim3           #+#    #+#              #
-#    Updated: 2023/04/24 20:23:46 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/04/26 17:03:00 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -MMD
+CFLAGS          = -Wall -Wextra -Werror -MMD -g
 # CFLAGS          = -Wall -Wextra -Werror -MMD -fsanitize=address
 COMFILE_FLAGS   = -lreadline -L${HOME}/.brew/opt/readline/lib
 OBJ_FLAGS       = -I${HOME}/.brew/opt/readline/include
@@ -56,7 +56,8 @@ BUILT_IN_PATH    = ./built_in/
 BUILT_IN_SRCS    = built_in.c echo.c ./export/export.c ./export/export_get_env.c\
 					./export/export_print.c ./export/export_arg_validate.c\
 					./unset/unset.c ./unset/unset_apply.c\
-					env.c pwd.c command_exit.c cd.c
+					env.c pwd.c command_exit.c\
+					./cd/cd.c ./cd/chdir_check.c ./cd/get_value.c
 BUILT_IN         = $(addprefix $(BUILT_IN_PATH), $(BUILT_IN_SRCS))
 
 SOURCES         = $(addprefix $(SRCS_PATH), $(MAIN))\

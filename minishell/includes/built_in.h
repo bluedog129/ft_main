@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:12:33 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/24 14:49:18 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:47:11 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ void	pwd(void);
 void	command_exit(char **args);
 // cd
 void	cd(char **args, t_execute *execute);
+int		validate_chdir(char **args, char *pwd_value);
+char	*get_target_value(char *str, t_arraylist *envp);
+int		get_env_value(char *str, t_arraylist *envp);
 
 #endif
