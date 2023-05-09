@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 12:05:39 by hyojocho          #+#    #+#              #
-#    Updated: 2023/01/29 14:27:53 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/04/10 21:52:04 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	ar rcs $@ $^
+	sleep1
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)

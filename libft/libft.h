@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:48:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/01/29 14:27:33 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/03/20 15:41:02 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef struct s_list
 
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
-int		ft_isalpha(char c);
+int		ft_isalpha(int c);
 int		ft_isascii(int c);
-int		ft_isdigit(char c);
+int		ft_isdigit(int c);
 int		ft_isprint(int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);

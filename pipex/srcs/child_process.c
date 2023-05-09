@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:22:15 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/31 11:03:06 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:19:50 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	first_command(t_arg *arg, int pipe_fd[2])
 {
 	if (open_input_file(arg) == ERROR)
 	{
-		perror("ERROR : Not opened zinput file");
+		perror("ERROR : Not opened input file");
 		exit(0);
 	}
 	dup2(arg->input_fd, STDIN_FILENO);
