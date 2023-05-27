@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:05:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/26 16:58:43 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:48:24 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,23 @@ void	cd(char **args, t_execute *execute)
 	char	*home_value;
 
 	args_count = count_args(args);
-	if (args_count > 3)
-	{
-		ft_putstr_fd("bash: cd: too many arguments\n", 2);
-		g_exit_code = 1;
+	if (args_count > 2)
+		return (g_exit_code = 1,
+			ft_putstr_fd("bash: cd: too many arguments\n", 2));
+	if (args[1] == NULL && check_home_dir(execute) == ERROR)
 		return ;
-	}
-	if (check_home_dir(execute) == ERROR)
-		return ;
-	if (args[2] == NULL)
+	if (args[1] == NULL)
 	{
 		home_value = get_target_value("HOME", execute->env);
+		pwd_value = getcwd(NULL, 0);
+		if (pwd_value == NULL)
+			return (ft_putstr_fd("bash: cd: No such file or directory\n", 2));
 		chdir(home_value);
-		return ;
+		return (apply_cd(execute, pwd_value));
 	}
 	pwd_value = getcwd(NULL, 0);
+	if (pwd_value == NULL)
+		return (ft_putstr_fd("bash: cd: No such file or directory\n", 2));
 	if (validate_chdir(args, pwd_value) == ERROR)
 		return ;
 	apply_cd(execute, pwd_value);

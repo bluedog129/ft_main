@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:09:38 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/21 18:32:25 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/05/28 02:05:51 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURE_H
 # define STRUCTURE_H
 # define MAX_INPUT_SIZE 1024
+# include "minishell.h"
 
 typedef struct s_arraylist
 {
@@ -23,11 +24,19 @@ typedef struct s_arraylist
 
 typedef struct s_execute
 {
-	int					built_in_flag;
+	char				*infile_str;
+	char				*outfile_str;
+	char				**paths;
+	int					curr_pipe_flag;
 	int					pipe_flag;
-	int					pipe_count;
-	int					redirection_flag;
+	int					exit_flag;
+	int					built_in_flag;
+	int					prev_fd;
+	int					infile_fd;
 	int					outfile_fd;
+	int					dup_tmp;
+	int					pipe_fd[2];
+	pid_t				pid;
 	t_arraylist			*env;
 	t_arraylist			*export;
 }						t_execute;
@@ -63,7 +72,9 @@ typedef struct s_find
 
 typedef struct tree_node
 {
-	char				*data;
+	char				*value;
+	char				**command;
+	char				*filename;
 	int					type;
 	struct tree_node	*left;
 	struct tree_node	*right;
@@ -72,6 +83,8 @@ typedef struct tree_node
 typedef struct binarytree
 {
 	t_tree_node			*root;
+	int					heredoc_count;
+	int					syntex_error;
 }						t_binarytree;
 
 #endif

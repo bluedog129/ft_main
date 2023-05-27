@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
+#    By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 16:56:08 by minkim3           #+#    #+#              #
-#    Updated: 2023/04/26 17:03:00 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/05/09 16:02:48 by minkim3          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -MMD -g
+CFLAGS          = -Wall -Wextra -Werror -MMD
 # CFLAGS          = -Wall -Wextra -Werror -MMD -fsanitize=address
 COMFILE_FLAGS   = -lreadline -L${HOME}/.brew/opt/readline/lib
 OBJ_FLAGS       = -I${HOME}/.brew/opt/readline/include
@@ -34,14 +34,16 @@ SIGNAL_SRCS     = signal.c
 SIGNAL          = $(addprefix $(SIGNAL_PATH), $(SIGNAL_SRCS))
 
 TOKEN_PATH    = ./token/
-TOKEN_SRCS    = token.c lexical_analysis.c special_tokens.c special_tokens2.c\
-				handle_quotes.c read_input_until_finding_the_quote.c process_input.c\
-				space_token.c
+TOKEN_SRCS    = token.c lexical_analysis.c special_tokens.c special_tokens2.c \
+				handle_quotes.c read_input_until_finding_the_quote.c \
+				process_input.c space_token.c
 TOKEN         = $(addprefix $(TOKEN_PATH), $(TOKEN_SRCS))
 
 PARSE_PATH     = ./parse/
-PARSE_SRCS     = parse_tokens.c parse_command.c parse_prefix.c parse_redirect.c parse_suffix.c\
-				get_node_type.c
+PARSE_SRCS     = parse_tokens.c get_node_type.c parse_command_and_option.c\
+				 parse_pipe.c parse_redirection.c parse_and_or.c \
+				 parse_options_or_arguments.c replace_env_key_to_value.c \
+				 remove_quotes.c open_heredoc.c
 PARSE          = $(addprefix $(PARSE_PATH), $(PARSE_SRCS))
 
 UTILS_PATH      = ./data_structure/
@@ -49,7 +51,11 @@ UTILS_SRCS      = display.c dynamic_array.c binary_tree.c arraylist.c
 UTILS           = $(addprefix $(UTILS_PATH), $(UTILS_SRCS))
 
 EXECUTE_PATH    = ./execute/
-EXECUTE_SRCS    = execute.c envp_init.c element_check.c
+EXECUTE_SRCS    = execute.c envp_init.c\
+					./pipe/pipe_apply.c ./pipe/pipe_open.c\
+					./redirection/redirection_apply.c ./redirection/redirection_open.c \
+					child_process.c parent_process.c\
+					command_apply.c
 EXECUTE         = $(addprefix $(EXECUTE_PATH), $(EXECUTE_SRCS))
 
 BUILT_IN_PATH    = ./built_in/

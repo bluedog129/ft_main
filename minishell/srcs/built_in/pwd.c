@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:40:08 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/23 18:42:21 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:13:36 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ void	pwd(void)
 	char	*pwd;
 
 	pwd = getcwd(NULL, 0);
-	ft_putstr_fd(pwd, 1);
-	ft_putchar_fd('\n', 1);
+	if (pwd == NULL)
+	{
+		ft_putstr_fd("bash: pwd: No such file or directory\n", 2);
+		return ;
+	}
+	ft_putstr_fd(pwd, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	free(pwd);
 }

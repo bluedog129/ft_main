@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 21:20:13 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/14 20:52:07 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/05/15 19:16:43 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,15 @@ void	free_envp(t_execute *execute)
 		}
 		al_destroy(execute->export);
 	}
+}
+
+char	**get_paths(char **envp)
+{
+	while (*envp != NULL && ft_strncmp("PATH=", *envp, 5))
+		envp++;
+	if (*envp == NULL)
+		return (NULL);
+	return (ft_split(*envp + 5, ':'));
 }
 
 t_execute	*envp_init(char **envp)

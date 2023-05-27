@@ -1,24 +1,24 @@
-# Create a simple shell, as beautiful as bash
+# Create a shell. It's small but still powerful 
 
-### reference
+### reference  
 
 [GNU Bash Manual][bash]  
 [Posix shell][posix]  
 [Shell Grammar Rules][shell]  
 [Base Definitions][base]  
 [LL parser][ll]  
-[Chomsky hierarchy][chom]  
+[Chomsky hierarchy][chom]
 
 [bash]: https://www.gnu.org/software/bash/manual/bash.html
 [posix]: https://pubs.opengroup.org/onlinepubs/9699919799/utilities/contents.html
 [shell]: https://pubs.opengroup.org/onlinepubs/009604499/utilities/xcu_chap02.html#tag_02_10_02
 [base]: https://pubs.opengroup.org/onlinepubs/9699919799.2018edition/
 [ll]: https://en.wikipedia.org/wiki/LL_parser
-[chom]: https://en.wikipedia.org/wiki/Chomsky_hierarchy  
+[chom]: https://en.wikipedia.org/wiki/Chomsky_hierarchy
 
 
-### External Functions
-<details>
+### External Functions  
+<details>  
 <summary>readline, printf, write, malloc, free </summary>
 <div markdown="1">
 
@@ -50,7 +50,7 @@ void clear_history_and_exit() {
 ```
 
 ### rl_on_new_line
-Indicates that the cursor is on a new line, allowing readline to maintain proper screen output.  
+Indicates that the cursor is on a new line, allowing readline to maintain proper screen output.
 ```c
 #include <readline/readline.h>
 
@@ -896,4 +896,581 @@ brew install bash
 ```
 
 </div>
+<<<<<<< HEAD
+</details>  
+
+
+## built_in
+<details>
+<summary>what is built_in?</summary>
+<div markdown="1">
+Ecole42's Minishell program includes several built-in commands that are implemented within the shell itself, rather than being separate external programs.
+
+**Here is a list of the built-in commands in Ecole42's Minishell:**
+
+- **echo: Displays a message on the terminal.**
+- **cd: Changes the current working directory.**
+- **pwd: Prints the current working directory.**
+- **export: Sets the value of an environment variable.**
+- **unset: Removes an environment variable.**
+- **env: Prints a list of environment variables.**
+- **exit: Exits the shell.**
+
+These built-in commands are executed directly by the shell, which makes them faster and more efficient than external commands. 
+
+Additionally, the shell can provide more functionality and customization for built-in commands since they are a part of the shell itself.
+</div>
 </details>
+
+<details>
+<summary>echo</summary>
+<div markdown="1">
+Features : Outputs a string or variable.  
+
+options : -n (Do not print newlines)
+```c
+$ echo -n "Hello"
+Hello$
+```
+Edge cases  
+1. -n options
+```c
+$ echo -nnnnnnnn Hello
+Hello$
+$ echo -n -n -n -n -nnn -nnnn -nnnnm Hello
+Hello$
+$ echo -n -n -n -n -nnn -nnnn -nnnnm -nHello
+-nHello$
+```
+2. When using echo with $Key echo printed "Value”
+```c
+bash-5.2$ export a=1000
+bash-5.2$ export
+declare -x a="1000"
+bash-5.2$ echo a
+a
+bash-5.2$ echo $a
+1000
+```
+</div>
+</details>
+
+<details>
+<summary>cd</summary>
+<div markdown="1">
+Features : Move directory  
+
+examples :  
+
+```c
+move to specified directory (relative path)
+$ cd directory_path
+$ cd ./A/B/C
+$ cd /A/B/C
+
+move to parent diretory
+$ cd ..
+
+move to before directory
+$ cd -
+```
+
+edge case :
+
+1. If you find "PWD" when you try to use the "env" or "export" command, then "PWD" must be updated.  
+
+```c
+export | grep "PWD"
+
+declare -x OLDPWD="/Users/hyojocho/Desktop/MINISHELL"
+declare -x PWD="/Users/hyojocho"
+```
+2. After trying the "unset HOME" command, when you try cd, your shell must output "bash: cd: HOME not set".
+
+```c
+bash-5.2$ unset HOME
+bash-5.2$ cd
+bash: cd: HOME not set
+```
+
+3. If you delete the parent directory and try to access the parent directory, you get the following error: "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory".
+
+```c
+If you delete the parent directory and try to access the parent directory, you get the following error: "cd: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory".
+```
+</div>
+</details>
+
+<details>
+<summary>pwd</summary>
+<div markdown="1">
+In shell scripting, **`pwd`** stands for "print working directory". The **`pwd`** command is used to display the current working directory, which is the directory in which the user is currently located.
+
+Here is the basic syntax of the **`pwd`** command:
+```c
+pwd
+```
+When you type this command in the shell, it will display the current working directory in the terminal. For example, if you are currently located in the /home/user/Documents
+directory, then the pwd command will display the following output:
+```c
+/home/user/Documents
+```
+The pwd command is useful for navigating the file system and understanding your current location in the directory structure. You can use the output of the pwd
+command to create file paths, change directories, and perform other file-related operations.
+
+</div>
+</details>
+
+<details>
+<summary>export</summary>
+<div markdown="1">
+the **`export`**command is used to set an environment variable that can be accessed by any child process of the shell.
+
+Here is the basic syntax of the **`export`** command:
+```c
+export VARNAME=value
+```
+edge cases
+1. "Export" can be used to add multiple values.
+```c
+bash-5.2$ export a b c d
+bash-5.2$ export
+declare -x a
+declare -x b
+declare -x c
+declare -x d
+bash-5.2$ export a=1 b=2 c=3 d=4
+bash-5.2$ export
+declare -x a="1"
+declare -x b="2"
+declare -x c="3"
+declare -x d="4"
+```
+2. "Export" can’t get first character as Number or Special characters (Exclude '_’)
+```c
+bash-5.2$ export 1a
+bash: export: `1a': not a valid identifier
+
+bash-5.2$ export _a
+bash-5.2$ export
+declare -x _a
+
+bash-5.2$ export a1
+bash-5.2$ export
+declare -x a1
+
+bash-5.2$ export (1
+bash: syntax error near unexpected token 1
+```
+3. If the key and value have already been exported, you can't use "Export" with the key only.
+```c
+bash-5.2$ export a=b
+bash-5.2$ export
+declare -x a="b"
+
+bash-5.2$ export a
+bash-5.2$ export
+declare -x a="b"
+```
+4. Even if there are no valid identifiers, another validation key must be added.
+```c
+bash-5.2$ export a b c 1d
+bash: export: '1d': not a valid identifier
+bash-5.2$ export
+declare -x a
+declare -x b
+declare -x c
+
+bash-5.2$ export 1 a b c 
+bash: export: '1': not a valid identifier
+bash-5.2$ export
+declare -x a
+declare -x b
+declare -x c
+```
+</div>
+</details>
+
+<details>
+<summary>unset</summary>
+<div markdown="1">
+The **`unset`** command is a shell command in Unix and Unix-like operating systems that is used to unset or remove environment variables or shell functions.
+
+When an environment variable is unset, it means that its value is removed from the current shell's environment, and any child processes will not inherit the variable.
+
+Here's the syntax for the **`unset`**command:
+```c
+unset MY_VAR
+```
+This will remove the value of the MY_VAR variable from the current shell's environment.
+
+edge cases
+1. "Unset" can be used to remove multiple values.
+```c
+bash-5.2$ export a b c d e
+bash-5.2$ export
+declare -x a
+declare -x b
+declare -x c
+declare -x d
+declare -x e
+
+bash-5.2$ unset a c e
+bash-5.2$ export
+declare -x b
+declare -x d
+```
+2. "Unset" can erase when only “key” value received
+```c
+bash-5.2$ export a=1 b=2 c=3
+
+case 1)
+bash-5.2$ unset a=1 b=2 c=3
+bash-5.2$ env
+c=3
+HOME=/Users/hyojocho
+b=2
+a=1
+
+case 2)
+bash-5.2$ unset a b c
+bash-5.2$ env
+-disappeared-
+```
+</div>
+</details>
+
+<details>
+<summary>env</summary>
+<div markdown="1">
+The **`env`** command is a shell command in Unix and Unix-like operating systems that is used to display or modify the environment variables for the current shell and its child processes.
+
+When used without any arguments, the **`env`** command displays a list of environment variables and their values. 
+
+For example, you can type **`env`** in the terminal to see a list of all the environment variables that are currently set in your shell.
+
+Here's the basic syntax for the **`env`** command:
+```c
+env
+```
+result is 
+```c
+PATH=/Users/hyojocho/.brew/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+LC_TERMINAL=iTerm2
+COLORTERM=truecolor
+COMMAND_MODE=unix2003
+TERM=xterm-256color
+HOME=/Users/hyojocho
+TMPDIR=/var/folders/zz/zyxvpxvq6csfxvn_n000cv000036r0/T/
+USER=hyojocho
+XPC_SERVICE_NAME=0
+LOGNAME=hyojocho
+LaunchInstanceID=CB4EAA94-A6EC-48B1-B223-767DDF0F904E
+__CF_USER_TEXT_ENCODING=0x0:0:0
+ITERM_SESSION_ID=w0t0p0:8AE6874A-34C5-4D71-9709-9DEA32BE7D3F
+SHLVL=1
+OLDPWD=/Users/hyojocho
+ZSH=/Users/hyojocho/.oh-my-zsh
+PAGER=less
+LESS=-R
+LSCOLORS=Gxfxcxdxbxegedabagacad
+LS_COLORS=di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43
+```
+</div>
+</details>
+
+<details>
+<summary>exit</summary>
+<div markdown="1">
+The **`exit`** command is a shell command in Unix and Unix-like operating systems that is used to exit the current shell or shell script.
+
+When you run the **`exit`** command, it terminates the current shell session and returns control to the parent process (usually the terminal emulator). Any commands or scripts that were running in the shell are terminated immediately.
+
+Here's the basic syntax for the **`exit`** command:
+```c
+exit [n]
+```
+</div>
+</details>
+=======
+</details>
+
+ 
+Making a simple shell consists of the following steps.  
+
+(1) Receive commands from the terminal using readline().  
+(2) Lexical analysis: The received commands are split into token units and semanticised.  
+(3) Syntax analysis: Receives tokens, checks them for grammatical correctness and parses them into a syntax tree.  
+(4) Execution: Executes the command by traversing the syntax tree.  
+
+Let's have a look at the syntax analysis, which is the core of minishell parsing.   
+First of all, the structure of the tree is as follows.  
+<img src = "./image/tree.jpg">
+
+On the diagonal in the upper right-hand corner, from left to right, are an AND or OR, a pipe, a redirect, and a command.  
+AND or OR, pipe, and command can only appear once on a line, but redirects can appear multiple times.  
+Redirection which is parsed later is stacked closer to the command.  
+
+The structure was created to store value, command, filename, type, left, right and heredoc count.  
+
+```c
+typedef struct tree_node
+{
+	char				*value;
+	char				**command;
+	char				*filename;
+	int					type;
+	struct tree_node	*left;
+	struct tree_node	*right;
+}						t_tree_node;
+
+typedef struct binarytree
+{
+	t_tree_node			*root;
+	int					heredoc_count;
+	int					syntex_error;
+}						t_binarytree;
+```
+
+All non-filename words are stored in a two-dimensional array, command. The very first value of command (command[0]) is identified as the command, the immediately following -word is identified as options, and the remaining values are identified as arguments. The advantage of storing this in a two-dimensional array is that it clarifies the tree. Also, when we use the execve function in the execution part, we can drop it in as an argument without much thought.  
+
+```c
+ int execve(const char *path, char *const argv[], char *const envp[]);
+```
+
+The redirections (<, >, <<, >>) always have a filename, and we've made it possible to store this value in a structure. My first thought was that we could store the filename to the right of the redirection. But then we'd have to think twice about whether the value was a command or a filename when parsing other tokens and looking for the rightmost node in the tree. For example, let's parse the command '<', 'a' ,'pwd'. Immediately before parsing pwd, the tree has '<' at the root and an 'a' at the root's right child. So if we were looking for the rightmost node with pwd, we would have to go through an extra step to distinguish the type. Because both filename or command have the same type - WORD. After parsing, we could have replaced type with FILENAME or COMMAND, but storing in a structure would be more convenient.  
+
+### parse command
+```c
+void	parse_command_and_option(t_binarytree *tree, t_token *tokens,
+		int *index)
+{
+	t_tree_node	*command_node;
+
+	command_node = create_new_node(tokens[*index].value, tokens[*index].type);
+	add_command_to_the_tree(tree, command_node);
+	while (tokens[*index].type == WORD || tokens[*index].type == BUILTIN)
+	{
+		fill_command_structure(tree, tokens[*index].value);
+		(*index)++;
+	}
+}
+```
+add_command_to_the_tree is a function that adds the node itself, and fil_command_structure is a function that puts the token value into the command of the structure.  
+
+```c
+void	add_command_to_the_tree(t_binarytree *tree, t_tree_node *command_node)
+{
+	t_tree_node	*current;
+	t_tree_node	*previous;
+
+	if (tree->root == NULL)
+	{
+		tree->root = command_node;
+		return ;
+	}
+	else
+	{
+		current = tree->root;
+		previous = NULL;
+		while (current->right)
+		{
+			previous = current;
+			current = current->right;
+		}
+		connect_command_node_to_tree(tree, current, previous, command_node);
+	}
+}
+```
+If the root of the tree is empty, it immediately inserts the command node. Otherwise it looks for the rightmost node (current) and the second from the right (previous). connect_command_node_to_tree parses 'current', 'previous' and 'command_node' into the tree.  
+
+```c
+static void	connect_command_node_to_tree(t_binarytree *tree, \
+	t_tree_node *current, t_tree_node *previous, t_tree_node *command_node)
+{
+	if (find_pipe(current) == TRUE)
+	{
+		current->right = command_node;
+		return ;
+	}
+	if ((current->type == WORD || current->type == BUILTIN))
+	{
+		free(command_node);
+		return ;
+	}
+	command_node->left = current;
+	if (previous)
+	{
+		previous->right = command_node;
+	}
+	else
+	{
+		tree->root = command_node;
+	}
+}
+
+```
+1. If there is a pipe, place a new command node on the right-hand side of the tree.  
+2. if there is already a command node on the rightmost line of the tree, release the command node you just created and exit the function.  
+3. If the situation is not (1) and (2), the command node will replace current, and current will be the left child of the command node because current means redirection or AND, OR.  
+
+```c
+static char	**get_new_command(t_tree_node *command_node, \
+	char *value, size_t size)
+{
+	char	**new_command;
+
+	new_command = ft_calloc(size + 2, sizeof(char *));
+	ft_memmove(new_command, command_node->command, size * sizeof(char *));
+	new_command[size] = value;
+	new_command[size + 1] = NULL;
+	return (new_command);
+}
+
+void	fill_command_structure(t_binarytree *tree, char *value)
+{
+	char		**new_command;
+	t_tree_node	*command_node;
+	size_t		size;
+
+	command_node = find_rightmost_node(tree->root);
+	if (command_node->command == NULL)
+	{
+		command_node->command = (char **)ft_calloc(2, sizeof(char *));
+		command_node->command[0] = value;
+		command_node->command[1] = NULL;
+	}
+	else
+	{
+		size = get_command_size(command_node);
+		new_command = get_new_command(command_node, value, size);
+		free(command_node->command);
+		command_node->command = new_command;
+	}
+}
+```
+The structure is allocated an array that can hold a char * for the command variable, and we put value into it in the form of a flat copy. We've made it possible to reference value because it won't change afterward, rather than using strdup and allocating new memory.  
+
+### parse redirection
+```c
+void	parse_redirection(t_binarytree *tree, t_token *tokens, int *index)
+{
+	int			type;
+	char		*redirection;
+	t_tree_node	*new_node;
+
+	type = tokens[*index].type;
+	redirection = tokens[*index].value;
+	if (is_redirection(type) == 0)
+		return ;
+	new_node = create_new_node(redirection, type);
+	if (new_node->type == HEREDOC)
+		tree->heredoc_count++;
+	redirection_to_tree(tree, new_node);
+	(*index)++;
+	if (tokens[*index].type == WORD)
+		parse_filename(new_node, tokens[*index].value, index);
+	else
+	{
+		printf("Error: Missing filename after '%s'\n", redirection);
+		tree->syntex_error = TRUE;
+	}
+}
+```
+
+1. if heredoc, let heredoc count.  
+2. redirection_to_tree: Parse the redirection node to the tree.  
+3. parse_filename: Store the filename in the structure. If the filename does not exist, print an error message.  
+
+```c
+static void	connect_redirection_node(t_binarytree *tree, t_tree_node *current, \
+		t_tree_node *previous, t_tree_node *new_node)
+{
+	if (find_pipe(current) == TRUE)
+	{
+		current->right = new_node;
+		return ;
+	}
+	if ((current->type == WORD || current->type == BUILTIN))
+	{
+		new_node->left = current->left;
+		current->left = new_node;
+	}
+	else
+	{
+		new_node->left = current;
+		if (previous)
+		{
+			previous->right = new_node;
+		}
+		else
+		{
+			tree->root = new_node;
+		}
+	}
+}
+```
+1. Find the rightmost node (current) and the second from the right (previous), as you did when parsing the command, and place new_node in the tree.  
+2. If a command node exists, new_node goes to the left of the current.  
+3. The new node becomes the rightmost node if a pipe is on that line.   
+4. Otherwise, the new node takes the place of the current, and the current goes into the left of the newnode.  
+
+### parse pipe
+
+```c
+static void	pipe_to_the_tree(t_binarytree *tree, t_tree_node *pipe_node, \
+		int *index)
+{
+	t_tree_node	*current;
+
+	if (tree->root == NULL)
+	{
+		free(pipe_node);
+		printf("Syntax error: unexpected pipe '|'\n");
+		tree->syntex_error = TRUE;
+		(*index)++;
+		return ;
+	}
+	else
+	{
+		current = find_rightmost_node(tree->root);
+		if (current->type == PIPE || current->type == AND || \
+				current->type == OR)
+		{
+			free(pipe_node);
+			printf("Syntax error: unexpected pipe '|'\n");
+			tree->syntex_error = TRUE;
+			(*index)++;
+			return ;
+		}
+		connect_pipe_node_to_tree(tree, current, pipe_node);
+	}
+	(*index)++;
+}
+```
+1. It returns a syntax error if the tree is empty or if the rightmost node (the current node) is of type pipe, and, or.   
+2. Otherwise, the pipe node will be parsed as a tree.   
+
+```c
+static void	connect_pipe_node_to_tree(t_binarytree *tree, \
+	t_tree_node *current, t_tree_node *pipe_node)
+{
+	if (find_pipe(current) == TRUE)
+	{
+		free(pipe_node);
+		printf("Syntax error: unexpected pipe '|'\n");
+		tree->syntex_error = TRUE;
+		return ;
+	}
+	while (current->left && is_redirection(current->left->type))
+	{
+		current = current->left;
+	}
+	pipe_node->left = current->left;
+	current->left = pipe_node;
+}
+```
+1. If the rightmost node has a pipe, print an error message.  
+2. If not, move left and find the end of the redirection.   
+3. Place the pipe to the left of that node.  
+>>>>>>> aef024004f2575b51c0174fbdbc07281a87e5fd4
