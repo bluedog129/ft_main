@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 20:48:30 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/03/20 15:46:21 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:48:33 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
-# include "ft_printf/ft_printf.h"
 
 # define BUFFER_SIZE 10
 

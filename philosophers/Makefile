@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MAKEFILE                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:58:32 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/15 14:06:15 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/17 17:30:28 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC              = cc
 CFLAGS          = -Wall -Wextra -Werror -MMD
 NAME            = philo
 RM              = rm -f
+LIBS			= libft/libft.a
 
 EXEC            = philo
 SRCS_PATH	    = ./
@@ -23,7 +24,7 @@ MAIN_SRCS       = main.c
 MAIN            = $(addprefix $(MAIN_PATH), $(MAIN_SRCS))
 
 INIT_PATH  	    = srcs/initialize/
-INIT_SRCS       = init.c
+INIT_SRCS       = init_args.c time_get.c init_resources.c
 INIT            = $(addprefix $(INIT_PATH), $(INIT_SRCS))
 
 SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\
@@ -37,9 +38,12 @@ HEADER          = $(addprefix $(HEADER_PATH), $(S_HEADER))
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	@$(CC) $(CFLAGS) $(OBJECTS) -o $(EXEC)
+$(NAME): $(OBJECTS) $(LIBS)
+	@$(CC) $(CFLAGS) $(OBJECTS) $(LIBS) -o $(EXEC)
 	@echo -e "$(GREEN)$(EXEC) created!$(DEFAULT)"
+
+$(LIBS) :
+	@make -C libft all
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -47,9 +51,11 @@ $(NAME): $(OBJECTS)
 clean:
 	@$(RM) $(OBJECTS)
 	@$(RM) $(OBJECTS:.o=.d)
+	make -C libft clean
 
 fclean: clean
 	@$(RM) $(EXEC)
+	@$(RM) libft/libft.a
 	@echo -e "$(BLUE)delete all!$(DEFAULT)"
 
 re:

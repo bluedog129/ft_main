@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:58:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/15 14:08:13 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:57:27 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 # include "structures.h"
 
-enum e_philosophers_enum
-{
-	SUCCESS = 1,
-	ERROR = -1
-};
+// get_args
+int				get_args(int argc, char **argv, t_args_info *args_info);
+unsigned int	get_time(void);
+// init_resources
+int				init_resources(t_resources *resources, t_args_info *args_info);
+int				init_time(t_args_info *args_info);
 
 #endif
