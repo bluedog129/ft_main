@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:20:26 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/19 15:25:53 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:13:43 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (ERROR);
 	if (init_philos(&resources, &args_info, &philosopher) == ERROR)
 		return (ERROR);
-	if (start_threads(&resources, &args_info) == ERROR)
+	if (run_threads(&resources, &args_info, &philosopher) == ERROR)
 		return (ERROR);
 	// if (wait_threads(&resources, &args_info) == ERROR)
 	// 	return (ERROR);

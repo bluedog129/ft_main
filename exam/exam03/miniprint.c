@@ -1,28 +1,29 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <math.h>
+# include <stdio.h>
+# include <math.h>
+# include <stdlib.h>
+# include <unistd.h>
 # define ERROR 1
+# define SUCCESS 0
 
 typedef struct s_zone
 {
-	int width;
-	int height;
-	char back_ch;
+	int		width;
+	int		height;
+	char	back_ch;
 }	t_zone;
 
 typedef struct s_circle
 {
-	char c;
-	float center_x;
-	float center_y;
-	float radius;
-	char circle_ch;
+	char	c;
+	float	center_x;
+	float	center_y;
+	float	radius;
+	char	circle_ch;
 }	t_circle;
 
-int str_len(char *str)
+int	ft_strlen(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len])
@@ -30,23 +31,40 @@ int str_len(char *str)
 	return (len);
 }
 
-void printf_str(char *str)
+void	print_str(char *str)
 {
-	write(1, str, str_len(str));
+	write(1, str, ft_strlen(str));
 }
 
-int init_zone(FILE *fp, t_zone *zone)
+int	init_zone(FILE *fp, t_zone *zone)
 {
-	int fscanf_ret;
+	int	fscanf_ret;
 
-	fscanf = fscanf(fp, "%d %d %c\n", &zone->width, &zone->height, &zone->back_ch);
-	return (fscanf_ret != 3 || fscanf_ret == EOF || !(0 < zone->width && zone->width <= 300) || !(0 < zone->height && zone->height <= 300));
+	fscanf_ret = fscanf(fp, "%d %d %c\n", 
+	&zone->width, &zone->height, &zone->back_ch);
+	// 정확히 이 형식이었다면 초기화된 인자의 개수가 3개
+	return (fscanf_ret != 3 || fscanf_ret == EOF
+			|| !(0 < zone->width && zone->width <= 300) || !(0 < zone->height && zone->height <= 300));
 }
 
-int init_draw_zone(char draw_zone[300][301], t_zone *zone)
+void	print_draw_zone(char draw_zone[300][301], t_zone *zone)
 {
-	int i;
-	int j;
+	int	i;
+
+	i = 0;
+	while (i < zone->height)
+	{
+		draw_zone[i][zone->width] = '\0';
+		print_str(draw_zone[i]);
+		write(1, "\n", 1);
+		i++;
+	}
+}
+
+void	init_draw_zone(char draw_zone[300][301], t_zone *zone)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < zone->height)
@@ -106,7 +124,7 @@ void	make_empty_circle(char draw_zone[300][301], t_zone *zone, t_circle *circle)
 	}
 }
 
-int print_circles(FILE *fp, t_zone *zone)
+int	print_circles(FILE *fp, t_zone *zone)
 {
 	int			fscanf_ret;
 	t_circle	circle;
@@ -115,7 +133,8 @@ int print_circles(FILE *fp, t_zone *zone)
 	init_draw_zone(draw_zone, zone);
 	while (1)
 	{
-		fscanf_ret = fscanf(fp, "%c %f %f %f %c\n", &circle.c, &circle.center_x, &circle.center_y, &circle.circle_ch);
+		fscanf_ret = fscanf(fp, "%c %f %f %f %c\n", 
+		&circle.c, &circle.center_x, &circle.center_y, &circle.radius, &circle.circle_ch);
 		if (fscanf_ret == EOF)
 		{
 			print_draw_zone(draw_zone, zone);
@@ -132,23 +151,25 @@ int print_circles(FILE *fp, t_zone *zone)
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	FILE		*fp;
-	t_zone		zone;
+	FILE	*fp;
+	t_zone	zone;
 
+	// 인자 오류 처리
 	if (argc != 2)
 	{
-		printf_str("Error: argument\n");
+		print_str("Error: argument\n");
 		return (1);
 	}
 
 	fp = fopen(argv[1], "r");
 
-	if (fp = NULL)
+	// open 오류 처리
+	if (fp == NULL)
 	{
-		printf_str("Error: Operation file corrupted\n");
-		return (1);
+		print_str("Error: Operation file corrupted\n");
+		return (ERROR);
 	}
 
 	if (init_zone(fp, &zone) == ERROR)
@@ -160,7 +181,7 @@ int main(int argc, char *argv[])
 
 	if (print_circles(fp, &zone) == ERROR)
 	{
-		printf_str("Error: Operation file corrupted\n");
+		print_str("Error: Operation file corrupted\n");
 		fclose(fp);
 		return (1);
 	}
