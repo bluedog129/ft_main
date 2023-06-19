@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:37:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/17 17:48:31 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/17 20:03:14 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,16 @@ typedef struct s_args_info
 	unsigned int	start_time;
 }	t_args_info;
 
+typedef struct s_philosoper
+{
+	pthread_t		threads;
+	t_resources		*resources;
+	t_args_info		args_info;
+	unsigned int	last_meal_time;
+	int				id;
+	int				left_fork;
+	int				right_fork;
+	int				eat_count;
+}	t_philosoper;
 
 #endif
