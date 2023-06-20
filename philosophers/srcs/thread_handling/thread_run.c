@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:58:12 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/19 19:12:46 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:59:19 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	run_threads(t_resources *resources, t_args_info *args_info, \
 {
 	if (run_odd_philo(philosoper, args_info) == ERROR)
 		return (ERROR);
-	if (run_even_philo() == ERROR)
-		return (ERROR);
-	run_monitor();
+	// if (run_even_philo() == ERROR)
+	// 	return (ERROR);
+	// run_monitor();
 }

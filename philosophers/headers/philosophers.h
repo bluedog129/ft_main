@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:58:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/17 20:01:53 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:55:47 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,9 @@ int				init_time(t_args_info *args_info);
 // init_philos
 int	init_philos(t_resources *resources, t_args_info *args_info, \
 				t_philosoper *philosopher);
+// run_threads
+int				run_threads(t_resources *resources, t_args_info *args_info, \
+							t_philosoper *philosoper);
+void			*philo_routine(void *args);
 
 #endif
