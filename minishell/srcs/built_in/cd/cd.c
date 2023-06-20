@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 14:05:25 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/05/26 14:48:24 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/08 21:28:23 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,21 @@ static void	update_pwd(t_arraylist *env, t_arraylist *export, \
 
 static int	check_home_dir(t_execute *execute)
 {
-	int	home_value;
+	int		home_value;
+	char	*home;
+	char	*pwd_value;
 
+	pwd_value = getcwd(NULL, 0);
+	if (pwd_value == NULL)
+	{
+		home = get_target_value("HOME", execute->env);
+		chdir(home);
+		return (ERROR);
+	}
 	home_value = get_env_value("HOME", execute->env);
 	if (home_value == ERROR)
 	{
-		ft_putstr_fd("bash: cd: HOME not set\n", 2);
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 		g_exit_code = 1;
 		return (ERROR);
 	}
@@ -60,19 +69,18 @@ static int	count_args(char **args)
 	return (args_count);
 }
 
-static void	apply_cd(t_execute *execute, char *pwd_value)
+void	apply_cd(t_execute *execute, char *pwd_value)
 {
 	update_pwd(execute->env, execute->export, pwd_value);
-	g_exit_code = 0;
 }
 
 void	cd(char **args, t_execute *execute)
 {
 	char	*pwd_value;
 	int		args_count;
-	char	*home_value;
 
 	args_count = count_args(args);
+	g_exit_code = 0;
 	if (args_count > 2)
 		return (g_exit_code = 1,
 			ft_putstr_fd("bash: cd: too many arguments\n", 2));
@@ -80,16 +88,13 @@ void	cd(char **args, t_execute *execute)
 		return ;
 	if (args[1] == NULL)
 	{
-		home_value = get_target_value("HOME", execute->env);
-		pwd_value = getcwd(NULL, 0);
-		if (pwd_value == NULL)
-			return (ft_putstr_fd("bash: cd: No such file or directory\n", 2));
-		chdir(home_value);
-		return (apply_cd(execute, pwd_value));
+		apply_normal_cd(execute);
+		return ;
 	}
 	pwd_value = getcwd(NULL, 0);
 	if (pwd_value == NULL)
-		return (ft_putstr_fd("bash: cd: No such file or directory\n", 2));
+		return (g_exit_code = 1,
+			ft_putstr_fd("bash: cd: No such file or directory\n", 2));
 	if (validate_chdir(args, pwd_value) == ERROR)
 		return ;
 	apply_cd(execute, pwd_value);

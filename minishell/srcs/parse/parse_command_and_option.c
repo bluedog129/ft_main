@@ -6,55 +6,29 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:08:19 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/24 13:26:32 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/06/08 20:33:27 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_tree_node	*find_rightmost_node(t_tree_node *node)
-{
-	if (node == NULL)
-		return (NULL);
-	while (node->right)
-		node = node->right;
-	return (node);
-}
-
-int	find_pipe(t_tree_node *current)
-{
-	while (current)
-	{
-		if (current->type == PIPE)
-		{
-			return (TRUE);
-		}
-		current = current->left;
-	}
-	return (FALSE);
-}
-
 static void	connect_command_node_to_tree(t_binarytree *tree, \
-	t_tree_node *current, t_tree_node *previous, t_tree_node *command_node)
+	t_tree_node *rightmost, t_tree_node *previous, t_tree_node *command_node)
 {
-	if (find_pipe(current) == TRUE)
+	if (find_pipe(rightmost) == TRUE \
+		|| rightmost->type == AND || rightmost->type == OR)
 	{
-		current->right = command_node;
-		return ;
+		put_it_on_the_right_of_the_rightmost_node(tree, rightmost, previous, \
+				command_node);
 	}
-	if ((current->type == WORD || current->type == BUILTIN))
+	else if ((rightmost->type == WORD || rightmost->type == BUILTIN))
 	{
 		free(command_node);
-		return ;
 	}
-	command_node->left = current;
-	if (previous)
+	else if (is_redirection(rightmost->type))
 	{
-		previous->right = command_node;
-	}
-	else
-	{
-		tree->root = command_node;
+		put_it_on_the_top_of_the_rightmost_node(tree, rightmost, previous, \
+				command_node);
 	}
 }
 
@@ -70,13 +44,7 @@ void	add_command_to_the_tree(t_binarytree *tree, t_tree_node *command_node)
 	}
 	else
 	{
-		current = tree->root;
-		previous = NULL;
-		while (current->right)
-		{
-			previous = current;
-			current = current->right;
-		}
+		get_rightmost_and_previous(tree, &current, &previous);
 		connect_command_node_to_tree(tree, current, previous, command_node);
 	}
 }

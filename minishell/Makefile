@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
+#    By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 16:56:08 by minkim3           #+#    #+#              #
-#    Updated: 2023/06/16 14:30:14 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/09 12:41:09 by minkim3          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,11 +25,11 @@ EXEC            = minishell
 SRCS_PATH       = ./srcs/
 
 MAIN_PATH  	    = ./main/
-MAIN_SRCS       = main.c read_input.c check_argc.c error.c
+MAIN_SRCS       = main.c read_input.c check_argc.c
 MAIN            = $(addprefix $(MAIN_PATH), $(MAIN_SRCS))
 
 SIGNAL_PATH     = ./signal/
-SIGNAL_SRCS     = signal.c
+SIGNAL_SRCS     = signal.c exec_signal.c
 SIGNAL          = $(addprefix $(SIGNAL_PATH), $(SIGNAL_SRCS))
 
 TOKEN_PATH    = ./token/
@@ -42,11 +42,13 @@ PARSE_PATH     = ./parse/
 PARSE_SRCS     = parse_tokens.c get_node_type.c parse_command_and_option.c\
 				 parse_pipe.c parse_redirection.c parse_and_or.c \
 				 parse_options_or_arguments.c replace_env_key_to_value.c \
-				 remove_quotes.c open_heredoc.c
+				 remove_quotes.c open_heredoc.c make_unique_filename.c \
+				 parse_dollar_sign.c copy_tokens.c parse_helper.c \
+				 is_str_in_the_valule.c
 PARSE          = $(addprefix $(PARSE_PATH), $(PARSE_SRCS))
 
 UTILS_PATH      = ./data_structure/
-UTILS_SRCS      = display.c dynamic_array.c binary_tree.c arraylist.c
+UTILS_SRCS      = dynamic_array.c binary_tree.c arraylist.c
 UTILS           = $(addprefix $(UTILS_PATH), $(UTILS_SRCS))
 
 EXECUTE_PATH    = ./execute/
@@ -54,7 +56,8 @@ EXECUTE_SRCS    = execute.c envp_init.c\
 					./pipe/pipe_apply.c ./pipe/pipe_open.c\
 					./redirection/redirection_apply.c ./redirection/redirection_open.c \
 					child_process.c parent_process.c\
-					command_apply.c
+					command_apply.c redirect_append.c execute_extra.c apply_command.c \
+					apply_and_or.c
 EXECUTE         = $(addprefix $(EXECUTE_PATH), $(EXECUTE_SRCS))
 
 BUILT_IN_PATH    = ./built_in/
@@ -62,7 +65,8 @@ BUILT_IN_SRCS    = built_in.c echo.c ./export/export.c ./export/export_get_env.c
 					./export/export_print.c ./export/export_arg_validate.c\
 					./unset/unset.c ./unset/unset_apply.c\
 					env.c pwd.c command_exit.c\
-					./cd/cd.c ./cd/chdir_check.c ./cd/get_value.c
+					./cd/cd.c ./cd/chdir_check.c ./cd/get_value.c\
+					./cd/nomal_change_dir.c
 BUILT_IN         = $(addprefix $(BUILT_IN_PATH), $(BUILT_IN_SRCS))
 
 SOURCES         = $(addprefix $(SRCS_PATH), $(MAIN))\

@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:09:12 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/24 18:21:12 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/06/07 12:29:40 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	is_operator(char c)
 {
-	return (c == ' ' || c == '|' || c == '&' || c == '<' || c == '>');
+	return (is_space(c) || c == '|' || c == '&' || c == '<' || c == '>');
 }
 
 int	is_space(char c)
 {
-	return (c == ' ' || c == '\t' || c == '\n' \
-		|| c == '\v' || c == '\f' || c == '\r');
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r');
 }
 
-int	type_of_token(char	*value)
+int	type_of_token(char *value)
 {
 	if (ft_strncmp(value, ">>", 2) == 0)
 		return (REDIRECT_APPEND);
@@ -46,7 +46,7 @@ int	type_of_token(char	*value)
 void	free_tokens(t_token **tokens_ptr)
 {
 	t_token	*tokens;
-	int		i;
+	size_t	i;
 
 	tokens = *tokens_ptr;
 	if (tokens == NULL)

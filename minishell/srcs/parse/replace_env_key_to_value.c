@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   replace_env_key_to_value.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:47:12 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/28 14:21:45 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:58:44 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static char	*get_the_key(char **value, size_t i)
 		return (NULL);
 	start = i + 1;
 	end = start;
-	while ((*value)[end] && !is_space((*value)[end]) && (*value)[end] != '$' \
-		&& (*value)[end] != '\'' && (*value)[end] != '\"')
+	while (ft_isalpha((*value)[end]))
 		end++;
 	key = (char *)malloc(end - start + 1);
 	if (!key)
@@ -73,11 +72,29 @@ void	replace_key_in_the_string(char **value, char *key, char *env_value, \
 	free(tmp);
 }
 
+static void	replace_env_key(char **value, char **env, size_t i, \
+		int in_single_quote)
+{
+	char	*key;
+	char	*env_value;
+
+	if ((*value)[i] == '$' && in_single_quote == -1)
+	{
+		key = get_the_key(value, i);
+		if (ft_strcmp(key, "") == 0)
+		{
+			free(key);
+			return ;
+		}
+		env_value = get_key_value(key, env, 0);
+		replace_key_in_the_string(value, key, env_value, &i);
+		free(key);
+	}
+}
+
 void	replace_env_key_to_value(char **value, char **env)
 {
 	size_t	i;
-	char	*key;
-	char	*env_value;
 	int		in_single_quote;
 	int		in_double_quote;
 
@@ -92,12 +109,6 @@ void	replace_env_key_to_value(char **value, char **env)
 			in_single_quote *= -1;
 		else if ((*value)[i] == '\"')
 			in_double_quote *= -1;
-		if ((*value)[i] == '$' && in_single_quote == -1)
-		{
-			key = get_the_key(value, i);
-			env_value = get_key_value(key, env, 0);
-			replace_key_in_the_string(value, key, env_value, &i);
-			free(key);
-		}
+		replace_env_key(value, env, i, in_single_quote);
 	}
 }

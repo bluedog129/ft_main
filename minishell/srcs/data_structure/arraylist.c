@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   arraylist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 13:29:20 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/04/26 17:07:15 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:40:59 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_arraylist *al_init(void)
+t_arraylist	*al_init(void)
 {
-	t_arraylist *list;
-	
+	t_arraylist	*list;
+
 	list = malloc(sizeof(t_arraylist));
 	list->size = 1;
 	list->count = 0;
@@ -39,20 +39,22 @@ void	al_add_rear(t_arraylist *list, char *element)
 	{
 		list->size *= 2;
 		temp = list->data;
-		list->data = malloc(sizeof(char *) * (list->size + 1));
+		list->data = (char **)malloc(sizeof(char *) * (list->size + 1));
 		if (list->data == NULL)
 			return ;
 		ft_memcpy(list->data, temp, sizeof(char *) * list->count);
 		free(temp);
-		temp = NULL;
 	}
-	list->data[list->count++] = element;
-	list->data[list->count] = NULL;
+	list->data[list->count] = element;
+	if (++list->count < list->size)
+	{
+		list->data[list->count] = NULL;
+	}
 }
 
 void	al_remove(t_arraylist *list, int index)
 {
-	int		i;
+	int	i;
 
 	if (index >= list->count || index < 0)
 		return ;

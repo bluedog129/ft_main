@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:09:38 by minkim3           #+#    #+#             */
-/*   Updated: 2023/05/28 02:05:51 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/06/09 12:22:50 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ typedef struct s_execute
 	int					outfile_fd;
 	int					dup_tmp;
 	int					pipe_fd[2];
+	int					open_error;
+	int					open_error_for_and_or;
+	int					stop;
+	int					num_of_executed_commands;
 	pid_t				pid;
+	pid_t				last_pid;
 	t_arraylist			*env;
 	t_arraylist			*export;
 }						t_execute;
@@ -45,6 +50,7 @@ typedef struct s_token
 {
 	char				*value;
 	int					type;
+	int					syntax_error;
 	size_t				token_count;
 }						t_token;
 
@@ -83,7 +89,6 @@ typedef struct tree_node
 typedef struct binarytree
 {
 	t_tree_node			*root;
-	int					heredoc_count;
 	int					syntex_error;
 }						t_binarytree;
 

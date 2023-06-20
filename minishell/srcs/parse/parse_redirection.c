@@ -6,7 +6,7 @@
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:24:15 by minkim3           #+#    #+#             */
-/*   Updated: 2023/05/09 16:01:09 by minkim3          ###   ########.fr       */
+/*   Updated: 2023/06/07 19:45:21 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,47 @@
 
 void	parse_filename(t_tree_node *new_node, char *value, int *index)
 {
-	new_node->filename = value;
+	new_node->filename = ft_strdup(value);
 	(*index)++;
 }
 
-static void	connect_redirection_node(t_binarytree *tree, t_tree_node *current, \
-		t_tree_node *previous, t_tree_node *new_node)
+static void	connect_redirection_node(t_binarytree *tree, \
+t_tree_node *rightmost, t_tree_node *previous, t_tree_node *redirection_node)
 {
-	if (find_pipe(current) == TRUE)
+	if (find_pipe(rightmost) == TRUE)
 	{
-		current->right = new_node;
-		return ;
+		rightmost->right = redirection_node;
 	}
-	if ((current->type == WORD || current->type == BUILTIN))
+	else if ((rightmost->type == WORD || rightmost->type == BUILTIN))
 	{
-		new_node->left = current->left;
-		current->left = new_node;
+		put_it_on_the_left_of_the_rightmost_node(tree, rightmost, previous, \
+				redirection_node);
 	}
-	else
+	else if (is_redirection(rightmost->type))
 	{
-		new_node->left = current;
-		if (previous)
-		{
-			previous->right = new_node;
-		}
-		else
-		{
-			tree->root = new_node;
-		}
+		put_it_on_the_top_of_the_rightmost_node(tree, rightmost, previous, \
+				redirection_node);
+	}
+	else if (rightmost->type == AND || rightmost->type == OR)
+	{
+		put_it_on_the_right_of_the_rightmost_node(tree, rightmost, previous, \
+				redirection_node);
 	}
 }
 
-static void	redirection_to_tree(t_binarytree *tree, t_tree_node *new_node)
+static void	redirection_to_tree(t_binarytree *tree, t_tree_node *redirection)
 {
 	t_tree_node	*current;
 	t_tree_node	*previous;
 
 	if (tree->root == NULL)
 	{
-		tree->root = new_node;
-		return ;
+		tree->root = redirection;
 	}
 	else
 	{
-		current = tree->root;
-		previous = NULL;
-		while (current->right)
-		{
-			previous = current;
-			current = current->right;
-		}
-		connect_redirection_node(tree, current, previous, new_node);
+		get_rightmost_and_previous(tree, &current, &previous);
+		connect_redirection_node(tree, current, previous, redirection);
 	}
 }
 

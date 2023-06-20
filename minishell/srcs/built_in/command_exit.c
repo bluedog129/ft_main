@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 19:58:53 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/05/28 02:08:06 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/06/09 19:18:48 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	validate_arg_count(char **args)
 	arg_idx = 0;
 	while (args[arg_idx])
 		arg_idx++;
-	if (arg_idx >= 2)
+	if (arg_idx >= 3)
 	{
 		ft_putstr_fd("bash: exit: too many arguments\n", 2);
 		return (FALSE);
@@ -69,13 +69,14 @@ static	void	validate_arg_range(char **args)
 	}
 }
 
-static void	numbering_exit(char **args)
+static void	numbering_exit(char **args, t_execute *exe_tool)
 {
 	long long int	num;
 	long long int	key;
 
 	num = ft_atoi_extension(args[1]);
-	ft_putstr_fd("exit\n", 1);
+	if (exe_tool->exit_flag != TRUE)
+		ft_putstr_fd("exit\n", 1);
 	key = num;
 	while (key < 0)
 		key += 256;
@@ -84,18 +85,14 @@ static void	numbering_exit(char **args)
 }
 
 void	command_exit(char **args, t_execute *exe_tool)
-{	
+{
 	if ((args[1] == NULL && exe_tool->pipe_flag == TRUE) || \
 		(args[1] == NULL && exe_tool->exit_flag == TRUE))
-	{
-		g_exit_code = 0;
-		exit(0);
-	}
+		exit(g_exit_code);
 	if (args[1] == NULL)
 	{
 		ft_putstr_fd("exit\n", 1);
-		g_exit_code = 0;
-		exit(0);
+		exit(g_exit_code);
 	}
 	validate_arg_is_num(args);
 	if (validate_arg_count(args) == FALSE)
@@ -104,5 +101,5 @@ void	command_exit(char **args, t_execute *exe_tool)
 		return ;
 	}
 	validate_arg_range(args);
-	numbering_exit(args);
+	numbering_exit(args, exe_tool);
 }

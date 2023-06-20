@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 17:06:14 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/05/25 19:26:09 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/09 19:22:49 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	print_error(char *msg)
 
 void	child_process(char *full_path, char **args, t_execute *exe_tool)
 {
+	exec_signal(CHILD_SIG);
+	if (exe_tool->open_error == TRUE)
+		exit(1);
 	if (exe_tool->prev_fd > 0)
 	{
 		dup2(exe_tool->prev_fd, STDIN_FILENO);
@@ -40,5 +43,5 @@ void	child_process(char *full_path, char **args, t_execute *exe_tool)
 	print_error(args[0]);
 	print_error(": ");
 	print_error("command not found\n");
-	exit(1);
+	exit(127);
 }

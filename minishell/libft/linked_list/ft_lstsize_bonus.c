@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/07 17:48:17 by minkim3           #+#    #+#             */
-/*   Updated: 2023/04/07 17:49:17 by minkim3          ###   ########.fr       */
+/*   Created: 2022/11/27 17:48:36 by minkim3           #+#    #+#             */
+/*   Updated: 2023/02/22 17:35:23 by minkim3          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../libft.h"
 
-void	error_exit(char *message)
+int	ft_lstsize(t_list *lst)
 {
-	printf("%s\n", message);
-	exit(1);
+	int		count;
+	t_list	*dummy;
+
+	count = 0;
+	dummy = lst;
+	while (dummy)
+	{
+		dummy = dummy -> next;
+		count++;
+	}
+	return (count);
 }
