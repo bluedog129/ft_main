@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:05:03 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/16 15:50:14 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:27:05 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	get_args(int argc, char **argv, t_args_info *args_info)
 	if (argc == 6)
 		args_info->num_of_must_eat = ft_atoi(argv[5]);
 	else
-		args_info->num_of_must_eat = -1;
+		args_info->num_of_must_eat = 0;
 	return (SUCCESS);
 }

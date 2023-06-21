@@ -6,11 +6,22 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:19:39 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/17 17:57:16 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:58:33 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
+
+void	time_lapse(unsigned int time)
+{
+	unsigned int	start_time;
+
+	start_time = get_time();
+	while (get_time() < start_time + (unsigned int)time)
+	{
+		usleep(100);
+	}
+}
 
 unsigned int	get_time(void)
 {

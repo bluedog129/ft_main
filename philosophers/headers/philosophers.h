@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:58:04 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/20 12:55:47 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:58:25 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,14 @@ unsigned int	get_time(void);
 int				init_resources(t_resources *resources, t_args_info *args_info);
 int				init_time(t_args_info *args_info);
 // init_philos
-int	init_philos(t_resources *resources, t_args_info *args_info, \
-				t_philosoper *philosopher);
-// run_threads
+int				init_philos(t_resources *resources, t_args_info *args_info, \
+				t_philosopher *philosopher);
+// thread_handling
 int				run_threads(t_resources *resources, t_args_info *args_info, \
-							t_philosoper *philosoper);
+							t_philosopher *philosoper);
 void			*philo_routine(void *args);
+int				eating(t_philosopher *philosopher);
+void			print_state(t_philosopher *philosopher, char *state);
+void			time_lapse(unsigned int time);
 
 #endif

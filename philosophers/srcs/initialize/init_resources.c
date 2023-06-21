@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:04:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/17 17:56:07 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:13:38 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	init_mutexes(t_resources *resources, t_args_info *args_info)
 		return (ERROR);
 	if (pthread_mutex_init(&resources->full, NULL) != 0)
 		return (ERROR);
-	if (pthread_mutex_init(&resources->living, NULL) != 0)
+	if (pthread_mutex_init(&resources->alive, NULL) != 0)
 		return (ERROR);
 	return (SUCCESS);
 }

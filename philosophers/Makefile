@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:58:32 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/20 12:52:09 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/21 16:33:03 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INIT_SRCS       = init_args.c time_get.c init_resources.c init_philos.c
 INIT            = $(addprefix $(INIT_PATH), $(INIT_SRCS))
 
 THREAD_PATH  	= srcs/thread_handling/
-THREAD_SRCS     = philo_handling.c thread_run.c
+THREAD_SRCS     = philo_handling.c thread_run.c philo_eating.c philo_state_print.c
 THREAD          = $(addprefix $(THREAD_PATH), $(THREAD_SRCS))
 
 SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\

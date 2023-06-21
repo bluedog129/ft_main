@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:37:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/17 20:03:14 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/21 20:06:35 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ enum e_philosophers_enum
 	SUCCESS = 1,
 	ERROR = -1,
 	FALSE = 0,
-	TRUE = 1
+	TRUE = 1,
+	IS_FULL = 2,
+	FINISHED = 3
 };
 
 typedef struct s_resources
@@ -34,9 +36,10 @@ typedef struct s_resources
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	last_meal_time;
 	pthread_mutex_t	full;
-	pthread_mutex_t	living;
-	int				full_count;
+	pthread_mutex_t	alive;
 	int				live;
+	int				full_count;
+	int				start_time;
 	int				*forks_status;
 }	t_resources;
 
@@ -50,7 +53,7 @@ typedef struct s_args_info
 	unsigned int	start_time;
 }	t_args_info;
 
-typedef struct s_philosoper
+typedef struct s_philosopher
 {
 	pthread_t		threads;
 	t_resources		*resources;
@@ -59,7 +62,7 @@ typedef struct s_philosoper
 	int				id;
 	int				left_fork;
 	int				right_fork;
-	int				eat_count;
-}	t_philosoper;
+	unsigned int	eat_count;
+}	t_philosopher;
 
 #endif
