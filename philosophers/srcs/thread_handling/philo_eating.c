@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:19:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/21 20:05:10 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:00:03 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,24 @@ static void update_last_meal_time(t_philosopher *philo)
 	pthread_mutex_unlock(&philo->resources->last_meal_time);
 }
 
+static void	put_down_forks(t_philosopher *philo)
+{
+	if (philo->id & 1)
+	{
+		philo->resources->forks_status[philo->left_fork] = 0;
+		pthread_mutex_unlock(&philo->resources->forks[philo->left_fork]);
+		philo->resources->forks_status[philo->right_fork] = 0;
+		pthread_mutex_unlock(&philo->resources->forks[philo->right_fork]);
+	}
+	else
+	{
+		philo->resources->forks_status[philo->right_fork] = 0;
+		pthread_mutex_unlock(&philo->resources->forks[philo->right_fork]);
+		philo->resources->forks_status[philo->left_fork] = 0;
+		pthread_mutex_unlock(&philo->resources->forks[philo->left_fork]);
+	}
+}
+
 static int start_eating(t_philosopher *philo)
 {
 	print_state(philo, "is eating");
@@ -54,7 +72,7 @@ static int start_eating(t_philosopher *philo)
 			pthread_mutex_lock(&philo->resources->full);
 			philo->resources->full_count++;
 			pthread_mutex_unlock(&philo->resources->full);
-			// release_forks(philo);
+			put_down_forks(philo);
 			return (IS_FULL);
 		}
 	}
@@ -74,6 +92,6 @@ int	eating(t_philosopher *philosoper)
 		if (start_eating(philosoper) == IS_FULL)
 			return (FALSE);
 	}
-	// release_forks(philosoper);
+	put_down_forks(philosoper);
 	return (TRUE);
 }
