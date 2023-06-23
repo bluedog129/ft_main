@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   monitor.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/22 17:11:26 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/06/23 20:21:25 by hyojocho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../headers/philosophers.h"
+
+static int is_everyone_full(t_philosopher *philosopher)
+{
+	if (philosopher->args_info.num_of_must_eat < 1)
+		return (FALSE);
+	pthread_mutex_lock(&(philosopher)->resources->full);
+	if (philosopher->resources->full_count == \
+		philosopher->args_info.num_of_philo)
+	{
+		pthread_mutex_unlock(&(philosopher)->resources->full);
+		return (TRUE);
+	}
+	pthread_mutex_unlock(&(philosopher)->resources->full);
+	return (FALSE);
+}
+
+static int	check_philo_state(t_philosopher *philosopher)
+{
+	if (is_everyone_full(philosopher))
+		return (FINISHED);
+	// if (is_philo_dead(philosopher))
+	// {
+	// 	print_state(philosopher, "died");
+	// 	return (FINISHED);
+	// }
+	return (FALSE);
+}
+
+void	run_monitor(t_philosopher *philosopher)
+{
+	unsigned int	i;
+	t_args_info		*args_info;
+
+	args_info = &(philosopher[0].args_info);
+	while (1)
+	{
+		i = 0;
+		while (i < args_info->num_of_philo)
+		{
+			if (check_philo_state(&philosopher[i]) == FINISHED)
+				return ;
+			i++;
+		}
+		usleep(500);
+	}
+}

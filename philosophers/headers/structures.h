@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:37:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/22 10:40:40 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:06:19 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_resources
 	pthread_mutex_t	full;
 	pthread_mutex_t	alive;
 	int				live;
-	int				full_count;
+	unsigned int	full_count;
 	int				start_time;
 	int				*forks_status;
 }	t_resources;
