@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:11:26 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/23 20:21:25 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:47:29 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,29 @@ static int is_everyone_full(t_philosopher *philosopher)
 	return (FALSE);
 }
 
+static int	is_philo_dead(t_philosopher *philosopher)
+{
+	unsigned int	current_time;
+	unsigned int	time_since_last_meal;
+
+	current_time = get_time();
+	pthread_mutex_lock(&(philosopher)->resources->last_meal_time);
+	time_since_last_meal = current_time - philosopher->last_meal_time;
+	pthread_mutex_unlock(&(philosopher)->resources->last_meal_time);
+	if (time_since_last_meal > philosopher->args_info.time_to_die)
+		return (TRUE);
+	return (FALSE);
+}
+
 static int	check_philo_state(t_philosopher *philosopher)
 {
 	if (is_everyone_full(philosopher))
 		return (FINISHED);
-	// if (is_philo_dead(philosopher))
-	// {
-	// 	print_state(philosopher, "died");
-	// 	return (FINISHED);
-	// }
+	if (is_philo_dead(philosopher))
+	{
+		print_state(philosopher, "died");
+		return (FINISHED);
+	}
 	return (FALSE);
 }
 

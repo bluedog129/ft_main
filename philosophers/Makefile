@@ -6,12 +6,12 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:58:32 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/22 17:29:20 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/24 15:27:18 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -MMD
+CFLAGS          = -Wall -Wextra -Werror -MMD -fsanitize=address -g
 NAME            = philo
 RM              = rm -f
 LIBS			= libft/libft.a
@@ -29,7 +29,7 @@ INIT            = $(addprefix $(INIT_PATH), $(INIT_SRCS))
 
 THREAD_PATH  	= srcs/thread_handling/
 THREAD_SRCS     = philo_handling.c thread_run.c philo_eating.c philo_state_print.c \
-					monitor.c
+					monitor.c finish_simulation.c
 THREAD          = $(addprefix $(THREAD_PATH), $(THREAD_SRCS))
 
 SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\
