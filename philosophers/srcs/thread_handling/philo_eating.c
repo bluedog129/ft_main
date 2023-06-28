@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:19:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/22 13:00:03 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:30:46 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	eating(t_philosopher *philosoper)
 {
 	int	error;
 
-	error = TRUE;
+	error = 0;
 	if (take_forks(philosoper) == ERROR)
 		error = 1;
 	if (error == 0)

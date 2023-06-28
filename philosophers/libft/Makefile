@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 12:05:39 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/15 13:12:58 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/28 14:56:32 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,19 +45,29 @@ all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	ar rcs $@ $^
+	@echo -e "$(GREEN)$(EXEC) created!$(DEFAULT)"
 
 .c.o :
 	cc $(CFLAGS) -c $< -o $(<:.c=.o)
 bonus :
 	make WITH_BONUS=1 all
+	
 clean :
 	rm -rf $(OBJECT) $(B_OBJECT) $(P_OBJECT)
 
 fclean : clean
 	rm -rf $(NAME)
+	@echo -e "$(BLUE)delete all!$(DEFAULT)"
 
 re :
 	make fclean
 	make all
 
 .PHONY : all clean fclean re
+
+RED = \033[1;31m
+PINK = \033[1;35m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+DEFAULT = \033[0m

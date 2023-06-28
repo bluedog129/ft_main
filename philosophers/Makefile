@@ -6,12 +6,12 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:58:32 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/24 15:27:18 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/06/27 21:40:38 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC              = cc
-CFLAGS          = -Wall -Wextra -Werror -MMD -fsanitize=address -g
+CFLAGS          = -Wall -Wextra -Werror -MMD -fsanitize=thread
 NAME            = philo
 RM              = rm -f
 LIBS			= libft/libft.a

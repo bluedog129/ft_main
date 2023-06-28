@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:04:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/21 17:13:38 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/27 20:06:52 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static int	init_mutexes(t_resources *resources, t_args_info *args_info)
 
 int	init_resources(t_resources *resources, t_args_info *args_info)
 {
-	if (init_time(args_info) == ERROR)
-		return (ERROR);
 	resources->forks = ft_calloc(sizeof(pthread_mutex_t), args_info->num_of_philo);
 	if (resources->forks == NULL)
 	{

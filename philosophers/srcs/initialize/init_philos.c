@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:09:52 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/23 17:01:18 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:10:35 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	init_philos(t_resources *resources, t_args_info *args_info, \
 	{
 		(*philosopher)[i].id = i + 1;
 		(*philosopher)[i].resources = resources;
+		(*philosopher)[i].resources->start_time = args_info->start_time;
 		(*philosopher)[i].args_info = *args_info;
 		(*philosopher)[i].left_fork = i;
 		(*philosopher)[i].right_fork = (i + 1) % args_info->num_of_philo;

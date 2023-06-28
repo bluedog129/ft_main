@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:37:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/23 20:06:19 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:41:12 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_resources
 	pthread_mutex_t	alive;
 	int				live;
 	unsigned int	full_count;
-	int				start_time;
+	long long		start_time;
 	int				*forks_status;
 }	t_resources;
 
@@ -50,7 +50,7 @@ typedef struct s_args_info
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
 	unsigned int	num_of_must_eat;
-	unsigned int	start_time;
+	long long		start_time;
 }	t_args_info;
 
 typedef struct s_philosopher
@@ -58,7 +58,7 @@ typedef struct s_philosopher
 	pthread_t		threads;
 	t_resources		*resources;
 	t_args_info		args_info;
-	unsigned int	last_meal_time;
+	long long		last_meal_time;
 	int				id;
 	int				left_fork;
 	int				right_fork;
