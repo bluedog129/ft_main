@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_args.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:05:03 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/29 18:36:39 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:16:45 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,27 @@ static int	is_integer(char *str)
 	return (SUCCESS);
 }
 
+static int	validate_args_val(char **argv)
+{
+	if (ft_atoi(argv[1]) == 0 || \
+		ft_atoi(argv[2]) == 0 || \
+		ft_atoi(argv[3]) == 0)
+	{
+		printf("Error: Wrong number of arguments\n");
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 int	get_args(int argc, char **argv, t_args_info *args_info)
 {
-	(void) argv;
 	if (argc != 5 && argc != 6)
 	{
 		printf("Error: Wrong number of arguments\n");
 		return (ERROR);
 	}
+	if (validate_args_val(argv) == ERROR)
+		return (ERROR);
 	if (is_integer(argv[1]) == ERROR || is_integer(argv[2]) == ERROR || \
 		is_integer(argv[3]) == ERROR || is_integer(argv[4]) == ERROR || \
 		(argc == 6 && is_integer(argv[5]) == ERROR))
