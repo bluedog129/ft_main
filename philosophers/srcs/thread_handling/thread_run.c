@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 16:58:12 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/27 19:57:25 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:32:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-static int run_odd_philo(t_philosopher *philosoper, t_args_info *args_info)
+static int	run_odd_philo(t_philosopher *philosoper, t_args_info *args_info)
 {
 	unsigned int	i;
 
@@ -33,7 +33,7 @@ static int run_odd_philo(t_philosopher *philosoper, t_args_info *args_info)
 	return (SUCCESS);
 }
 
-static int run_even_philo(t_philosopher *philosoper, t_args_info *args_info)
+static int	run_even_philo(t_philosopher *philosoper, t_args_info *args_info)
 {
 	unsigned int	i;
 

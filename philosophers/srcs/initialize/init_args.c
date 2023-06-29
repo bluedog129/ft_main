@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 19:05:03 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/21 16:27:05 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:36:39 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-static int is_integer(char *str)
+static int	is_integer(char *str)
 {
 	if (str == NULL || *str == '\0')
 		return (ERROR);

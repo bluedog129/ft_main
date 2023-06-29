@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 15:38:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/28 14:51:08 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:32:57 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	print_dead(t_philosopher *philosopher, long long time, \
 	printf(RED "%lld %d %s" DEFAULT "\n", time, philosopher->id, state);
 }
 
-static void print_philo_state(t_philosopher *philosopher, long long time, \
+static void	print_philo_state(t_philosopher *philosopher, long long time, \
 								char *state)
 {
 	pthread_mutex_lock(&philosopher->resources->print_mutex);

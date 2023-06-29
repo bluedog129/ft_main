@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 18:04:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/27 20:06:52 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:35:05 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	init_mutexes(t_resources *resources, t_args_info *args_info)
 
 int	init_resources(t_resources *resources, t_args_info *args_info)
 {
-	resources->forks = ft_calloc(sizeof(pthread_mutex_t), args_info->num_of_philo);
+	resources->forks = ft_calloc(sizeof(pthread_mutex_t), \
+									args_info->num_of_philo);
 	if (resources->forks == NULL)
 	{
 		printf("Error: Failed to calloc forks.\n");

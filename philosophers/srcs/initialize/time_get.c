@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:19:39 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/28 13:32:02 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:34:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	time_lapse(unsigned int time)
 	start_time = get_time();
 	while (get_time() < start_time + (long long)time)
 	{
-		usleep(100);
+		usleep(10);
 	}
 }
 
 long long	get_time(void)
 {
 	struct timeval	current_time;
-	long long	time;
+	long long		time;
 
 	gettimeofday(&current_time, NULL);
 	time = (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);

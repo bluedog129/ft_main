@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:11:26 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/24 14:47:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:40:35 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-static int is_everyone_full(t_philosopher *philosopher)
+static int	is_everyone_full(t_philosopher *philosopher)
 {
 	if (philosopher->args_info.num_of_must_eat < 1)
 		return (FALSE);

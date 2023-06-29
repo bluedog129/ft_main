@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 19:09:52 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/28 13:10:35 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:37:04 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	init_philos(t_resources *resources, t_args_info *args_info, \
 				t_philosopher **philosopher)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	*philosopher = (t_philosopher *)malloc(sizeof(t_philosopher) * \
 											args_info->num_of_philo);

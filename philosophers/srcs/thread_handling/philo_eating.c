@@ -6,13 +6,13 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 13:19:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/24 20:30:46 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:34:03 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/philosophers.h"
 
-static int take_forks(t_philosopher *philo)
+static int	take_forks(t_philosopher *philo)
 {
 	if (philo->id & 1)
 	{
@@ -35,7 +35,7 @@ static int take_forks(t_philosopher *philo)
 	return (0);
 }
 
-static void update_last_meal_time(t_philosopher *philo)
+static void	update_last_meal_time(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->resources->last_meal_time);
 	philo->last_meal_time = get_time();
@@ -60,7 +60,7 @@ static void	put_down_forks(t_philosopher *philo)
 	}
 }
 
-static int start_eating(t_philosopher *philo)
+static int	start_eating(t_philosopher *philo)
 {
 	print_state(philo, "is eating");
 	time_lapse(philo->args_info.time_to_eat);
