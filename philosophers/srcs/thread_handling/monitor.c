@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 17:11:26 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/06/29 18:40:35 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/02 15:41:04 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_philo_dead(t_philosopher *philosopher)
 	pthread_mutex_lock(&(philosopher)->resources->last_meal_time);
 	time_since_last_meal = current_time - philosopher->last_meal_time;
 	pthread_mutex_unlock(&(philosopher)->resources->last_meal_time);
-	if (time_since_last_meal > philosopher->args_info.time_to_die)
+	if (time_since_last_meal >= philosopher->args_info.time_to_die)
 		return (TRUE);
 	return (FALSE);
 }
