@@ -6,7 +6,7 @@
 #    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/14 17:58:32 by hyojocho          #+#    #+#              #
-#    Updated: 2023/06/30 19:05:53 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/07/03 16:36:10 by hyojocho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\
 OBJECTS         = $(SOURCES:.c=.o)
 
 HEADER_PATH     = ./headers/
-S_HEADER        = philosophers.h structures.h
+S_HEADER        = cub3d.h structures.h
 HEADER          = $(addprefix $(HEADER_PATH), $(S_HEADER))
 
 all: $(NAME)
