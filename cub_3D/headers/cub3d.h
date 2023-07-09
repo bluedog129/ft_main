@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:56:19 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:59:49 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 21:11:44 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,13 @@ int			validate_all_lines(t_parse_info *parse_info);
 
 // map_validation
 void		valid_map_characters(char *line, t_map *map_info, t_parse_info *parse_info);
+int			validate_edge_part(t_parse_info *parse_info, t_map *map_info, \
+						int height, int width);
 
-// utils
+// making_map_array
+void		make_array_map(t_map *map_info, t_parse_info *parse_info);
+
+// line_parse_utils
 void		print_error(char *str);
 int			check_line_empty(char *line);
 void		exit_error(char *str, t_map *map_info, t_parse_info *parse_info);
@@ -81,5 +86,6 @@ void		free_2d_arr(char **arr);
 // linked list
 void		ft_lstadd_back(t_map_node *lst, t_map_node *new);
 t_map_node	*ft_lstlast(t_map_node *lst);
+void		free_lst_node(t_map_node *head);
 
 #endif

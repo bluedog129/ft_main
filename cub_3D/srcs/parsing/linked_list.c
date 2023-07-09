@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 12:30:17 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/07/09 12:39:14 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 18:50:06 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ t_map_node	*ft_lstlast(t_map_node *lst)
 	return (dummy);
 }
 
-// void	free_list(t_map_node *head)
-// {
-// 	t_map_node	*remove;
+void	free_lst_node(t_map_node *head)
+{
+	t_map_node	*remove;
 
-// 	if (head == NULL)
-// 		return ;
-// 	while (head->next != NULL)
-// 	{
-// 		remove = head->next;
-// 		head->next = head->next->next;
-// 		free(remove->str);
-// 		free(remove);
-// 	}
-// }
+	if (head == NULL)
+		return ;
+	while (head->next != NULL)
+	{
+		remove = head->next;
+		head->next = head->next->next;
+		free(remove->line);
+		free(remove);
+	}
+}

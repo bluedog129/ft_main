@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:16:34 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/08 17:24:48 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/09 18:17:29 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_parse_info
 	int		start_position_count;
 	int		line_type;
 	char	*line;
+	char	**map_board;
 }	t_parse_info;
 
 #endif

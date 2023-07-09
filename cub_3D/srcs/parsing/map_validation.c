@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:57:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:14:53 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 22:14:14 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,69 @@ void	valid_map_characters(char *line, t_map *map_info, \
 			parse_info->start_position_count++;
 		i++;
 	}
+}
+
+static int	validate_start_point(char start_point)
+{
+	if (start_point != '1')
+		return (ERROR);
+	return (SUCCESS);
+}
+
+static int	validate_end_point(char *line_split)
+{
+	int idx;
+
+	idx = 0;
+	while (line_split[idx] != '\0' && line_split[idx] != '*')
+		idx++;	
+	if (line_split[idx - 1] != '1')
+		return (ERROR);
+	return (SUCCESS);
+}
+
+static int	validate_map_lines(t_parse_info *parse_info, int height)
+{
+	char	**line_split;
+	int		idx;
+
+	line_split = ft_split(parse_info->map_board[height], ' ');
+	if (line_split == NULL)
+		exit_error("Error: split failed", NULL, parse_info);
+	idx = -1;
+	while (line_split[++idx])
+	{
+		if (line_split[idx][0] == '*')
+			return (ERROR);
+		if (validate_start_point(line_split[idx][0]) == ERROR)
+		{
+			free_2d_arr(line_split);
+			return (ERROR);
+		}
+		if (validate_end_point(line_split[idx]) == ERROR)
+		{
+			free_2d_arr(line_split);
+			return (ERROR);
+		}
+	}
+	free_2d_arr(line_split);
+	return (SUCCESS);
+}
+
+int	validate_edge_part(t_parse_info *parse_info, t_map *map_info, \
+						int height, int width)
+{
+	if (height == 0 || height == map_info->height - 1)
+	{
+		if (parse_info->map_board[height][width] != '1' && \
+			parse_info->map_board[height][width] != ' ' && \
+			parse_info->map_board[height][width] != '*')
+			return (ERROR);
+	}
+	else
+	{
+		if (validate_map_lines(parse_info, height) == ERROR)
+			return (ERROR);
+	}
+	return (SUCCESS);
 }
