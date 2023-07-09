@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   args_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:42:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/03 17:44:51 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:43:58 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
-int	validate_cube_file(char *cub_file)
+void	validate_cube_file(char *cub_file)
 {
-	int		index;
 	char	*start;
 	char	*slash;
 	char	*str;
 
-	index = 0;
 	start = NULL;
 	str = ".cub";
 	start = ft_strnstr(cub_file, str, ft_strlen(cub_file));
 	if (start == NULL)
-		return (ERROR);
+		print_error("Error: Invalid file name\n");
 	if (start[4] != '\0')
-		return (ERROR);
+		print_error("Error: Invalid file name\n");
 	slash = ft_strrchr(cub_file, '/');
 	if (slash == NULL)
-		return (1);
+		return ;
 	while (++slash != start)
 	{
 		if (*slash == '.')
-			return (ERROR);
+			print_error("Error: Invalid file name\n");
 	}
-	return (SUCCESS);
 }
 
 void	validate_args(int argc)

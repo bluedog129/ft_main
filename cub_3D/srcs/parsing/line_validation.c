@@ -3,67 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   line_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:06 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/08 17:17:16 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:13:37 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
-int	validate_texture(char *tex_line, t_map *map_info, t_parse_info *parse_info)
+void	validate_texture(char *tex_line, t_map *map_info, t_parse_info *parse_info)
 {
 	char	**texture_info;
 
 	texture_info = ft_split(tex_line, ' ');
 	if (texture_info == NULL)
 	{
-		// 맵까지 만들고 전부 free해주는 함수 만들기
-		print_error("Error: Invalid texture\n");
+		exit_error("Error: Invalid texture\n", map_info, parse_info);
 	}
 	if (texture_info[0] == NULL || texture_info[1] == NULL || \
 		texture_info[2] != NULL)
 	{
-		// 맵까지 만들고 전부 free해주는 함수 만들기
-		print_error("Error: Invalid texture\n");
+		exit_error("Error: Invalid texture\n", map_info, parse_info);
 	}
 	if (get_texture_path(texture_info, map_info, parse_info) == ERROR)
 	{
-		// 맵까지 만들고 전부 free해주는 함수 만들기
-		print_error("Error: Invalid texture\n");
+		exit_error("Error: Invalid texture\n", map_info, parse_info);
 	}
 }
 
-int validate_rgb(char *tex_line, t_map *map_info, t_parse_info *parse_info)
+void	validate_rgb(char *tex_line, t_map *map_info, t_parse_info *parse_info)
 {
 	char	**rgb_info;
 
 	rgb_info = ft_split(tex_line, ' ');
 	if (rgb_info == NULL)
 	{
-		// 맵까지 만들고 전부 free해주는 함수 만들기
-		print_error("Error: Invalid RGB\n");
+		exit_error("Error: Invalid RGB\n", map_info, parse_info);
 	}
 	if (rgb_info[0] == NULL || rgb_info[1] == NULL || \
 		rgb_info[2] != NULL)
 	{
-		// 맵까지 만들고 전부 free해주는 함수 만들기
-		print_error("Error: Invalid RGB\n");
+		exit_error("Error: Invalid RGB\n", map_info, parse_info);
 	}
-	if (ft_strcmp("F", rgb_info[0] == 0))
+	if (ft_strcmp("F", rgb_info[0]) == 0)
 	{
 		map_info->side_info->floor_rgb = get_rgb(rgb_info[1], map_info, parse_info);
 		parse_info->floor_rgb_count++;
 	}
-	if (ft_strcmp("C", rgb_info[0] == 0))
+	if (ft_strcmp("C", rgb_info[0]) == 0)
 	{
 		map_info->side_info->ceiling_rgb = get_rgb(rgb_info[1], map_info, parse_info);
 		parse_info->ceiling_rgb_count++;
 	}
 }
 
-int	validate_map(char *map_line, t_map *map_info, t_parse_info *parse_info)
+void	validate_map(char *map_line, t_map *map_info, t_parse_info *parse_info)
 {
 	t_map_node	*map_node;
 	

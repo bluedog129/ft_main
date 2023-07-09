@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:57:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/08 16:16:00 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/09 16:14:53 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	valid_map_characters(char *line, t_map *map_info, \
 			line[i] != ' ')
 			exit_error("Error: invalid map characters", map_info, parse_info);
 		else if (line[i] == 'N')
-			parse_info->north_tex_count++;
+			parse_info->start_position_count++;
 		else if (line[i] == 'S')
-			parse_info->south_tex_count++;
+			parse_info->start_position_count++;
 		else if (line[i] == 'W')
-			parse_info->west_tex_count++;
+			parse_info->start_position_count++;
 		else if (line[i] == 'E')
-			parse_info->east_tex_count++;
+			parse_info->start_position_count++;
 		i++;
 	}
 }

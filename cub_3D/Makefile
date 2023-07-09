@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
+#    By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 14:41:13 by hyojocho          #+#    #+#              #
-#    Updated: 2023/07/08 17:22:56 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/07/09 15:55:57 by choihyojong      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,9 @@ MAIN_SRCS       = main.c
 MAIN            = $(addprefix $(MAIN_PATH), $(MAIN_SRCS))
 
 PARSING_PATH  	= srcs/parsing/
-PARSING_SRCS    = parsing.c utils.c error.c info_get.c initialize.c \
-					line_validation.c map_validation.c 
+PARSING_SRCS    = parsing.c args_validation.c side_info_get.c initialize.c \
+					line_validation.c map_validation.c linked_list.c \
+					line_parse_utils.c
 PARSING         = $(addprefix $(PARSING_PATH), $(PARSING_SRCS))
 
 SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\

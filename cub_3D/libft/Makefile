@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+         #
+#    By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/03 12:05:39 by hyojocho          #+#    #+#              #
-#    Updated: 2023/07/08 17:03:29 by hyojocho         ###   ########.fr        #
+#    Updated: 2023/07/09 12:42:39 by choihyojong      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,7 @@ SOURCES = ft_bzero.c ft_isalnum.c ft_isalpha.c \
 			ft_putnbr_fd.c ft_htoa.c ft_utoa.c ft_uitoa.c \
 			ft_uitoa_lower.c ft_strcmp.c ft_atol.c ft_atoi_extension.c \
 			./get_next_line/get_next_line.c \
-			./get_next_line/get_next_line_utils.c \
-			ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
-			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
-			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+			./get_next_line/get_next_line_utils.c
 
 OBJECT = $(SOURCES:.c=.o)
 B_OBJECT = $(B_SOURCES:.c=.o)

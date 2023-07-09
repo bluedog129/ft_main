@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:53:54 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/08 15:07:24 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:13:12 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
+
+int	open_file(char *cub_file)
+{
+	int	fd;
+
+	fd = open(cub_file, O_RDONLY);
+	if (fd == -1)
+		return (ERROR);
+	return (fd);
+}
 
 void	print_error(char *str)
 {
@@ -41,4 +51,14 @@ void	exit_error(char *str, t_map *map_info, t_parse_info *parse_info)
 		close(parse_info->fd);
 	print_error(str);
 	exit(ERROR);
+}
+
+void	free_2d_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
