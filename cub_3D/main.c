@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:00 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:46:08 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 16:54:09 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 int main(int argc, char **argv)
 {
-	validate_args(argc);
-	validate_cube_file(argv[1]);
-	parse_cub_file(argv[1]);
+	t_map			map_info;
+	t_parse_info	parse_info;
+	
+	validate_args(argc, argv[1]);
+	parse_cub_file(argv[1], &map_info, &parse_info);
 }

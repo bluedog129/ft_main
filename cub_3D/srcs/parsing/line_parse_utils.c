@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   line_parse_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:53:54 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 11:13:12 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 16:56:14 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ int	open_file(char *cub_file)
 	return (fd);
 }
 
-void	print_error(char *str)
-{
-	printf("%s", str);
-	exit(ERROR);
-}
-
 int	check_line_empty(char *line)
 {
 	while (*line == ' ')
@@ -35,6 +29,12 @@ int	check_line_empty(char *line)
 	if (*line == '\0')
 		return (1);
 	return (0);
+}
+
+void	print_error(char *str)
+{
+	printf("%s", str);
+	exit(ERROR);
 }
 
 void	exit_error(char *str, t_map *map_info, t_parse_info *parse_info)
@@ -50,7 +50,6 @@ void	exit_error(char *str, t_map *map_info, t_parse_info *parse_info)
 	if (parse_info->fd > 2)
 		close(parse_info->fd);
 	print_error(str);
-	exit(ERROR);
 }
 
 void	free_2d_arr(char **arr)

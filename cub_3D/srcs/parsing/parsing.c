@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:28:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:46:37 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 16:49:09 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,10 @@ static void	parse_map(t_map *map_info, t_parse_info *parse_info)
 	printf("ceiling_rgb : %d\n", map_info->side_info->ceiling_rgb);
 }
 
-void	parse_cub_file(char *cub_file)
+void	parse_cub_file(char *cub_file, t_map *map_info, t_parse_info *parse_info)
 {
-	t_map			map_info;
-	t_parse_info	parse_info;
-
-	initialize(cub_file, &map_info, &parse_info);
-	parse_map(&map_info, &parse_info);
-	if (parse_info.fd > 2)
-		close(parse_info.fd);
+	initialize(cub_file, map_info, parse_info);
+	parse_map(map_info, parse_info);
+	if (parse_info->fd > 2)
+		close(parse_info->fd);
 }

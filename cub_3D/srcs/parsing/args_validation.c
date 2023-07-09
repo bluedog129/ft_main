@@ -6,13 +6,13 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 17:42:18 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:43:58 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 16:54:01 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
-void	validate_cube_file(char *cub_file)
+static void	validate_cube_file(char *cub_file)
 {
 	char	*start;
 	char	*slash;
@@ -35,8 +35,9 @@ void	validate_cube_file(char *cub_file)
 	}
 }
 
-void	validate_args(int argc)
+void	validate_args(int argc, char *cubfile)
 {
 	if (argc != 2)
 		print_error("Error: Invalid number of arguments\n");
+	validate_cube_file(cubfile);
 }
