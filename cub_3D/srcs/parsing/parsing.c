@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:28:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 17:01:42 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 17:47:36 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ static void	parse_line_by_line(t_map *map_info, t_parse_info *parse_info)
 			exit_error("Error: Invalid empty_line map\n", map_info, parse_info);
 	}
 	if (validate_all_lines(parse_info) == ERROR)
-		exit_error("Error: invalid all map validation\n", map_info, parse_info);
-	printf("floor_rgb : %d\n", map_info->side_info->floor_rgb);
-	printf("ceiling_rgb : %d\n", map_info->side_info->ceiling_rgb);
+		exit_error("Error: Invalid all line validation\n", map_info, parse_info);
 }
 
 void	parse_cub_file(char *cub_file, t_map *map_info, t_parse_info *parse_info)

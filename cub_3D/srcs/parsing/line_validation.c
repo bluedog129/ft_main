@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 13:13:06 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:13:37 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 17:46:39 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int validate_all_lines(t_parse_info *parse_info)
 		&& parse_info->west_tex_count == 1 && parse_info->east_tex_count == 1 \
 		&& parse_info->floor_rgb_count == 1 && parse_info->ceiling_rgb_count == 1)
 	{
-		return (SUCCESS);
+		if (parse_info->start_position_count == 1)
+			return (SUCCESS);
 	}
 	return (ERROR);
 }

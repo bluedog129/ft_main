@@ -6,7 +6,7 @@
 #    By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 14:41:13 by hyojocho          #+#    #+#              #
-#    Updated: 2023/07/09 15:55:57 by choihyojong      ###   ########.fr        #
+#    Updated: 2023/07/09 17:41:00 by choihyojong      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ MAIN_SRCS       = main.c
 MAIN            = $(addprefix $(MAIN_PATH), $(MAIN_SRCS))
 
 PARSING_PATH  	= srcs/parsing/
-PARSING_SRCS    = parsing.c args_validation.c side_info_get.c initialize.c \
+PARSING_SRCS    = parsing.c args_validation.c getting_side_info.c initialize.c \
 					line_validation.c map_validation.c linked_list.c \
-					line_parse_utils.c
+					line_parse_utils.c 
 PARSING         = $(addprefix $(PARSING_PATH), $(PARSING_SRCS))
 
 SOURCES			= $(addprefix $(SRCS_PATH), $(MAIN))\
