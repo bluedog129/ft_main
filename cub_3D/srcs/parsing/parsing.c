@@ -6,13 +6,13 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:28:09 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:49:09 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 17:01:42 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
-static void	parse_map(t_map *map_info, t_parse_info *parse_info)
+static void	parse_line_by_line(t_map *map_info, t_parse_info *parse_info)
 {
 	char	*line;
 
@@ -42,7 +42,7 @@ static void	parse_map(t_map *map_info, t_parse_info *parse_info)
 void	parse_cub_file(char *cub_file, t_map *map_info, t_parse_info *parse_info)
 {
 	initialize(cub_file, map_info, parse_info);
-	parse_map(map_info, parse_info);
+	parse_line_by_line(map_info, parse_info);
 	if (parse_info->fd > 2)
 		close(parse_info->fd);
 }

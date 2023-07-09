@@ -6,7 +6,7 @@
 /*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:56:19 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/07/09 16:53:41 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/07/09 16:59:49 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ enum e_check_type_enum
 };
 
 // parsing
-void	parse_cub_file(char *cub_file, t_map *map_info, t_parse_info *parse_info);
+void		parse_cub_file(char *cub_file, t_map *map_info, t_parse_info *parse_info);
 
 // args_validation
 void		validate_args(int argc, char *cub_file);
