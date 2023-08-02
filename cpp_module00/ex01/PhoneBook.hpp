@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 01:59:23 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/01 21:41:04 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/02 09:51:27 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#define PHONEBOOK_HPP
 
 #include "Contact.hpp"
 
 class PhoneBook
 {
 private:
-	Contact contacts[8]; // Array of contacts
-    int contactCount; // Number of contacts currently in the phonebook
-    int oldestIndex; // Index of the oldest contact in the array
-
+    Contact     _contacts[8];
+    int         _readInput(void) const;
 public:
-	PhoneBook();
-
-	bool addContact(const Contact& contact);
-	void displayContacts() const;
-	void runPhoneBookLoop();
+    PhoneBook();
+    ~PhoneBook();
+    void    addContact(void);
+    void    printContacts(void) const;
+    void    search(void) const;
+    void    welcome(void) const;
 };
 
 #endif

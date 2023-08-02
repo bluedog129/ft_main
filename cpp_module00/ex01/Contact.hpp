@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/01 02:15:08 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/01 21:46:46 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/02 09:51:26 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
-# define CONTACT_HPP
+#define CONTACT_HPP
 
 #include <iostream>
-#include <string>
+#include <iomanip>
 
-class Contact {
-    private:
-        std::string firstName;
-        std::string lastName;
-		std::string nickname;
-		std::string phoneNumber;
-		std::string darkestSecret;
+class Contact
+{
+private:
+    std::string _firstName;
+    std::string _lastName;
+    std::string _nickname;
+    std::string _phoneNumber;
+    std::string _darkestSecret;
+    int         _index;
 
-    public:
-		Contact();
-		Contact(const std::string firstName, const std::string lastName, 
-				const std::string nickname, const std::string phoneNumber, 
-				const std::string darkestSecret);
-		
-		void setFirstName(const std::string& firstName);
-		void setLastName(const std::string& lastName);
-		void setNickname(const std::string& nickname);
-		void setPhoneNumber(const std::string& phoneNumber);
-		void setDarkestSecret(const std::string& darkestSecret);
+    std::string _printLen(std::string str) const;
+    std::string _getInput(std::string str) const;
 
-		std::string getFirstName() const;
-		std::string getLastName() const;
-		std::string getNickname() const;
-		std::string getPhoneNumber() const;
-		std::string getDarkestSecret() const;
+public:
+    Contact();
+    ~Contact();
+    void    init(void);
+    void    view(int index) const;
+    void    display(int index) const;
+    void    setIndex(int i);
 };
 
 #endif

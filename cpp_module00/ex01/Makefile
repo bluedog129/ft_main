@@ -1,8 +1,8 @@
 CC = g++
-CFLAGS = -Wall -Wextra -pedantic -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-TARGET = megaphone
-SOURCE = megaphone.cpp
+TARGET = Phonebook
+SOURCE = main.cpp Contact.cpp Phonebook.cpp
 OBJECTS = $(SOURCE:.cpp=.o)
 
 all: $(TARGET)
