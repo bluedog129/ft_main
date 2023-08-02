@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:53:24 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/02 20:34:54 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:28:06 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ std::string     PhoneBook::readInput() const {
         } else {
 			if (std::cin.eof())
 				exit(1);
+            std::cin.clear();
             std::cout << "Invalid index; please re-enter." << std::endl;
         }
     }
