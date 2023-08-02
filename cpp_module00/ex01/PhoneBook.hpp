@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:53:38 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/02 16:49:11 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:07:34 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "Contact.hpp"
 #include <cstdlib>
+#include <iostream>
 
 class PhoneBook
 {

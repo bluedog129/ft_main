@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:53:44 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/02 19:46:36 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:12:12 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <stdlib.h>
 
 class Contact
 {
