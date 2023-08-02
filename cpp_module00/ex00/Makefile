@@ -1,24 +1,33 @@
-CC = g++
-CFLAGS = -Wall -Wextra -pedantic -std=c++98
-
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 TARGET = megaphone
-SOURCE = megaphone.cpp
-OBJECTS = $(SOURCE:.cpp=.o)
+SRCDIR = .
+OBJDIR = obj
+
+SRCS = $(wildcard $(SRCDIR)/*.cpp)
+OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
+DEPS = $(OBJS:.o=.d)
 
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) -MM -MT $@ $(CXXFLAGS) $< > $(OBJDIR)/$*.d
+
+-include $(DEPS)
 
 clean:
-	rm -f $(OBJECTS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
 	rm -f $(TARGET)
 
-re: fclean all
+re:
+	make fclean
+	make all
 
 .PHONY: all clean fclean re

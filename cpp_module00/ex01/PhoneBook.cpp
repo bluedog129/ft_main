@@ -3,72 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 17:57:50 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/02 09:50:08 by choihyojong      ###   ########.fr       */
+/*   Created: 2023/08/02 12:53:24 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/02 20:34:54 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(/* args */)
-{
-}
-
-PhoneBook::~PhoneBook()
-{
-}
-
-void    PhoneBook::welcome(void) const {
+void    PhoneBook::printWelcomeText(void) const {
     std::cout << std::endl;
-    std::cout << "📞 Welcome to Your Awesome PhoneBook 📖" << std::endl;
+    std::cout << "        Welcome to My Awesome  📞📖        " << std::endl;
     std::cout << std::endl;
-    std::cout << "--------------USAGE---------------" << std::endl;
-    std::cout << "ADD\t: To add a contact." << std::endl;
-    std::cout << "SEARCH\t: To search for a contact." << std::endl;
-    std::cout << "EXIT\t: to quite the PhoneBook." << std::endl;
-    std::cout << "----------------------------------" << std::endl;
+    std::cout << "------------------manual-------------------" << std::endl;
+    std::cout << "ADD\t: Function to add a contact." << std::endl;
+    std::cout << "SEARCH\t: Function to search for a contact." << std::endl;
+    std::cout << "EXIT\t: Function to quite the PhoneBook." << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
     std::cout << std::endl;
 }
 
 void    PhoneBook::addContact(void) {
-    static int  i;
-    this->_contacts[i % 8].init();
-    this->_contacts[i % 8].setIndex(i % 8);
-    i++;
+	static int  index;
+
+    this->contacts[index % 8].initialize();
+    this->contacts[index % 8].setIndex(index % 8);
+    index++;
 }
 
 void    PhoneBook::printContacts(void) const {
     std::cout << "------------- PHONBOOK CONTACTS -------------" << std::endl;
+	std::cout << "|" << std::setw(10) << "Index" << std::flush;
+	std::cout << "|" << std::setw(10) << "First Name" << std::flush;
+	std::cout << "|" << std::setw(10) << "Last Name" << std::flush;
+	std::cout << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
     for (size_t i = 0; i < 8; i++) {
-        this->_contacts[i].view(i);
+        this->contacts[i].printEssentialContact(i);
     }
     std::cout << std::endl;
 }
 
-int     PhoneBook::_readInput() const {
-    int     input = -1;
-    bool    valid = false;
-    do
+std::string     PhoneBook::readInput() const {
+    std::string input = "";
+	
+    while (true)
     {
         std::cout << "Please enter the contact index: " << std::flush;
-        std::cin >> input;
-        if (std::cin.good() && (input >= 0 && input <= 8)) {
-            //everything went well, we'll get out of the loop and return the value
-            valid = true;
+        std::getline(std::cin, input);
+        if (std::cin.good() && input.length() == 1 && std::isdigit(input[0])) {
+            break;
         } else {
-            //something went wrong, we reset the buffer's state to good
-            std::cin.clear();
-            //and empty it
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+			if (std::cin.eof())
+				exit(1);
             std::cout << "Invalid index; please re-enter." << std::endl;
         }
-    } while (!valid);
+    }
     return (input);
 }
 
 void    PhoneBook::search(void) const {
-    int i = this->_readInput();
-    this->_contacts[i].display(i);
+	int search_index;
+
+    std::string index = this->readInput();
+	search_index = std::strtod(index.c_str(), NULL);
+    this->contacts[search_index].printContactDetails(search_index);
 }

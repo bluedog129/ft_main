@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 01:59:23 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/02 09:51:27 by choihyojong      ###   ########.fr       */
+/*   Created: 2023/08/02 12:53:38 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/02 16:49:11 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 #define PHONEBOOK_HPP
 
 #include "Contact.hpp"
+#include <cstdlib>
 
 class PhoneBook
 {
 private:
-    Contact     _contacts[8];
-    int         _readInput(void) const;
+    Contact     	contacts[8];
+    std::string		readInput(void) const;
 public:
-    PhoneBook();
-    ~PhoneBook();
     void    addContact(void);
     void    printContacts(void) const;
     void    search(void) const;
-    void    welcome(void) const;
+    void    printWelcomeText(void) const;
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 02:15:08 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/02 09:51:26 by choihyojong      ###   ########.fr       */
+/*   Created: 2023/08/02 12:53:44 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/02 19:46:36 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,19 @@
 class Contact
 {
 private:
-    std::string _firstName;
-    std::string _lastName;
-    std::string _nickname;
-    std::string _phoneNumber;
-    std::string _darkestSecret;
-    int         _index;
-
-    std::string _printLen(std::string str) const;
-    std::string _getInput(std::string str) const;
+    int         index;
+    std::string firstName;
+    std::string lastName;
+    std::string nickname;
+    std::string phoneNumber;
+    std::string darkestSecret;
+    std::string printLen(std::string str) const;
+    std::string getInput(std::string str) const;
 
 public:
-    Contact();
-    ~Contact();
-    void    init(void);
-    void    view(int index) const;
-    void    display(int index) const;
+    void    initialize(void);
+    void    printEssentialContact(int index) const;
+    void    printContactDetails(int index) const;
     void    setIndex(int i);
 };
 

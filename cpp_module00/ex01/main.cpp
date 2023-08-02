@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 02:17:01 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/02 09:51:44 by choihyojong      ###   ########.fr       */
+/*   Created: 2023/08/02 12:53:18 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/02 20:36:52 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 int main(void) {
     PhoneBook book;
     std::string input = "";
-    book.welcome();
-    while (input.compare("EXIT")) {
+    book.printWelcomeText();
+    while (input.compare("EXIT") != 0) {
+		if (std::cin.eof())
+			break ;
         if (input.compare("ADD") == 0)
             book.addContact();
         else if (input.compare("SEARCH") == 0) {
@@ -26,7 +28,7 @@ int main(void) {
             book.search();
         }
         std::cout << "> " << std::flush;
-        std::cin >> input;
+        std::getline(std::cin, input);
     }
     return 0;
 }
