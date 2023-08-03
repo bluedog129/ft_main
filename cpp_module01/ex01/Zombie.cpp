@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 09:03:09 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/03 14:37:31 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/08/03 14:01:37 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/03 19:04:04 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void Zombie::announce(void)
 {
-    std::cout << _name << " BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << _name << " BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-Zombie::~Zombie(void)
+void Zombie::setName(std::string name)
 {
-	std::cout << _name << " is dead" << std::endl;
+	_name = name;
 }

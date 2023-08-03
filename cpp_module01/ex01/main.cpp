@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 09:03:09 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/03 14:37:31 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/08/03 17:57:16 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/03 19:09:40 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void Zombie::announce(void)
+int main()
 {
-    std::cout << _name << " BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-Zombie::~Zombie(void)
-{
-	std::cout << _name << " is dead" << std::endl;
+	Zombie* zombie = zombieHorde(10, "netpractice");
+	for (int i = 0; i < 10; i++)
+		zombie[i].announce();
+	delete[] zombie;
+	return (0);
 }

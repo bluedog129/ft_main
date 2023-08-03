@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-TARGET = Zombie00
+TARGET = Zombie01
 SRCDIR = .
 OBJDIR = obj
 
