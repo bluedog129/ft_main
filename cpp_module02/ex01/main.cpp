@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/03 09:03:09 by choihyojong       #+#    #+#             */
-/*   Updated: 2023/08/07 14:48:34 by hyojocho         ###   ########.fr       */
+/*   Created: 2023/08/07 17:29:11 by hyojocho          #+#    #+#             */
+/*   Updated: 2023/08/07 17:50:27 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include <iostream>
+#include "Fixed.h"
 
-Zombie::Zombie(std::string name)
-{
-	_name = name;
-}
-
-void Zombie::announce(void)
-{
-    std::cout << _name << " BraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-Zombie::~Zombie(void)
-{
-	std::cout << _name << " is dead" << std::endl;
+int main() {
+	Fixed a;
+	Fixed const b(10);
+	Fixed const c(42.42f);
 }

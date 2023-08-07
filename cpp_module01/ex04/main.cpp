@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 13:57:05 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/04 15:16:29 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:08:24 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,18 @@ std::string readFileContent(const std::string& filename) {
 }
 
 std::string replaceString(const std::string& original, const std::string& s1, const std::string& s2) {
-    std::string result = original;
+    std::string result;
     size_t pos = 0;
+    size_t foundPos = original.find(s1);
 
-    while ((pos = result.find(s1, pos)) != std::string::npos) {
-        result.replace(pos, s1.length(), s2);
-        pos += s2.length();
+    while (foundPos != std::string::npos) {
+        result.append(original, pos, foundPos - pos);
+        result.append(s2);
+        pos = foundPos + s1.length();
+        foundPos = original.find(s1, pos);
     }
+
+    result.append(original, pos, original.length() - pos);
 
     return result;
 }

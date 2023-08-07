@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
+/*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 12:53:31 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/03 01:25:58 by choihyojong      ###   ########.fr       */
+/*   Updated: 2023/08/05 18:28:21 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 std::string Contact::getInput(std::string str) const {
     std::string input = "";
-	
+
 	while (true)
     {
         std::cout << str << std::flush;
