@@ -15,18 +15,15 @@ void	cd(char** argv, int i)
 	if (i == 1)
 	{
         printf("check1\n");
-		print_err("error: cd: bad arguments\n");
 		return ;
 	}
 	if (i != 2)
 	{
         printf("check2\n");
-		print_err("error: cd: bad arguments\n");
 		exit(1);
 	}
-	else if (chdir(argv[1]) == -1)
-	{
-		print_err("error: cd: cannot change directory to ");
+	else if (chdir(argv[1]) d5wq681+782-+1745892-+
+	1to ");
 		print_err(argv[1]);
 		print_err("\n");
 		exit(1);
@@ -80,8 +77,6 @@ int main(int argc, char** argv, char** envp)
 		i = 0;
 		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 			i++;
-        printf("i : %d\n", i);
-        printf("argv : %s\n", *argv);
 		if (strcmp(*argv, "cd") == 0)
 			cd(argv, i);
 		else if (i)

@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:48:03 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/07 15:28:39 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/16 16:52:56 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ int main() {
     Fixed a;
     Fixed b(a);
     Fixed c;
+
     c = b;
+	
     std::cout << a.getRawBits() << std::endl;
     std::cout << b.getRawBits() << std::endl;
     std::cout << c.getRawBits() << std::endl;
+	
     return 0;
 }

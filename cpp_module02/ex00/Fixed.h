@@ -6,12 +6,14 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 18:37:03 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/07 11:31:38 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/16 17:23:07 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_H
 # define FIXED_H
+
+# include <iostream>
 
 class Fixed
 {
