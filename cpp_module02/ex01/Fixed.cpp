@@ -6,7 +6,7 @@
 /*   By: hyojocho <hyojocho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 15:55:58 by hyojocho          #+#    #+#             */
-/*   Updated: 2023/08/07 18:42:33 by hyojocho         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:22:54 by hyojocho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ Fixed::Fixed(const float value) : _value(0) {
 	_value = roundf(value * (1 << _fractionalBits));
 }
 
-Fixed::Fixed(const Fixed& other) : _value(0) {
+Fixed::Fixed(const Fixed& other) : _value(other.getRawBits()) {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
 }
 
 Fixed::~Fixed() {
@@ -37,7 +36,7 @@ Fixed::~Fixed() {
 Fixed& Fixed::operator=(const Fixed& other) {
 	std::cout << "Assignation operator called" << std::endl;
 	if (this != &other) {
-		_value = other._value;
+		_value = other.getRawBits();
 	}
 	return (*this);
 }
@@ -55,7 +54,7 @@ float Fixed::toFloat() const {
 }
 
 int Fixed::toInt() const {
-	return _value >> _fractionalBits;
+	return (_value >> _fractionalBits);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
