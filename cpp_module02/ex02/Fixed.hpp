@@ -12,6 +12,7 @@ public:
     Fixed();
     Fixed(const int value);
     Fixed(const float value);
+    ~Fixed();
 
     int     getRawValue(void) const;
     float   toFloat(void) const;
