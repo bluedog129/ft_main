@@ -42,19 +42,37 @@ bool Fixed::operator!=(const Fixed &other) const {
 
 // Arithmetic operators
 Fixed Fixed::operator+(const Fixed &other) const {
-    return Fixed(toFloat() + other.toFloat());
+    Fixed fixed;
+
+    std::cout << "operator + called" << std::endl;
+    fixed._value = _value + other._value;
+    fixed._value = fixed._value >> fractional_bits;
+    return fixed;
 }
 
 Fixed Fixed::operator-(const Fixed &other) const {
-    return Fixed(toFloat() - other.toFloat());
+    Fixed fixed;
+
+    std::cout << "operator - called" << std::endl;
+    fixed._value = _value - other._value;
+    fixed._value = fixed._value >> fractional_bits;
+    return fixed;
 }
 
 Fixed Fixed::operator*(const Fixed &other) const {
-    return Fixed(toFloat() * other.toFloat());
+    Fixed fixed;
+
+    std::cout << "operator * called" << std::endl;
+    fixed._value = (_value * other.getRawValue()) >> fractional_bits;
+    return fixed;
 }
 
 Fixed Fixed::operator/(const Fixed &other) const {
-    return Fixed(toFloat() / other.toFloat());
+    Fixed fixed;
+
+    std::cout << "operator / called" << std::endl;
+    fixed._value = (_value << fractional_bits) / other.getRawValue();
+    return fixed;
 }
 
 // Increment and decrement operators
@@ -81,14 +99,16 @@ Fixed Fixed::operator--(int) {
 }
 
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b) {
+    std::cout << "min called" << std::endl;
     return a < b ? a : b;
 }
 
 const Fixed& Fixed::max(const Fixed &a, const Fixed &b) {
+    std::cout << "max called" << std::endl;
     return a > b ? a : b;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 	os << fixed.toFloat();
-	return (os);
+	return os;
 }
