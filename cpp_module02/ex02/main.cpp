@@ -5,7 +5,7 @@ int main() {
     Fixed const b(Fixed(5.05f) * Fixed(2));
 
     std::cout << a << std::endl;
-    // std::cout << b << std::endl;
+    std::cout << b << std::endl;
     
     // ++a example
     std::cout << ++a << std::endl;
@@ -13,15 +13,15 @@ int main() {
     // a++ example
     std::cout << a++ << std::endl;
     // // + example
-    // std::cout << a + b << std::endl;
-    // // - example
-    // std::cout << a - b << std::endl;
-    // std::cout << b - a << std::endl;
-    // // * example
-    // std::cout << a * b << std::endl;
-    // // / example
-    // std::cout << a / b << std::endl;
-    // std::cout << b / a << std::endl;
+    std::cout << a + b << std::endl;
+    // - example
+    std::cout << a - b << std::endl;
+    std::cout << b - a << std::endl;
+    // * example
+    std::cout << a * b << std::endl;
+    // / example
+    std::cout << a / b << std::endl;
+    std::cout << b / a << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     // // min example

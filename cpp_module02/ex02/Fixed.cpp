@@ -42,37 +42,31 @@ bool Fixed::operator!=(const Fixed &other) const {
 
 // Arithmetic operators
 Fixed Fixed::operator+(const Fixed &other) const {
-    Fixed fixed;
-
     std::cout << "operator + called" << std::endl;
-    fixed._value = _value + other._value;
-    fixed._value = fixed._value >> fractional_bits;
-    return fixed;
+    float result =  static_cast<float>(_value + other._value) / (1 << fractional_bits);
+    return Fixed(result);
 }
 
 Fixed Fixed::operator-(const Fixed &other) const {
-    Fixed fixed;
-
     std::cout << "operator - called" << std::endl;
-    fixed._value = _value - other._value;
-    fixed._value = fixed._value >> fractional_bits;
-    return fixed;
+    float result = static_cast<float>(_value - other._value) / (1 << fractional_bits);
+    return result;
 }
 
 Fixed Fixed::operator*(const Fixed &other) const {
-    Fixed fixed;
-
     std::cout << "operator * called" << std::endl;
-    fixed._value = (_value * other.getRawValue()) >> fractional_bits;
-    return fixed;
+    double result = _value * static_cast<double>(other._value);
+    result /= (1 << fractional_bits);
+    result /= (1 << fractional_bits);
+    return Fixed(static_cast<float>(result));
 }
 
 Fixed Fixed::operator/(const Fixed &other) const {
-    Fixed fixed;
-
     std::cout << "operator / called" << std::endl;
-    fixed._value = (_value << fractional_bits) / other.getRawValue();
-    return fixed;
+    double result = _value / static_cast<double>(other._value);
+    result /= (1 << fractional_bits);
+    result /= (1 << fractional_bits);
+    return Fixed(static_cast<float>(result));
 }
 
 // Increment and decrement operators
