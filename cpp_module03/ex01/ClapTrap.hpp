@@ -1,12 +1,12 @@
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef CLAPTRAP_H
+#define CLAPTRAP_H
 
 #include <string>
 #include <iostream>
 
 class ClapTrap
 {
-private:
+protected:
     std::string _name;
     int _hitPoints;
     int _energyPoints;
