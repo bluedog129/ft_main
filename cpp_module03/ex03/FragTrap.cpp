@@ -1,6 +1,11 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+FragTrap::FragTrap()
+{
+    std::cout << "FragTrap " << _name << " created!" << std::endl;
+}
+
 FragTrap::FragTrap(const std::string &name)
     : ClapTrap(name)
 {

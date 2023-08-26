@@ -4,5 +4,6 @@
 #include "DiamondTrap.hpp"
 
 int main() {
-    
+    std::cout << "----- DiamondTrap tests -----" << std::endl;
+    DiamondTrap diamondTrap("DiamondTrap");
 }
