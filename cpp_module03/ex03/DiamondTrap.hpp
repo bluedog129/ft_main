@@ -2,17 +2,16 @@
 #define DIAMONDTRAP_HPP
 
 #include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap, public ClapTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
 private:
     std::string _diamondName;
 public:
+    DiamondTrap();
     DiamondTrap(const std::string &name);
     ~DiamondTrap();
 
-    using ClapTrap::attack;
     void whoAmI(void);
 };
 
