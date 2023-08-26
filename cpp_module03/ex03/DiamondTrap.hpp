@@ -9,6 +9,8 @@ private:
     std::string _diamondName;
 public:
     DiamondTrap();
+    DiamondTrap(const DiamondTrap& other);
+    DiamondTrap& operator=(const DiamondTrap& other);
     DiamondTrap(const std::string &name);
     ~DiamondTrap();
 
