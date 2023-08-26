@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Fixed.h"
+#include "Fixed.hpp"
 
 int main() {
     Fixed a;
     Fixed b(a);
-    Fixed c;
+    Fixed c = b;
+    // Fixed c;
 
     c = b;
 	

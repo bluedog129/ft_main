@@ -6,7 +6,6 @@ int main() {
 
     std::cout << a << std::endl;
     std::cout << b << std::endl;
-    
     // ++a example
     std::cout << ++a << std::endl;
     std::cout << a << std::endl;
@@ -24,8 +23,9 @@ int main() {
     std::cout << b / a << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
-    // // min example
-    // std::cout << Fixed::min(a, b) << std::endl;
+
+    // min example
+    std::cout << Fixed::min(a, b) << std::endl;
     // max example
     std::cout << Fixed::max(a, b) << std::endl;
 

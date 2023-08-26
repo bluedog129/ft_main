@@ -8,12 +8,14 @@ class Fixed {
 private:
 	int					_value;
 	static const int	_fractionalBits = 8;
+	std::string name;
 
 public:
 	Fixed();
 	Fixed(const int value);
 	Fixed(const float value);
 	Fixed(const Fixed& other);
+	Fixed& operator=(const Fixed& other);
 	~Fixed();
 
 	Fixed& operator=(const Fixed& other);
