@@ -1,5 +1,5 @@
-#ifndef CLAPTRAP_H
-#define CLAPTRAP_H
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <string>
 #include <iostream>
@@ -13,6 +13,8 @@ protected:
     int _attackDamage;
 public:
     ClapTrap();
+    ClapTrap(const ClapTrap& other);
+    ClapTrap& operator=(const ClapTrap& other);
     ClapTrap(const std::string &name);
     ~ClapTrap();
 
