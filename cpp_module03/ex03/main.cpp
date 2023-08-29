@@ -5,5 +5,7 @@
 
 int main() {
     std::cout << "----- DiamondTrap tests -----" << std::endl;
-    DiamondTrap diamondTrap("DiamondTrap");
+    DiamondTrap diamondTrap("diamond");
+    diamondTrap.attack("enemy");
+    diamondTrap.whoAmI();
 }

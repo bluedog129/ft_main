@@ -39,8 +39,12 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string &target)
 {
+    if (_hitPoints < 1) {
+        std::cout << "ClapTrap " << _name << " is dead and cannot be repaired" << std::endl;
+        return;
+    }
     if (_energyPoints < 1) {
-        std::cout << "ScavTrap " << _name << " doesn't have enough energy to attack!" << std::endl;
+        std::cout << "ClapTrap " << _name << " has no energy points left" << std::endl;
         return;
     }
     std::cout << "ScavTrap " << _name << " attacks " << target << " with style, causing "<< _attackDamage << " points of damage!" << std::endl;

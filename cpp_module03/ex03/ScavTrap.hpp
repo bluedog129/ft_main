@@ -4,6 +4,8 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : public virtual ClapTrap {
+protected:
+    int save_energy;
 public:
     ScavTrap();
     ScavTrap(const std::string& name);

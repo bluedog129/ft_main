@@ -1,6 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() {
+    _name = "ClapTrap_defualt_name";
     std::cout << "ClapTrap constructor called" << std::endl;
 }
 
@@ -26,10 +27,14 @@ ClapTrap::ClapTrap(const std::string &name)
 }
 
 ClapTrap::~ClapTrap() {
-    std::cout << "ClapTrap destructor called" << std::endl;
+    std::cout << "ClapTrap " << _name << " destroyed!" << std::endl;
 }
 
 void ClapTrap::attack(const std::string &target) {
+    if (_hitPoints < 1) {
+        std::cout << "ClapTrap " << _name << " is dead and cannot be repaired" << std::endl;
+        return;
+    }
     if (_energyPoints < 1) {
         std::cout << "ClapTrap " << _name << " has no energy points left" << std::endl;
         return;
@@ -39,6 +44,14 @@ void ClapTrap::attack(const std::string &target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
+    if (_hitPoints < 1) {
+        std::cout << "ClapTrap " << _name << " is dead and cannot be repaired" << std::endl;
+        return;
+    }
+    if (_energyPoints < 1) {
+        std::cout << "ClapTrap " << _name << " has no energy points left" << std::endl;
+        return;
+    }
     if (amount >= static_cast<unsigned int>(_hitPoints)) {
         _hitPoints = 0;
         std::cout << "ClapTrap " << _name << " took " << amount << " points of damage and died" << std::endl;
@@ -48,8 +61,15 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-    if (_hitPoints == 0) {
+    unsigned int gap = std::numeric_limits<unsigned int>::max() - _hitPoints;
+    if (gap > amount)
+        _hitPoints = std::numeric_limits<unsigned int>::max();
+    if (_hitPoints < 1) {
         std::cout << "ClapTrap " << _name << " is dead and cannot be repaired" << std::endl;
+        return;
+    }
+    if (_energyPoints < 1) {
+        std::cout << "ClapTrap " << _name << " has no energy points left" << std::endl;
         return;
     }
     _hitPoints += amount;

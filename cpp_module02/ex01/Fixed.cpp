@@ -41,14 +41,6 @@ Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed& Fixed::operator=(const Fixed& other) {
-	std::cout << "Assignation operator called" << std::endl;
-	if (this != &other) {
-		_value = other.getRawBits();
-	}
-	return (*this);
-}
-
 int Fixed::getRawBits() const {
 	return (_value);
 }
@@ -62,7 +54,7 @@ float Fixed::toFloat() const {
 }
 
 int Fixed::toInt() const {
-	return (_value >> _fractionalBits);
+	return (toFloat());
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
