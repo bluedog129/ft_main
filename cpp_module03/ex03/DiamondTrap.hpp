@@ -15,6 +15,7 @@ public:
     ~DiamondTrap();
 
     void whoAmI(void);
+    void printCompare(void);
 };
 
 #endif

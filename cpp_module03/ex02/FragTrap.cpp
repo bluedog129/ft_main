@@ -2,6 +2,10 @@
 #include <iostream>
 
 FragTrap::FragTrap() {
+    _name = "FragTrap_default_name";
+    _hitPoints = 100;
+    _energyPoints = 100;
+    _attackDamage = 30;
     std::cout << "FragTrap constructor called" << std::endl;
 }
 

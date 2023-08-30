@@ -31,12 +31,7 @@ DiamondTrap::DiamondTrap(const std::string &name)
     std::cout << "DiamondTrap " << _name << " created!" << std::endl;
     ClapTrap::_name = name + "_clap_name";
     _energyPoints = ScavTrap::save_energy;
-    std::cout << "FragTrap hit points is " << FragTrap::_hitPoints << std::endl;
-    std::cout << "DiamondTrap hit points is " << _hitPoints << std::endl;
-    std::cout << "ScavTrap energy points is " << ScavTrap::_energyPoints << std::endl;
-    std::cout << "DiamondTrap energy points is " << _energyPoints << std::endl;
-    std::cout << "FragTrap attack damage is " << FragTrap::_attackDamage << std::endl;
-    std::cout << "DiamondTrap attack damage is " << _attackDamage << std::endl;
+    printCompare();
 }
 
 DiamondTrap::~DiamondTrap()
@@ -44,8 +39,18 @@ DiamondTrap::~DiamondTrap()
     std::cout << "DiamondTrap " << _name << " destroyed!" << std::endl;
 }
 
-void DiamondTrap::whoAmI(void)
+void DiamondTrap::whoAmI()
 {
     std::cout << "My name is " << _name << std::endl;
     std::cout << "My ClapTrap name is " << ClapTrap::_name << std::endl;
+}
+
+void DiamondTrap::printCompare()
+{
+    std::cout << "FragTrap hit points is " << FragTrap::_hitPoints << std::endl;
+    std::cout << "DiamondTrap hit points is " << _hitPoints << std::endl;
+    std::cout << "ScavTrap energy points is " << ScavTrap::_energyPoints << std::endl;
+    std::cout << "DiamondTrap energy points is " << _energyPoints << std::endl;
+    std::cout << "FragTrap attack damage is " << FragTrap::_attackDamage << std::endl;
+    std::cout << "DiamondTrap attack damage is " << _attackDamage << std::endl;
 }
