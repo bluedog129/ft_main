@@ -20,7 +20,6 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
         _hitPoints = other._hitPoints;
         _energyPoints = other._energyPoints;
         _attackDamage = other._attackDamage;
-        _name = other._name;
     }
     return *this;
 }
