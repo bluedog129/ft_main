@@ -6,7 +6,7 @@
 
 #define DOG_IDEA_STRING "I want to play with my owner!"
 
-class Dog : public Animal {
+class Dog : public AAnimal {
 private:
     Brain* _brain;
 public:

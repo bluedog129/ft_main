@@ -1,5 +1,5 @@
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 
 #include <iostream>
 #include <string>
@@ -13,8 +13,9 @@ public:
     AAnimal(const AAnimal& other);
     AAnimal& operator=(const AAnimal& other);
     virtual ~AAnimal();
+    
     std::string getType() const;
-    virtual void makeSound() const;
+    virtual void makeSound() const = 0;
 };
 
 #endif
