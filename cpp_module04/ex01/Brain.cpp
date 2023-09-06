@@ -1,5 +1,7 @@
 #include "Brain.hpp"
 
+#define MAX_IDEA_LENGTH 100
+
 Brain::Brain() {
     std::cout << "Brain constructor called" << std::endl;
 }
@@ -23,11 +25,8 @@ Brain::~Brain() {
     std::cout << "Brain destructor called" << std::endl;
 }
 
-Brain *Brain::getIdeas(std::string *ideas) {
-    for (int i = 0; i < 100; i++) {
-        ideas[i] = this->ideas[i];
-    }
-    return this;
+std::string Brain::getIdeas(int index) {
+    return this->ideas[index];
 }
 
 void Brain::setIdeas(const std::string &ideas, int index) {

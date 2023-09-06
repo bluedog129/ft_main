@@ -4,6 +4,8 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
+#define CAT_IDEA_STRING "Give me some food human!"
+
 class Cat : public Animal {
 private:
     Brain* _brain;
@@ -14,6 +16,7 @@ public:
     ~Cat();
 
     void makeSound() const;
+    Brain* getBrain() const;
 };
 
 #endif

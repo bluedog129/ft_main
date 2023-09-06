@@ -4,6 +4,8 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
+#define DOG_IDEA_STRING "I want to play with my owner!"
+
 class Dog : public Animal {
 private:
     Brain* _brain;
@@ -14,6 +16,7 @@ public:
     ~Dog();
 
     void makeSound() const;
+    Brain* getBrain() const;
 };
 
 #endif
