@@ -6,10 +6,10 @@ private:
     std::string _name;
 public:
     Ice();
-    Ice(Ice &others);
-    ~Ice();
-
     Ice(std::string const & type);
+    Ice(Ice const & others);
+    Ice &operator=(Ice const &others);
+    ~Ice();
 
     virtual AMateria* clone() const;
     virtual void use(ICharacter& target); 

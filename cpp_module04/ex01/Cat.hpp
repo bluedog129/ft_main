@@ -6,7 +6,7 @@
 
 #define CAT_IDEA_STRING "Give me some food human!"
 
-class Cat : public AAnimal {
+class Cat : public Animal {
 private:
     Brain* _brain;
 public:
