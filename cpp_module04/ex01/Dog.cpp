@@ -13,7 +13,8 @@ Dog::Dog(const Dog& other) : Animal(other), _brain(new Brain(*other._brain)) {
 Dog& Dog::operator=(const Dog& other) {
     std::cout << "Dog copy assignment operator called" << std::endl;
     if (this != &other) {
-        *_brain = *other._brain;
+        delete _brain;
+        _brain = new Brain(*other._brain);
         Animal::operator=(other);
     }
     return *this;

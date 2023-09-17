@@ -14,11 +14,6 @@ Character::Character(std::string const &name) : name(name)
 
 Character::Character(Character const &other)
 {
-    *this = other;
-}
-
-Character::Character(Character const &other)
-{
     this->name = other.name;
     for (int i = 0; i < 4; i++)
     {
@@ -58,12 +53,22 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria *m)
 {
+    if (!m)
+    {
+        std::cout << "Materia is NULL" << std::endl;
+        return ;
+    }
+    if (inventory[3] != NULL)
+    {
+        std::cout << "Inventory is full" << std::endl;
+        return ;
+    }
     for (int i = 0; i < 4; i++)
     {
         if (!this->inventory[i])
         {
             this->inventory[i] = m;
-            break;
+            return ;
         }
     }
 }

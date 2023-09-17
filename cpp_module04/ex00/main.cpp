@@ -4,6 +4,11 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+void leaks()
+{
+    std::cout << std::system("leaks ex00") << std::endl;
+}
+
 int main() {
     const AAnimal* animal = new AAnimal();
     const AAnimal* dog = new Dog();
@@ -26,6 +31,8 @@ int main() {
 
     delete wrongAnimal;
     delete wrongCat;
+    
+    atexit(leaks);
 
     return 0;
 }
