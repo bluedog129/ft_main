@@ -6,6 +6,11 @@
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 
+void leaks()
+{
+    std::cout << std::system("leaks ex03") << std::endl;
+}
+
 int main()
 {
     IMateriaSource* src = new MateriaSource();
@@ -25,5 +30,6 @@ int main()
     delete me;
     delete src;
 
+    atexit(leaks);
     return 0;
 }
