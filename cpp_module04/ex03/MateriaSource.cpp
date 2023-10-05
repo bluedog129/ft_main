@@ -1,7 +1,7 @@
 #include "MateriaSource.hpp"
 
 MateriaSource::MateriaSource() {
-    std::cout << "MateriaSource default constructor is created" << std::endl;
+    // std::cout << "MateriaSource default constructor is created" << std::endl;
     for (int i = 0; i < 4; i++)
         learnedMaterias[i] = NULL;
 }

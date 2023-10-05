@@ -2,23 +2,23 @@
 
 Ice::Ice() : AMateria("ice")
 {
-    std::cout << "default Ice constructer is created" << std::endl;
+    // std::cout << "default Ice constructer is created" << std::endl;
 }
 
 Ice::Ice(std::string const &type) : AMateria(type)
 {
-    std::cout << "Ice constructer is created" << std::endl;
+    // std::cout << "Ice constructer is created" << std::endl;
 }
 
 Ice::Ice(Ice const &others)
 {
-    std::cout << "Ice copy constructer is created" << std::endl;
+    // std::cout << "Ice copy constructer is created" << std::endl;
     *this = others;
 }
 
 Ice& Ice::operator=(Ice const &others)
 {
-    std::cout << "Ice copy assignment operator is called" << std::endl;
+    // std::cout << "Ice copy assignment operator is called" << std::endl;
     if (this != &others)
         _type = others._type;
     
@@ -27,7 +27,7 @@ Ice& Ice::operator=(Ice const &others)
 
 Ice::~Ice()
 {
-    std::cout << "Ice destructer is created" << std::endl;
+    // std::cout << "Ice destructer is created" << std::endl;
 }
 
 AMateria* Ice::clone() const

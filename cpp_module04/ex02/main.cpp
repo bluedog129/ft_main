@@ -7,9 +7,9 @@ void leaks()
 
 int main()
 {
-    AAnimal aanimal;
+    AAnimal animal;
 
-    aanimal.makeSound();
-    aanimal.getBrain();
+    animal.makeSound();
+    animal.getBrain();
     atexit(leaks);
 }
