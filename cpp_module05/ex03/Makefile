@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-TARGET = ex02
+TARGET = ex03
 SRCDIR = .
 OBJDIR = obj
 

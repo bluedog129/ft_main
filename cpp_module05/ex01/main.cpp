@@ -1,6 +1,11 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
+void hyojocho()
+{
+    system("leaks ex01");
+}
+
 int main()
 {
     try
@@ -23,4 +28,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+
+    hyojocho();
+    return 0;
 }

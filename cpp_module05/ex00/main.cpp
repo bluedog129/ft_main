@@ -1,5 +1,10 @@
 #include "Bureaucrat.hpp"
 
+void hyojocho()
+{
+    system("leaks ex00");
+}
+
 int main()
 {
     try {
@@ -13,5 +18,7 @@ int main()
     }   catch (std::exception &e) {
         std::cout << e.what() << std::endl;
     }
+
+    hyojocho();
     return (0);
 }

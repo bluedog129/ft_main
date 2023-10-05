@@ -63,7 +63,7 @@ void Bureaucrat::signForm(bool isSigned, std::string formName) const
     if (isSigned)
         std::cout << this->_name << " signed " << formName << std::endl;
     else
-        std::cout << this->_name << " couldn’t sign " << formName << " because ";
+        std::cout << this->_name << " couldn’t sign " << formName << " because " << this->_name << "’s grade is too low" << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
