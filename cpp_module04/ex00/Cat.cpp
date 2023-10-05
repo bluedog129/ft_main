@@ -1,18 +1,18 @@
 #include "Cat.hpp"
 
-Cat::Cat() : AAnimal() {
+Cat::Cat() : Animal() {
     _type = "Cat";
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : AAnimal(other) {
+Cat::Cat(const Cat& other) : Animal(other) {
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat& other) {
     std::cout << "Cat copy assignment operator called" << std::endl;
     if (this != &other) {
-        AAnimal::operator=(other);
+        Animal::operator=(other);
     }
     return *this;
 }
