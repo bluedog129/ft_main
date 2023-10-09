@@ -24,7 +24,7 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(TARGET)
+	rm -f $(TARGET) home_shrubbery
 
 re:
 	make fclean

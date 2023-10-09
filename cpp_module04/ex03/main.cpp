@@ -17,15 +17,25 @@ int main()
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
     ICharacter* me = new Character("me");
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
+    
+    AMateria* ice;
+    AMateria* cure;
+
+    ice = src->createMateria("ice");
+    me->equip(ice);
+    cure = src->createMateria("cure");
+    me->equip(cure);
+
     ICharacter* bob = new Character("bob");
+
     me->use(0, *bob);
     me->use(1, *bob);
-    
+
+    me->unequip(0);
+    me->unequip(1);
+
+    delete ice;
+    delete cure;
     delete bob;
     delete me;
     delete src;

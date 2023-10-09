@@ -14,9 +14,16 @@ int main()
     Intern someRandomIntern;
     AForm* rrf;
 
+    std::cout << std::endl;
     rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+    std::cout << std::endl;
+    rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
+    std::cout << std::endl;
+    rrf = someRandomIntern.makeForm("PresidentialPardonForm", "Bender");
+    std::cout << std::endl;
 
     delete rrf;
+    std::cout << std::endl;
     hyojocho();
     return (0);
 }
