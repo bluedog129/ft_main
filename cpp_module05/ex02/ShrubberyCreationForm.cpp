@@ -66,11 +66,10 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
     if (!getSigned())
         throw AForm::FormNotSignedException();
 
-    std::cout << "hyojocho" << std::endl;
     std::ofstream ofs(getTarget() + "_shrubbery");
 
     if (!ofs.is_open())
-        throw std::runtime_error("hyojoch 효조치");
+        throw std::runtime_error("file open error");
 
     ofs << "       _-_" << std::endl;
     ofs << "    /~~   ~~\\" << std::endl;

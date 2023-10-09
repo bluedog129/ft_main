@@ -9,9 +9,9 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 {
     std::cout << "Form constructor called" << std::endl;
     if (gradeToSign < 1 || gradeToExecute < 1)
-        throw Form::GradeTooLowException();
-    else if (gradeToSign > 150 || gradeToExecute > 150)
         throw Form::GradeTooHighException();
+    else if (gradeToSign > 150 || gradeToExecute > 150)
+        throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form &copy) : _name(copy._name), _signed(copy._signed), _gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute)
