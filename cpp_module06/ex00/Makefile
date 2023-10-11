@@ -1,6 +1,6 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-TARGET = ex03
+TARGET = ex00
 SRCDIR = .
 OBJDIR = obj
 
@@ -21,10 +21,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 -include $(DEPS)
 
 clean:
-	rm -rf $(OBJDIR) 
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	rm -f $(TARGET) Bender_shrubbery
+	rm -f $(TARGET)
 
 re:
 	make fclean

@@ -1,11 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-void hyojocho()
-{
-    system("leaks ex01");
-}
-
 int main()
 {
     try
@@ -14,14 +9,12 @@ int main()
         std::cout << bureaucratJohn << std::endl;
         Form formForJohn("FormForJohn", 42, 42);
         std::cout << formForJohn << std::endl;
-        // formForJohn.beSigned(bureaucratJohn);
-        // bureaucratJohn.signForm(formForJohn.getSigned(), formForJohn.getName());
+        bureaucratJohn.decrementGrade();
+        bureaucratJohn.signForm(formForJohn);
+        std::cout << std::endl;
         bureaucratJohn.incrementGrade();
         bureaucratJohn.incrementGrade();
-        std::cout << bureaucratJohn << std::endl;
-        formForJohn.beSigned(bureaucratJohn);
-        std::cout << formForJohn << std::endl;
-        bureaucratJohn.signForm(formForJohn.getSigned(), formForJohn.getName());
+        bureaucratJohn.signForm(formForJohn);
         std::cout << formForJohn << std::endl;
     }
     catch (std::exception &e)
@@ -29,6 +22,5 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    hyojocho();
     return 0;
 }

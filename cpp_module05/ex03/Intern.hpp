@@ -10,18 +10,15 @@
 
 class Intern {
 private:
-    std::string _name;
     std::string _target;
 public:
     Intern();
-    Intern(std::string name, std::string target);
+    Intern(std::string target);
     Intern(const Intern &copy);
     Intern &operator=(const Intern &copy);
     ~Intern();
 
-    std::string getName() const;
     std::string getTarget() const;
-    void setName(std::string name);
     void setTarget(std::string target);
     AForm *makeForm(std::string formName, std::string target);
 

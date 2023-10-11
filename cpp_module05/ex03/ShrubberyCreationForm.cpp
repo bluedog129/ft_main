@@ -65,5 +65,20 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         throw AForm::GradeTooLowException();
     if (!getSigned())
         throw AForm::FormNotSignedException();
+
     std::ofstream ofs(getTarget() + "_shrubbery");
+
+    if (!ofs.is_open())
+        throw std::runtime_error("file open error");
+
+    ofs << "       _-_" << std::endl;
+    ofs << "    /~~   ~~\\" << std::endl;
+    ofs << " /~~         ~~\\" << std::endl;
+    ofs << "{               }" << std::endl;
+    ofs << " \\  _-     -_  /" << std::endl;
+    ofs << "   ~  \\\\ //  ~" << std::endl;
+    ofs << "_- -   | | _- _" << std::endl;
+    ofs << "  _ -  | |   -_" << std::endl;
+    ofs << "      // \\\\" << std::endl;
+    ofs << std::endl;
 }

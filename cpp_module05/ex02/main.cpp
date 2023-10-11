@@ -28,30 +28,12 @@ int main()
     std::cout << *robotomyRequestForm << std::endl;
     std::cout << *presidentialPardonForm << std::endl;
 
-    try {
-        shrubberyCreationForm->beSigned(poorBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        robotomyRequestForm->beSigned(poorBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        presidentialPardonForm->beSigned(poorBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
     std::cout << std::endl;
     std::cout << std::endl;
 
-    poorBureaucrat.signForm(shrubberyCreationForm->getSigned(), shrubberyCreationForm->getName());
-    poorBureaucrat.signForm(robotomyRequestForm->getSigned(), robotomyRequestForm->getName());
-    poorBureaucrat.signForm(presidentialPardonForm->getSigned(), presidentialPardonForm->getName());
+    poorBureaucrat.signForm(*shrubberyCreationForm);
+    poorBureaucrat.signForm(*robotomyRequestForm);
+    poorBureaucrat.signForm(*presidentialPardonForm);
 
     poorBureaucrat.executeForm(*shrubberyCreationForm);
     poorBureaucrat.executeForm(*robotomyRequestForm);
@@ -62,8 +44,8 @@ int main()
     std::cout << *shrubberyCreationForm << std::endl;
     std::cout << *robotomyRequestForm << std::endl;
     std::cout << *presidentialPardonForm << std::endl;
-    std::cout << std::endl;
 
+    std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "---------------- normalBureaucrat ----------------" << std::endl;
     std::cout << std::endl;
@@ -73,29 +55,11 @@ int main()
     std::cout << *robotomyRequestForm << std::endl;
     std::cout << *presidentialPardonForm << std::endl;
 
-    try {
-        shrubberyCreationForm->beSigned(normalBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        robotomyRequestForm->beSigned(normalBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        presidentialPardonForm->beSigned(normalBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
     std::cout << std::endl;
 
-    normalBureaucrat.signForm(shrubberyCreationForm->getSigned(), shrubberyCreationForm->getName());
-    normalBureaucrat.signForm(robotomyRequestForm->getSigned(), robotomyRequestForm->getName());
-    normalBureaucrat.signForm(presidentialPardonForm->getSigned(), presidentialPardonForm->getName());
+    normalBureaucrat.signForm(*shrubberyCreationForm);
+    normalBureaucrat.signForm(*robotomyRequestForm);
+    normalBureaucrat.signForm(*presidentialPardonForm);
 
     std::cout << std::endl;
 
@@ -122,43 +86,20 @@ int main()
     std::cout << std::endl;
     std::cout << std::endl;
 
-    try {
-        shrubberyCreationForm->beSigned(vipBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        robotomyRequestForm->beSigned(vipBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
-
-    try {
-        presidentialPardonForm->beSigned(vipBureaucrat);
-    } catch(const std::exception& e) {
-        std::cerr << e.what() << '\n';
-    }
+    vipBureaucrat.signForm(*shrubberyCreationForm);
+    vipBureaucrat.signForm(*robotomyRequestForm);
+    vipBureaucrat.signForm(*presidentialPardonForm);
 
     std::cout << std::endl;
     std::cout << std::endl;
-
-    vipBureaucrat.signForm(shrubberyCreationForm->getSigned(), shrubberyCreationForm->getName());
-    vipBureaucrat.signForm(robotomyRequestForm->getSigned(), robotomyRequestForm->getName());
-    vipBureaucrat.signForm(presidentialPardonForm->getSigned(), presidentialPardonForm->getName());
-
-    std::cout << std::endl;
-    std::cout << std::endl;
-
-    std::cout << *shrubberyCreationForm << std::endl;
-    std::cout << *robotomyRequestForm << std::endl;
-    std::cout << *presidentialPardonForm << std::endl;
 
     vipBureaucrat.executeForm(*shrubberyCreationForm);
     vipBureaucrat.executeForm(*robotomyRequestForm);
     vipBureaucrat.executeForm(*presidentialPardonForm);
 
-    shrubberyCreationForm->execute(vipBureaucrat);
+    std::cout << *shrubberyCreationForm << std::endl;
+    std::cout << *robotomyRequestForm << std::endl;
+    std::cout << *presidentialPardonForm << std::endl;
 
     std::cout << std::endl;
 

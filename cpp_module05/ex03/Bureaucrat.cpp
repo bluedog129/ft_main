@@ -59,13 +59,14 @@ void Bureaucrat::decrementGrade()
         _grade++;
 }
 
-void Bureaucrat::signForm(bool isSigned, std::string formName) const
+void Bureaucrat::signForm(AForm &form) const
 {
-    if (isSigned)
-        std::cout << this->_name << " signed " << formName << std::endl;
-    else
-        std::cout << this->_name << " couldn't sign " << formName << " because " << this->_name << "’s grade is too low" << std::endl;
-    
+    try {
+        form.beSigned(*this);
+        std::cout << this->_name << " signed " << form.getName() << std::endl;
+    } catch (std::exception &e) {
+        std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+    }
 }
 
 void Bureaucrat::executeForm(AForm const & form) const
@@ -76,10 +77,13 @@ void Bureaucrat::executeForm(AForm const & form) const
     }
     else if (this->_grade > form.getGradeToExecute())
     {
-        std::cout << this->_name << " couldn't execute " << form.getName() << " because his grade is too low" << std::endl;
+        std::cout << this->_name << " couldn't execute " << form.getName() << " because his excute grade is too low" << std::endl;
     }
     else
+    {
+        form.execute(*this);
         std::cout << this->_name << " executed " << form.getName() << std::endl;
+    }
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

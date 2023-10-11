@@ -12,14 +12,21 @@ void hyojocho()
 int main()
 {
     Intern someRandomIntern;
+    Bureaucrat bureaucrat("Bender", 1);
     AForm* rrf;
 
     std::cout << std::endl;
     rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+    bureaucrat.signForm(*rrf);
+    bureaucrat.executeForm(*rrf);
     std::cout << std::endl;
     rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
+    bureaucrat.signForm(*rrf);
+    bureaucrat.executeForm(*rrf);
     std::cout << std::endl;
     rrf = someRandomIntern.makeForm("PresidentialPardonForm", "Bender");
+    bureaucrat.signForm(*rrf);
+    bureaucrat.executeForm(*rrf);
     std::cout << std::endl;
 
     delete rrf;

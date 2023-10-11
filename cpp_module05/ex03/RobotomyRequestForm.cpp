@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include <ctime>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("default", 72, 45), _target("default")
 {
@@ -66,6 +67,7 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
     if (!getSigned())
         throw AForm::FormNotSignedException();
     std::cout << "* drilling noises *" << std::endl;
+    srand(time(NULL));
     if (rand() % 2 == 0)
         std::cout << getTarget() << " has been robotomized successfully" << std::endl;
     else
