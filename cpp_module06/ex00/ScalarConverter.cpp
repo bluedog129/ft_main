@@ -1,12 +1,11 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() : _inputValue(""), _charValue(0), _intValue(0), _floatValue(0), _doubleValue(0), _isChar(false), _isInt(false), _isFloat(false), _isDouble(false)
+ScalarConverter::ScalarConverter()
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
-ScalarConverter::ScalarConverter(std::string const &value) 
-: _inputValue(value), _charValue(0), _intValue(0), _floatValue(0), _doubleValue(0), _isChar(false), _isInt(false), _isFloat(false), _isDouble(false)
+ScalarConverter::ScalarConverter(std::string const &)
 {
     std::cout << "Parametric constructor called" << std::endl;
 }
@@ -22,93 +21,68 @@ ScalarConverter::~ScalarConverter()
     std::cout << "Destructor called" << std::endl;
 }
 
-ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other)
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &)
 {
-    if (this != &other)
-    {
-        this->_inputValue = other._inputValue;
-        this->_charValue = other._charValue;
-        this->_intValue = other._intValue;
-        this->_floatValue = other._floatValue;
-        this->_doubleValue = other._doubleValue;
-        this->_isChar = other._isChar;
-        this->_isInt = other._isInt;
-        this->_isFloat = other._isFloat;
-        this->_isDouble = other._isDouble;
-    }
+    std::cout << "Assignation operator called" << std::endl;
+
     return *this;
 }
 
-void ScalarConverter::convert()
+void ScalarConverter::convert(char *value)
 {
     std::cout << "Convert called" << std::endl;
 
-    if (isprint(_inputValue[0]))
-    {
-        
-    }
-    else if (iscntrl(_inputValue[0]))
-    {
-        _charValue = _inputValue[0];
-        _isChar = true;
-    }
-    else 
-    {
-        std::cout << "impossible" << std::endl;
-    }
-    try {
-        _intValue = std::stoi(_inputValue);
-        _isInt = true;
-    } catch (std::exception &e) {
-        std::cout << "stoi failed" << std::endl;
-    }
-    try {
-        _floatValue = std::stof(_inputValue);
-        _isFloat = true;
-    } catch (std::exception &e) {
-        std::cout << "stof failed" << std::endl;
-    }
-    try {
-        _doubleValue = std::stod(_inputValue);
-        _isDouble = true;
-    } catch (std::exception &e) {
-        std::cout << "stod failed" << std::endl;
-    }
+    preconvert(value);
+
+    printChar(value);
+    printInt(value);
+    printFloat(value);
+    printDouble(value);
 }
 
-void ScalarConverter::printChar()
+void ScalarConverter::printChar(char *value)
 {
-    if (_isChar) {
-        std::cout << "char: '" << _charValue << "'" << std::endl;
+    std::string stringValue = value;
+    double num = std::stod(stringValue);
+
+    if (num >= 32 && num <= 126) {
+        std::cout << "char: '" << static_cast<char>(num) << "'"<< std::endl;
+    } else if (num >= 0 && num <= 127) {
+        std::cout << "char : Non displayable" << std::endl;
     } else {
-        std::cout << "char: impossible" << std::endl;
+        std::cout << "char: " << "impossible" << std::endl;
     }
 }
 
-void ScalarConverter::printInt()
+void ScalarConverter::printInt(char *value)
 {
-    if (_isInt) {
-        std::cout << "int: " << _intValue << std::endl;
+    std::string stringValue = value;
+
+    if (int num = std::stoi(stringValue)) {
+        std::cout << "int: " << num << std::endl;
     } else {
-        std::cout << "int: impossible" << std::endl;
+        std::cout << "int: " << "impossible" << std::endl;
     }
 }
 
-void ScalarConverter::printFloat()
+void ScalarConverter::printFloat(char *value)
 {
-    if (_isFloat) {
-        std::cout << "float: " << std::fixed << std::setprecision(1) << _floatValue << "f" << std::endl;
+    std::string stringValue = value;
+
+    if (float num = std::stof(stringValue)) {
+        std::cout << "float: " << std::fixed << std::setprecision(1) << num << "f" << std::endl;
     } else {
-        std::cout << "float: impossible" << std::endl;
+        std::cout << "float: " << "impossible" << std::endl;
     }
 }
 
-void ScalarConverter::printDouble()
+void ScalarConverter::printDouble(char *value)
 {
-    if (_isDouble) {
-        std::cout << "double: " << std::fixed << std::setprecision(1) << _doubleValue << std::endl;
+    std::string stringValue = value;
+
+    if (double num = std::stod(stringValue)) {
+        std::cout << "double: " << std::fixed << std::setprecision(1) << num << std::endl;
     } else {
-        std::cout << "double: impossible" << std::endl;
+        std::cout << "double: " << "impossible" << std::endl;
     }
 }
-

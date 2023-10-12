@@ -7,26 +7,23 @@ int main(int argc, char **argv)
         std::cout << "Usage: ./convert [value]" << std::endl;
         return 1;
     }
-    std::string value = argv[1];
-    // check double vs float
-    double num = std::stod(value);
+    ScalarConverter::convert(argv[1]);
 
-    if (num < 0 || num > 127) {
-        std::cout << "char: " << "impossible" << std::endl;
-    } else if (num >= 32 && num <= 126) {
-        std::cout << "char: " << static_cast<char>(num) << std::endl;
-    } else {
-        std::cout << "char : Non displayable" << std::endl;
-    }
-    std::cout << "int: " << static_cast<int>(num) << std::endl;
-    std::cout << "float: " << static_cast<float>(num) << std::endl;
-    std::cout << "double: " << static_cast<double>(num) << std::endl;
-
-    // ScalarConverter sc(argv[1]);
-    // sc.convert();
-    // sc.printChar();
-    // sc.printInt();
-    // sc.printFloat();
-    // sc.printDouble();
+    // ./convert 0
+    // char: Non displayable
+    // int: 0
+    // float: 0.0f
+    // double: 0.0
+    // ./convert nan
+    // char: impossible
+    // int: impossible
+    // float: nanf
+    // double: nan
+    // ./convert 42.0f
+    // char: '*'
+    // int: 42
+    // float: 42.0f
+    // double: 42.0
+    
     // return 0;
 }
