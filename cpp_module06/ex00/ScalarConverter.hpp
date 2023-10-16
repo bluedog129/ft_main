@@ -8,12 +8,14 @@
 
 class ScalarConverter
 {
-public:
+private:
     ScalarConverter();
-    ScalarConverter(std::string const &);
-    ScalarConverter(ScalarConverter const &other);
     ~ScalarConverter();
 
+public:
+    ScalarConverter(std::string const &);
+    ScalarConverter(ScalarConverter const &other);
+    
     ScalarConverter &operator=(ScalarConverter const &);
 
     static void convert(char *value);

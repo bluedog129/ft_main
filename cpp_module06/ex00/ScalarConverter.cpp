@@ -39,24 +39,18 @@ void ScalarConverter::convert(char *value)
 template <>
 char ScalarConverter::preconvert<char>(char *value) {
     if (strlen(value) == 1) {
-        return value[0];
+        return (static_cast<char>(value[0]) - 48);
     }
     
     std::string strValue(value);
     if (strValue == "nan" || strValue == "inf" || strValue == "-inf") {
         return (-1);
     }
-
-    int num;
+    
+    int intValue;
     std::istringstream iss(value);
-    iss >> num;
-
-    if (!iss.fail() && iss.eof()) {
-        return static_cast<char>(num);
-    } else {
-        std::cout << "Error: Invalid conversion to char" << std::endl;
-        return (-1);
-    }
+    iss >> intValue;
+    return (static_cast<char>(intValue));
 }
 
 template <>
@@ -67,7 +61,7 @@ int ScalarConverter::preconvert<int>(char *value) {
     iss >> intValue;
 
     if (!iss.fail() && iss.eof()) {
-        return intValue;
+        return static_cast<int>(intValue);
     } else {
         throw std::runtime_error("Invalid conversion to int");
     }
@@ -80,7 +74,7 @@ float ScalarConverter::preconvert<float>(char *value) {
     iss >> floatValue;
 
     if (!iss.fail() && iss.eof()) {
-        return floatValue;
+        return static_cast<float>(floatValue);
     } else {
         throw std::runtime_error("Invalid conversion to float");
     }
@@ -93,7 +87,7 @@ double ScalarConverter::preconvert<double>(char *value) {
     iss >> doubleValue;
 
     if (!iss.fail() && iss.eof()) {
-        return doubleValue;
+        return static_cast<double>(doubleValue);
     } else {
         throw std::runtime_error("Invalid conversion to double");
     }
