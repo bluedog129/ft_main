@@ -38,62 +38,64 @@ void ScalarConverter::convert(char *value)
 
 template <>
 char ScalarConverter::preconvert<char>(char *value) {
-    // Check if it's a single character
     if (strlen(value) == 1) {
-        int num = std::stoi(value);
-        return static_cast<char>(num);
+        return value[0];
     }
-    // check for special inputs like "nan" or "inf"
+    
     std::string strValue(value);
     if (strValue == "nan" || strValue == "inf" || strValue == "-inf") {
         return (-1);
     }
-    // Try to convert the input string to an integer, then to a char
-    try {
-        int num = std::stoi(strValue);
+
+    int num;
+    std::istringstream iss(value);
+    iss >> num;
+
+    if (!iss.fail() && iss.eof()) {
         return static_cast<char>(num);
-    } catch (std::exception &e) {
-        std::cout << "Error: " << e.what() << std::endl;
+    } else {
+        std::cout << "Error: Invalid conversion to char" << std::endl;
         return (-1);
     }
 }
 
 template <>
 int ScalarConverter::preconvert<int>(char *value) {
-    try {
-        int intValue = std::stoi(value);
-        return intValue;
+    int intValue;
 
-    } catch (const std::out_of_range&) {
-        throw;
-    } catch (const std::exception&) {
-        throw;
+    std::istringstream iss(value);
+    iss >> intValue;
+
+    if (!iss.fail() && iss.eof()) {
+        return intValue;
+    } else {
+        throw std::runtime_error("Invalid conversion to int");
     }
 }
 
 template <>
 float ScalarConverter::preconvert<float>(char *value) {
-    try {
-        float floatValue = std::stof(value);
-        return floatValue;
+    float floatValue;
+    std::istringstream iss(value);
+    iss >> floatValue;
 
-    } catch (const std::out_of_range&) {
-        throw;
-    } catch (const std::exception&) {
-        throw;
+    if (!iss.fail() && iss.eof()) {
+        return floatValue;
+    } else {
+        throw std::runtime_error("Invalid conversion to float");
     }
 }
 
 template <>
 double ScalarConverter::preconvert<double>(char *value) {
-    try {
-        double doubleValue = std::stod(value);
-        return doubleValue;
+    double doubleValue;
+    std::istringstream iss(value);
+    iss >> doubleValue;
 
-    } catch (const std::out_of_range&) {
-        throw;
-    } catch (const std::exception&) {
-        throw;
+    if (!iss.fail() && iss.eof()) {
+        return doubleValue;
+    } else {
+        throw std::runtime_error("Invalid conversion to double");
     }
 }
 
