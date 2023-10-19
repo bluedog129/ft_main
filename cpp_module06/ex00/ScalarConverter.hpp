@@ -6,6 +6,8 @@
 #include <sstream>
 #include <iomanip>
 #include <cstring>
+#include <limits.h>
+#include <float.h>
 
 class ScalarConverter
 {
@@ -20,12 +22,12 @@ public:
     ScalarConverter &operator=(ScalarConverter const &);
 
     static void convert(char *value);
-    template <typename T>
-    static T preconvert(char *value);
-    static void printChar(char *value);
-    static void printInt(char *value);
-    static void printFloat(char *value);
-    static void printDouble(char *value);
+    static void preconvert(char *value, std::string &detectedType);
+    static void printChar(char *value, std::string &detectedType);
+    static void printInt(char *value, std::string &detectedType);
+    static void printFloat(char *value, std::string &detectedType);
+    static void printDouble(char *value, std::string &detectedType);
+    static void printImpossible(std::string &detectedType);
 };
 
 #endif
