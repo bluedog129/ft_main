@@ -77,7 +77,6 @@ void ScalarConverter::printChar(char *value, std::string &detectedType)
         std::cout << "int: " << static_cast<int>(*value) << std::endl;
         std::cout << "float: " << std::setprecision(1) << std::fixed << static_cast<float>(*value) << "f" << std::endl;
         std::cout << "double: " << std::setprecision(1) << static_cast<double>(*value) << std::endl;
-        std::cout << "char came" << std::endl;
     }
 }
 

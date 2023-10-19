@@ -41,9 +41,11 @@ void Base::identify(Base &p)
                 case 0:
                     (void)dynamic_cast<A&>(p);
                     std::cout << "A" << std::endl;
+                    break;
                 case 1:
                     (void)dynamic_cast<B&>(p);
                     std::cout << "B" << std::endl;
+                    break;
                 case 2:
                     (void)dynamic_cast<C&>(p);
                     std::cout << "C" << std::endl;
