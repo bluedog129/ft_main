@@ -25,7 +25,7 @@ int main() {
         }
         std::cout << std::endl;
 
-        // Test out of bounds
+        // Test for out of bounds
         std::cout << charArr[5] << std::endl;
 
     } catch (const std::exception& e) {

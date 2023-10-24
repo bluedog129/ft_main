@@ -38,17 +38,17 @@ Array<T>::~Array()
 }
 
 template <typename T>
-T& Array<T>::operator[](unsigned int i)
+T& Array<T>::operator[](long i)
 {
-    if (i >= _size)
+    if (i >= _size || i < 0)
         throw Array<T>::execption();
     return _array[i];
 }
 
 template <typename T>
-const T& Array<T>::operator[](unsigned int i) const
+const T& Array<T>::operator[](long i) const
 {
-    if (i >= _size)
+    if (i >= _size || i < 0)
         throw Array<T>::execption();
     return _array[i];
 }

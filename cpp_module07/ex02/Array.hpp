@@ -17,8 +17,8 @@ public:
 
     Array & operator=(Array const & other);
 
-    T & operator[](unsigned int i);
-    const T & operator[](unsigned int i) const;
+    T & operator[](long i);
+    const T & operator[](long i) const;
     unsigned int size() const;
 
     class execption : public std::exception
