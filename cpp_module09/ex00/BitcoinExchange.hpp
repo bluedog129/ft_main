@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+#include <limits.h>
 
 struct Entry
 {
@@ -25,6 +26,7 @@ public:
     BitcoinExchange(BitcoinExchange const &other);
     BitcoinExchange &operator=(BitcoinExchange const &other);
 
+    void processInputFile(const std::string& filename);
     bool loadExchangeRates(const std::string& filename);
     float getExchangeRate(const std::string& date) const;
     void printExchangeRateForDate(const std::string& date, float bitcoinAmount) const;
