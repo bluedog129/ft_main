@@ -1,11 +1,11 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange() {
-    std::cout << "BitcoinExchange constructor called" << std::endl;
+    // std::cout << "BitcoinExchange constructor called" << std::endl;
 }
 
 BitcoinExchange::~BitcoinExchange() {
-    std::cout << "BitcoinExchange destructor called" << std::endl;
+    // std::cout << "BitcoinExchange destructor called" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(BitcoinExchange const &other) {
@@ -21,38 +21,44 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other) {
     return *this;
 }
 
-bool BitcoinExchange::loadExchangeRates(std::string& filename) {
+bool BitcoinExchange::loadExchangeRates(const std::string& filename)
+{
     std::ifstream file(filename);
-
     if (!file.is_open()) {
-        std::cout << "Failed to open file: " << filename << std::endl;
         return false;
     }
 
-    std::string line;
-
-    while (std::getline(file, line)) {
+    std::string line, date;
+    float rate;
+    while (getline(file, line)) {
         std::istringstream iss(line);
-        std::string currency;
-        double rate;
-        if (!(iss >> currency >> rate)) {
-            std::cout << "Error: reading exchange rate from file: " << filename << std::endl;
-            return false;
+        if (getline(iss, date, ',') && (iss >> rate)) {
+            exchangeRates[date] = rate;
         }
-        exchangeRates[currency] = rate;
     }
-    file.close();
+
     return true;
 }
 
-void BitcoinExchange::updateExchangeRates(std::string& date, float rate) {
-    exchangeRates[date] = rate;
+float BitcoinExchange::getExchangeRate(const std::string& date) const {
+    std::map<std::string, float>::const_iterator it = exchangeRates.lower_bound(date);
+    if (it == exchangeRates.end()) {
+        return -1; // or some other indication that the rate was not found
+    }
+    if (it->first == date) {
+        return it->second;
+    }
+    if (it != exchangeRates.begin()) {
+        --it;
+    }
+    return it->second;
 }
 
-float BitcoinExchange::getExchangeRate(std::string& date) {
-    return exchangeRates[date];
-}
-
-float BitcoinExchange::getExchangeRate(std::string& date, std::string& currency) {
-    return exchangeRates[date] * exchangeRates[currency];
+void BitcoinExchange::printExchangeRateForDate(const std::string& date, float bitcoinAmount) const {
+    float rate = getExchangeRate(date);
+    if (rate != -1) {
+        std::cout << date << " => " << bitcoinAmount << " = " << (bitcoinAmount * rate) << std::endl;
+    } else {
+        std::cout << "Error: Exchange rate for date " << date << " not found." << std::endl;
+    }
 }

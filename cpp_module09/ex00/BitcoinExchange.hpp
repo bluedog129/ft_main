@@ -25,10 +25,9 @@ public:
     BitcoinExchange(BitcoinExchange const &other);
     BitcoinExchange &operator=(BitcoinExchange const &other);
 
-    bool loadExchangeRates(std::string& filename);
-    void updateExchangeRates(std::string& date, float rate);
-    float getExchangeRate(std::string& date);
-    float getExchangeRate(std::string& date, std::string& currency);
+    bool loadExchangeRates(const std::string& filename);
+    float getExchangeRate(const std::string& date) const;
+    void printExchangeRateForDate(const std::string& date, float bitcoinAmount) const;
 };
 
 #endif
