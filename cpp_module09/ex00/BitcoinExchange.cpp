@@ -105,7 +105,7 @@ void BitcoinExchange::processInputFile(const std::string& filename) {
                 throw std::out_of_range("Error: not a positive number.");
             }
             if (doubleValue > static_cast<double>(INT_MAX)) {
-                std::cout << "lalala";
+                std::cout << "";
                 throw std::out_of_range("Error: too large a number.");
             }
             value = static_cast<float>(doubleValue);
