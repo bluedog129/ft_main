@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 3) {
+    if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <exchange_rates_filename> <input_filename>" << std::endl;
         return 1;
     }
