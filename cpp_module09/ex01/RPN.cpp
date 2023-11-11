@@ -40,11 +40,6 @@ int RPN::evaluate(const std::string& expression) {
                     throw std::runtime_error("Division by zero");
                 }
                 this->_stack.push(lhs / rhs);
-            } else if (token == "%") {
-                if (rhs == 0) {
-                    throw std::runtime_error("Modulo by zero");
-                }
-                this->_stack.push(fmod(lhs, rhs));
             }
         } else if (isNumber(token)) {
             this->_stack.push(std::stod(token));

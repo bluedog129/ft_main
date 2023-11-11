@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    if (argc != 3) {
+    if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <exchange_rates_filename> <input_filename>" << std::endl;
         return 1;
     }
@@ -14,7 +14,6 @@ int main(int argc, char **argv)
             std::cerr << "Error: could not open exchange rates file." << std::endl;
             return 1;
         }
-
         exchange.processInputFile(argv[1]);
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
