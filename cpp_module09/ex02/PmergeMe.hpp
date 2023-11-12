@@ -5,29 +5,29 @@
 #include <vector>
 #include <sstream>
 #include <string>
-#include <deque>
+#include <list>
+
+typedef std::vector<int> t_vec;
+typedef std::list<int> t_list;
 
 class PmergeMe {
 private:
-    std::vector<int> _dataVector;
-    std::deque<int> _dataDeque;
+
+    t_vec _arrVector;
+    t_list _arrList;
     std::string _results;
 
 public:
     PmergeMe();
-    PmergeMe(std::vector<int>& init_data);
-    // PmergeMe(PmergeMe& other);
+    PmergeMe(t_vec& init_data);
+    PmergeMe(PmergeMe& other);
     ~PmergeMe();
 
     PmergeMe& operator=(const PmergeMe& other);
 
-    void sort();
-    void merge(std::vector<int>& arr, int left, int mid, int right);
-    void mergeSort(std::vector<int>& arr, int left, int right);
-    // void insertionSort();
-    // void setInput(const std::vector<int>& input);
-    // void printError() const;
-    void printResult() const;
+    void fordJohnsonMergeSort(t_vec& arr);
+    void fordJohnsonInsertionSort(t_list& arr);
+    void printResult(t_vec& arr) const;
 };
 
 #endif
