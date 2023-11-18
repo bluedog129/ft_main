@@ -6,16 +6,16 @@
 #include <sstream>
 #include <string>
 #include <list>
+#include <ctime>
 
 typedef std::vector<int> t_vec;
 typedef std::list<int> t_list;
 
 class PmergeMe {
 private:
-
     t_vec _arrVector;
-    t_list _arrList;
-    std::string _results;
+    double _vectorSortTime;
+    double _listSortTime;
 
 public:
     PmergeMe();
@@ -25,9 +25,11 @@ public:
 
     PmergeMe& operator=(const PmergeMe& other);
 
-    void fordJohnsonMergeSort(t_vec& arr);
-    void fordJohnsonInsertionSort(t_list& arr);
+    void fordJohnsonSort(t_vec& arr);
+    void binaryInsertion(t_list& lst, int value);
     void printResult(t_vec& arr) const;
+    double getVectorSortTime() const;
+    double getListSortTime() const;
 };
 
 #endif
