@@ -5,11 +5,11 @@
 #include <vector>
 #include <sstream>
 #include <string>
-#include <list>
+#include <deque>
 #include <ctime>
 
 typedef std::vector<int> t_vec;
-typedef std::list<int> t_list;
+typedef std::deque<int> t_deque;
 
 class PmergeMe {
 private:
@@ -26,7 +26,9 @@ public:
     PmergeMe& operator=(const PmergeMe& other);
 
     void fordJohnsonSort(t_vec& arr);
-    void binaryInsertion(t_list& lst, int value);
+    void mergeSort(t_vec& mainChain);
+    t_vec merge(const t_vec& left, const t_vec& right);
+    void binaryInsertion(t_deque& lst, int value);
     void printResult(t_vec& arr) const;
     double getVectorSortTime() const;
     double getListSortTime() const;

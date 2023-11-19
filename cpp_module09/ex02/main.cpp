@@ -21,11 +21,11 @@ int main(int argc, char* argv[])
 
         pmergeMe.fordJohnsonSort(inputVector);
 
-        std::cout << "After: ";
+        std::cout << "After:  ";
         pmergeMe.printResult(inputVector);
 
-        std::cout << "Time to process a range of " << inputVector.size()
-                  << " elements with std::vector : " << pmergeMe.getVectorSortTime() << " us" << std::endl;
+        // std::cout << "Time to process a range of " << inputVector.size()
+        //           << " elements with std::vector : " << pmergeMe.getVectorSortTime() << " us" << std::endl;
 
         // std::cout << "Time to process a range of " << inputVector.size()
         //           << " elements with std::list : " << pmergeMe.getListSortTime() << " us" << std::endl;

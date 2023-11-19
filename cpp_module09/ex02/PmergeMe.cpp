@@ -15,51 +15,97 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
 
 PmergeMe::~PmergeMe() {}
 
-void PmergeMe::fordJohnsonSort(t_vec& arr) {
-    if (arr.size() <= 1) {
-        return ;
+void checkElements(t_vec& arr, std::string name) {
+    std::cout << name << " : ";
+    for (size_t i = 0; i < arr.size() - 1; i++) {
+        std::cout << arr[i] << " ";
     }
-
-    clock_t startVector = clock();
-    t_vec a, b;
-
-    for (size_t i = 0; i < arr.size() / 2; ++i) {
-        a.push_back(std::max(arr[i * 2], arr[i * 2 + 1]));
-        b.push_back(std::min(arr[i * 2], arr[i * 2 + 1]));
-    }
-    if (arr.size() % 2 == 1) {
-        a.push_back(arr.back());
-    }
-
-    fordJohnsonSort(a);
-
-    clock_t endVector = clock();
-    _vectorSortTime = 1000000.0 * (endVector - startVector) / CLOCKS_PER_SEC;
-
-    // Convert vector 'b' to list 'b_list' for binary insertion sort
-    t_list b_list(b.begin(), b.end());
-
-    // Step 3: Insertion using binaryInsertion on the list
-    for (t_list::iterator it = b_list.begin(); it != b_list.end(); ++it) {
-        binaryInsertion(b_list, *it);
-    }
-
-    // Merge the two halves back into the vector 'arr'
-    // Clear 'arr' and then merge the sorted halves
-    arr.clear();
-    std::copy(a.begin(), a.end(), std::back_inserter(arr)); // Add sorted 'a' half
-    std::copy(b_list.begin(), b_list.end(), std::back_inserter(arr)); // Merge in sorted 'b_list' half
+    std::cout << std::endl;
 }
 
-void PmergeMe::binaryInsertion(t_list& lst, int value) {
-    // The iterator to track the insertion point
-    t_list::iterator it;
-    for (it = lst.begin(); it != lst.end(); ++it) {
-        if (*it > value) {
-            break; // Found the insertion point
+void PmergeMe::fordJohnsonSort(t_vec& arr) {
+    t_vec mainChain, pendingElements;
+
+    for (size_t i = 0; i <= arr.size() / 2; i++) {
+        mainChain.push_back(std::max(arr[i * 2], arr[i * 2 + 1]));
+        pendingElements.push_back(std::min(arr[i * 2], arr[i * 2 + 1]));
+    }
+
+    if (arr.size() % 2 != 0) {
+        pendingElements.push_back(arr[arr.size() - 1]);
+    }
+
+    mergeSort(mainChain);
+
+    checkElements(mainChain, "mainChain");
+    checkElements(pendingElements, "pendingElements");
+
+    // t_deque mergedChain(mainChain.begin(), mainChain.end());
+
+    // if (!pendingElements.empty()) {
+    //     mergedChain.push_front(pendingElements[0]);
+    // }
+
+    // for (int i = pendingElements.size() - 1; i > 0; i--) {
+    //     binaryInsertion(mergedChain, pendingElements[i]);
+    // }
+
+    // arr.assign(mergedChain.begin(), mergedChain.end());
+}
+
+void PmergeMe::mergeSort(t_vec& mainChain) {
+    if (mainChain.size() <= 1) {
+        return;
+    }
+
+    t_vec left, right;
+
+    for (size_t i = 0; i < mainChain.size() / 2; i++) {
+        left.push_back(mainChain[i]);
+    }
+
+    for (size_t i = mainChain.size() / 2; i < mainChain.size(); i++) {
+        right.push_back(mainChain[i]);
+    }
+
+    mergeSort(left);
+    mergeSort(right);
+
+    mainChain = merge(left, right);
+}
+
+t_vec PmergeMe::merge(const t_vec& left, const t_vec& right) {
+    t_vec result;
+
+    size_t leftIndex = 0, rightIndex = 0;
+
+    while (leftIndex < left.size() && rightIndex < right.size()) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push_back(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push_back(right[rightIndex]);
+            rightIndex++;
         }
     }
-    lst.insert(it, value); // Insert before the element that is greater than the value
+
+    while (leftIndex < left.size()) {
+        result.push_back(left[leftIndex]);
+        leftIndex++;
+    }
+
+    while (rightIndex < right.size()) {
+        result.push_back(right[rightIndex]);
+        rightIndex++;
+    }
+
+    return result;
+}
+
+void PmergeMe::binaryInsertion(t_deque& sortedArray, int value) {
+    // std::lower_bound 함수는 C++98 표준에 포함되어 있다.
+    t_deque::iterator it = std::lower_bound(sortedArray.begin(), sortedArray.end(), value);
+    sortedArray.insert(it, value);
 }
 
 void PmergeMe::printResult(t_vec& arr) const {
