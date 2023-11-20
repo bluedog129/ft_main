@@ -17,7 +17,7 @@ PmergeMe::~PmergeMe() {}
 
 void checkElements(t_vec& arr, std::string name) {
     std::cout << name << " : ";
-    for (size_t i = 0; i < arr.size() - 1; i++) {
+    for (size_t i = 0; i < arr.size(); i++) {
         std::cout << arr[i] << " ";
     }
     std::cout << std::endl;
@@ -26,7 +26,7 @@ void checkElements(t_vec& arr, std::string name) {
 void PmergeMe::fordJohnsonSort(t_vec& arr) {
     t_vec mainChain, pendingElements;
 
-    for (size_t i = 0; i <= arr.size() / 2; i++) {
+    for (size_t i = 0; i < arr.size() / 2; i++) {
         mainChain.push_back(std::max(arr[i * 2], arr[i * 2 + 1]));
         pendingElements.push_back(std::min(arr[i * 2], arr[i * 2 + 1]));
     }
@@ -35,22 +35,25 @@ void PmergeMe::fordJohnsonSort(t_vec& arr) {
         pendingElements.push_back(arr[arr.size() - 1]);
     }
 
+    checkElements(mainChain, "before sort mainChain");
+    checkElements(pendingElements, "before sort pendingElements");
+
     mergeSort(mainChain);
 
     checkElements(mainChain, "mainChain");
     checkElements(pendingElements, "pendingElements");
 
-    // t_deque mergedChain(mainChain.begin(), mainChain.end());
+    t_deque mergedChain(mainChain.begin(), mainChain.end());
 
-    // if (!pendingElements.empty()) {
-    //     mergedChain.push_front(pendingElements[0]);
-    // }
+    if (!pendingElements.empty()) {
+        mergedChain.push_front(pendingElements[0]);
+    }
 
-    // for (int i = pendingElements.size() - 1; i > 0; i--) {
-    //     binaryInsertion(mergedChain, pendingElements[i]);
-    // }
+    for (int i = pendingElements.size() - 1; i > 0; i--) {
+        binaryInsertion(mergedChain, pendingElements[i]);
+    }
 
-    // arr.assign(mergedChain.begin(), mergedChain.end());
+    arr.assign(mergedChain.begin(), mergedChain.end());
 }
 
 void PmergeMe::mergeSort(t_vec& mainChain) {
