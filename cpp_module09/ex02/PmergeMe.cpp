@@ -2,126 +2,110 @@
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(std::vector<int>& init_data) {
-    _arrVector = init_data;
+PmergeMe::PmergeMe(t_vec& init_data) {
+    for (t_vec::iterator it = init_data.begin(); it != init_data.end(); ++it) {
+        std::cout << " " << it->first << " " << it->second;
+    }
+    std::cout << std::endl;
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other) {
     if (this != &other) {
-        _arrVector = other._arrVector;
+        // copy
     }
     return *this;
 }
 
+PmergeMe::PmergeMe(PmergeMe& other) {
+    *this = other;
+}
+
 PmergeMe::~PmergeMe() {}
 
-void checkElements(t_vec& arr, std::string name) {
-    std::cout << name << " : ";
-    for (size_t i = 0; i < arr.size(); i++) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
+void PmergeMe::vectorFordJohnson(t_vec& vector, int argc, char* argv[]) {
+    inputToVector(vector, argc - 1, argv);
+    mergeVector(vector);
 }
 
-void PmergeMe::fordJohnsonSort(t_vec& arr) {
-    t_vec mainChain, pendingElements;
-
-    for (size_t i = 0; i < arr.size() / 2; i++) {
-        mainChain.push_back(std::max(arr[i * 2], arr[i * 2 + 1]));
-        pendingElements.push_back(std::min(arr[i * 2], arr[i * 2 + 1]));
+void PmergeMe::inputToVector(t_vec& vector, int inputSize, char* argv[]) {
+    for (int i = 0; i < inputSize / 2; i++)
+    {
+        std::pair<int, int> pair;
+        pair.first = atoi(argv[i * 2 + 1]);
+        pair.second = atoi(argv[i * 2 + 2]);
+        vector.push_back(pair);
     }
-
-    if (arr.size() % 2 != 0) {
-        pendingElements.push_back(arr[arr.size() - 1]);
+    if (inputSize % 2 != 0) {
+        std::pair<int, int> pair;
+        pair.first = atoi(argv[inputSize]);
+        pair.second = -1;
+        vector.push_back(pair);
     }
-
-    checkElements(mainChain, "before sort mainChain");
-    checkElements(pendingElements, "before sort pendingElements");
-
-    mergeSort(mainChain);
-
-    checkElements(mainChain, "mainChain");
-    checkElements(pendingElements, "pendingElements");
-
-    t_deque mergedChain(mainChain.begin(), mainChain.end());
-
-    if (!pendingElements.empty()) {
-        mergedChain.push_front(pendingElements[0]);
-    }
-
-    for (int i = pendingElements.size() - 1; i > 0; i--) {
-        binaryInsertion(mergedChain, pendingElements[i]);
-    }
-
-    arr.assign(mergedChain.begin(), mergedChain.end());
 }
 
-void PmergeMe::mergeSort(t_vec& mainChain) {
-    if (mainChain.size() <= 1) {
-        return;
-    }
-
-    t_vec left, right;
-
-    for (size_t i = 0; i < mainChain.size() / 2; i++) {
-        left.push_back(mainChain[i]);
-    }
-
-    for (size_t i = mainChain.size() / 2; i < mainChain.size(); i++) {
-        right.push_back(mainChain[i]);
-    }
-
-    mergeSort(left);
-    mergeSort(right);
-
-    mainChain = merge(left, right);
-}
-
-t_vec PmergeMe::merge(const t_vec& left, const t_vec& right) {
-    t_vec result;
-
-    size_t leftIndex = 0, rightIndex = 0;
-
-    while (leftIndex < left.size() && rightIndex < right.size()) {
-        if (left[leftIndex] < right[rightIndex]) {
-            result.push_back(left[leftIndex]);
-            leftIndex++;
-        } else {
-            result.push_back(right[rightIndex]);
-            rightIndex++;
+void PmergeMe::mergeVector(t_vec& vector) {
+    for (t_vec::iterator it = vector.begin(); it != vector.end(); ++it) {
+        if (it->first < it->second) {
+            std::swap(it->first, it->second);
         }
     }
-
-    while (leftIndex < left.size()) {
-        result.push_back(left[leftIndex]);
-        leftIndex++;
-    }
-
-    while (rightIndex < right.size()) {
-        result.push_back(right[rightIndex]);
-        rightIndex++;
-    }
-
-    return result;
+    mergeSort(vector, 0, vector.size() - 1);
 }
 
-void PmergeMe::binaryInsertion(t_deque& sortedArray, int value) {
-    // std::lower_bound 함수는 C++98 표준에 포함되어 있다.
-    t_deque::iterator it = std::lower_bound(sortedArray.begin(), sortedArray.end(), value);
-    sortedArray.insert(it, value);
+void PmergeMe::mergeSort(t_vec& vector, int left, int right) {
+    if (left < right) {
+        int middle = left + (right - left) / 2;
+
+        mergeSort(vector, left, middle);
+        mergeSort(vector, middle + 1, right);
+        merge(vector, left, middle, right);
+    }
 }
 
-void PmergeMe::printResult(t_vec& arr) const {
-    for (size_t i = 0; i < arr.size(); i++) {
-        std::cout << arr[i] << " ";
+void PmergeMe::merge(t_vec& vector, int left, int middle, int right) {
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
+
+    // 임시 벡터 생성
+    t_vec L, R;
+    L.reserve(n1);
+    R.reserve(n2);
+
+    // 데이터 복사
+    for (int i = 0; i < n1; ++i)
+        L.push_back(vector[left + i]);
+    for (int j = 0; j < n2; ++j)
+        R.push_back(vector[middle + 1 + j]);
+
+    // 병합
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i].first <= R[j].first) {
+            vector[k] = L[i];
+            ++i;
+        } else {
+            vector[k] = R[j];
+            ++j;
+        }
+        ++k;
+    }
+
+    // 나머지 요소들 복사
+    while (i < n1) {
+        vector[k] = L[i];
+        ++i;
+        ++k;
+    }
+    while (j < n2) {
+        vector[k] = R[j];
+        ++j;
+        ++k;
+    }
+}
+
+void PmergeMe::printVector(t_vec& vector) {
+    for (std::vector<std::pair<int, int> >::iterator it = vector.begin(); it != vector.end(); ++it) {
+       std::cout << " " << it->first << " " << it->second;
     }
     std::cout << std::endl;
-}
-
-double PmergeMe::getVectorSortTime() const {
-    return _vectorSortTime;
-}
-
-double PmergeMe::getListSortTime() const {
-    return _listSortTime;
 }
