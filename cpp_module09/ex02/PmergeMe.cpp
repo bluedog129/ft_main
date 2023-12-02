@@ -25,6 +25,17 @@ PmergeMe::~PmergeMe() {}
 void PmergeMe::vectorFordJohnson(t_vec& vector, int argc, char* argv[]) {
     inputToVector(vector, argc - 1, argv);
     mergeVector(vector);
+    binaryInsertion(vector);
+}
+
+void PmergeMe::binaryInsertion(t_vec& vector) {
+
+}
+
+int PmergeMe::jacobsthal(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
 void PmergeMe::inputToVector(t_vec& vector, int inputSize, char* argv[]) {

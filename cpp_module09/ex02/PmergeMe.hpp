@@ -27,6 +27,8 @@ public:
     void mergeVector(t_vec& vector);
     void mergeSort(t_vec& vector, int left, int right);
     void merge(t_vec& vector, int left, int middle, int right);
+    void binaryInsertion(t_vec& vector);
+    int jacobsthal(int n);
     void printVector(t_vec& vector);
 
     void listFordJohnson();

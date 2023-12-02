@@ -21,7 +21,6 @@ int main(int argc, char* argv[])
         std::cout << "After : ";
         pmergeMe.printVector(vector);
         
-
     } catch (std::invalid_argument& e) {
         std::cout << e.what() << std::endl;
         return 1;
