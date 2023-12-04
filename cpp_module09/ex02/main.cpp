@@ -6,7 +6,8 @@ int main(int argc, char* argv[])
         if (argc < 2) {
             throw std::invalid_argument("Usage: ./ex02 [number1] [number2] ...");
         }
-        t_vec vector;
+        intVec vector;
+        pairVec pairVector;
 
         PmergeMe pmergeMe;
 

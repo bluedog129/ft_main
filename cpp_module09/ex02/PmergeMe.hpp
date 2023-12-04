@@ -8,7 +8,8 @@
 #include <deque>
 #include <ctime>
 
-typedef std::vector<std::pair<int, int> > t_vec;
+typedef std::vector<int> intVec;
+typedef std::vector<std::pair<int, int> > pairVec;
 typedef std::deque<std::pair<int, int> > t_deque;
 
 class PmergeMe {
@@ -16,20 +17,22 @@ private:
     
 public:
     PmergeMe();
-    PmergeMe(t_vec& init_data);
+    PmergeMe(pairVec& init_data);
     PmergeMe(PmergeMe& other);
     ~PmergeMe();
 
     PmergeMe& operator=(const PmergeMe& other);
 
-    void vectorFordJohnson(t_vec& vector, int argc, char* argv[]);
-    void inputToVector(t_vec& vector, int argc, char* argv[]);
-    void mergeVector(t_vec& vector);
-    void mergeSort(t_vec& vector, int left, int right);
-    void merge(t_vec& vector, int left, int middle, int right);
-    void binaryInsertion(t_vec& vector);
+    void vectorFordJohnson(intVec& vector, int argc, char* argv[]);
+    void inputToPairVector(pairVec& vector, int argc, char* argv[]);
+    void inputToVector(intVec& vector, pairVec& pairVector);
+    void mergeVector(pairVec& vector);
+    void mergeSort(pairVec& vector, int left, int right);
+    void merge(pairVec& vector, int left, int middle, int right);
+    void binaryInsertion(intVec& vector);
     int jacobsthal(int n);
-    void printVector(t_vec& vector);
+    void printPairVector(pairVec& vector);
+    void printVector(intVec& vector);
 
     void listFordJohnson();
 };
