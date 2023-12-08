@@ -6,8 +6,6 @@ int main(int argc, char* argv[])
         if (argc < 2) {
             throw std::invalid_argument("Usage: ./ex02 [number1] [number2] ...");
         }
-        intVec vector;
-        pairVec pairVector;
 
         PmergeMe pmergeMe;
 
@@ -17,10 +15,8 @@ int main(int argc, char* argv[])
         }
         std::cout << std::endl;
 
-        pmergeMe.vectorFordJohnson(vector, argc, argv);
-
-        std::cout << "After : ";
-        pmergeMe.printVector(vector);
+        pmergeMe.vectorFordJohnson(argc - 1, argv + 1);
+        pmergeMe.linkedListFordJohnson(argc - 1, argv + 1);
         
     } catch (std::invalid_argument& e) {
         std::cout << e.what() << std::endl;

@@ -5,36 +5,45 @@
 #include <vector>
 #include <sstream>
 #include <string>
-#include <deque>
+#include <list>
 #include <ctime>
+
 
 typedef std::vector<int> intVec;
 typedef std::vector<std::pair<int, int> > pairVec;
-typedef std::deque<std::pair<int, int> > t_deque;
+typedef std::list<int> intList;
+typedef std::list<std::pair<int, int> > pairList;
 
 class PmergeMe {
 private:
-    
-public:
-    PmergeMe();
     PmergeMe(pairVec& init_data);
     PmergeMe(PmergeMe& other);
-    ~PmergeMe();
+
+public:
+    PmergeMe(void);
+    ~PmergeMe(void);
 
     PmergeMe& operator=(const PmergeMe& other);
 
-    void vectorFordJohnson(intVec& vector, int argc, char* argv[]);
+    // vector
+    void vectorFordJohnson(int argc, char* argv[]);
     void inputToPairVector(pairVec& vector, int argc, char* argv[]);
-    void inputToVector(intVec& vector, pairVec& pairVector);
+    void inputToVector(intVec& vector, pairVec& pairVector, int size, char* numbers[]);
     void mergeVector(pairVec& vector);
     void mergeSort(pairVec& vector, int left, int right);
     void merge(pairVec& vector, int left, int middle, int right);
     void binaryInsertion(intVec& vector);
-    int jacobsthal(int n);
+    size_t binarySearch(int target, intVec& result, int startIndex);
+    size_t jacobsthal(size_t n);
+    void insertion(intVec& result, int target, size_t insertIndex, pairVec& aIndexPos);
     void printPairVector(pairVec& vector);
     void printVector(intVec& vector);
+    void applyOddFlag(intVec& result, intVec& vector, int oddFlag);
 
-    void listFordJohnson();
+    // linked list
+    void linkedListFordJohnson(int size, char* numbers[]);
+    void inputToList(intList& list, int size, char* numbers[]);
+    void mergeList(intList& list);
 };
 
 #endif
