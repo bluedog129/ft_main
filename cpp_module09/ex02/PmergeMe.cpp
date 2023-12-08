@@ -233,6 +233,7 @@ void PmergeMe::linkedListFordJohnson(int size, char* numbers[]) {
 
     clock_t start = clock();
     inputToList(list, size, numbers);
+    preSortList(list);
     mergeList(list);
     clock_t end = clock();
     std::cout << "Time to process a range of " << size << " elements with std::list : " << (double)(end - start) / CLOCKS_PER_SEC * 1000000 << " us" << std::endl;
@@ -244,24 +245,99 @@ void PmergeMe::inputToList(intList& list, int size, char* numbers[]) {
     }
 }
 
-void PmergeMe::mergeList(intList& list) {
+void PmergeMe::preSortList(intList& list) {
     for (intList::iterator it = list.begin(); it != list.end(); ) {
         // 마지막 원소인 경우에는 반복문을 종료
         if (std::next(it) == list.end()) break;
-
         int first = *it;
         int second = *std::next(it);
-
         // 첫 번째 원소가 두 번째 원소보다 작은 경우 위치 교환
         if (first < second) {
             *it = second;
             *std::next(it) = first;
         }
-
         // 두 원소를 건너뛰기
         std::advance(it, 2);
     }
+}
 
+// 여기서 부터 다시해야함
+void PmergeMe::mergeList(intList& list) {
+    pairList pairList;
+    
+    printList(list);
+    makePairs(list, pairList);
+    pairList = mergeSort(pairList);
+    updateListFromPairs(list, pairList);
+    printList(list);
+}
+
+pairList PmergeMe::mergeSort(pairList& inputList) {
+    if (inputList.size() <= 1) {
+        return inputList;
+    }
+
+    pairList left;
+    pairList right;
+    pairList::iterator middle = inputList.begin();
+    std::advance(middle, inputList.size() / 2);
+
+    left.splice(left.begin(), inputList, inputList.begin(), middle);
+    right.splice(right.begin(), inputList);
+
+    left = mergeSort(left);
+    right = mergeSort(right);
+
+    return merge(left, right);
+}
+
+pairList PmergeMe::merge(pairList& left, pairList& right) {
+    pairList result;
+
+    while (!left.empty() && !right.empty()) {
+        if (left.front().first > right.front().first) {
+            result.splice(result.end(), left, left.begin());
+        } else {
+            result.splice(result.end(), right, right.begin());
+        }
+    }
+
+    result.splice(result.end(), left);
+    result.splice(result.end(), right);
+
+    return result;
+}
+
+void PmergeMe::makePairs(intList& list, pairList& pairList) {
+    for (intList::iterator it = list.begin(); it != list.end(); ) {
+        if (std::next(it) == list.end()) {
+            pairList.push_back(std::make_pair(*it, INT_MIN));
+            break;
+        }
+
+        int first = *it;
+        int second = *std::next(it);
+        pairList.push_back(std::make_pair(std::max(first, second), std::min(first, second)));
+        
+        std::advance(it, 2);
+    }
+}
+
+void PmergeMe::updateListFromPairs(intList& list, pairList& pairs) {
+    list.clear();
+    for (pairList::const_iterator it = pairs.begin(); it != pairs.end(); ++it) {
+        const std::pair<int, int>& p = *it;
+        if (p.second != INT_MIN) {
+            list.push_back(p.first);
+            list.push_back(p.second);
+        } else {
+            list.push_back(p.first);
+        }
+    }
+}
+
+void PmergeMe::printList(intList& list) {
+    std::cout << "After  :";
     for (intList::iterator it = list.begin(); it != list.end(); ++it) {
         std::cout << " " << *it;
     }
