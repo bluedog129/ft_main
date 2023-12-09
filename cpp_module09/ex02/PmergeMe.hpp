@@ -44,12 +44,13 @@ public:
     void linkedListFordJohnson(int size, char* numbers[]);
     void inputToList(intList& list, int size, char* numbers[]);
     void preSortList(intList& list);
-    void mergeList(intList& list);
     void printList(intList& list);
-    void makePairs(intList& list, pairList& pairList);
-    pairList mergeSort(pairList& inputList);
-    pairList merge(pairList& left, pairList& right);
-    void updateListFromPairs(intList& list, pairList& pairs);
+    void makePairList(intList& list, pairList& pairList);
+    void mergeList(intList& list);
+    void mergePairList(pairList& list);
+    void mergePart(pairList& pairs, pairList& left, pairList& right);
+    void reSettingList(intList& list, pairList& pairList);
+    void printPairList(pairList& list);
 };
 
 #endif

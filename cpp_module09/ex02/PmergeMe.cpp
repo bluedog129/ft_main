@@ -266,54 +266,73 @@ void PmergeMe::mergeList(intList& list) {
     pairList pairList;
     
     printList(list);
-    makePairs(list, pairList);
-    pairList = mergeSort(pairList);
-    updateListFromPairs(list, pairList);
+    makePairList(list, pairList);
+    mergePairList(pairList);
+    printPairList(pairList);
+    reSettingList(list, pairList);
     printList(list);
 }
 
-pairList PmergeMe::mergeSort(pairList& inputList) {
-    if (inputList.size() <= 1) {
-        return inputList;
+void PmergeMe::reSettingList(intList& list, pairList& pairList) {
+    int oddFlag = 0;
+    int lastElement = list.back();
+
+    if (list.size() % 2 == 1) {
+        oddFlag = 1;
     }
 
-    pairList left;
-    pairList right;
-    pairList::iterator middle = inputList.begin();
-    std::advance(middle, inputList.size() / 2);
+    list.clear();
+    for (pairList::iterator it = pairList.begin(); it != pairList.end(); ++it) {
+        list.push_back(it->first);
+        list.push_back(it->second);
+    }
 
-    left.splice(left.begin(), inputList, inputList.begin(), middle);
-    right.splice(right.begin(), inputList);
-
-    left = mergeSort(left);
-    right = mergeSort(right);
-
-    return merge(left, right);
+    if (oddFlag) {
+        list.push_back(lastElement);
+    }
 }
 
-pairList PmergeMe::merge(pairList& left, pairList& right) {
-    pairList result;
+void PmergeMe::mergePairList(pairList& pairs) {
+    if (pairs.size() <= 1) return; // Base case for recursion
 
-    while (!left.empty() && !right.empty()) {
-        if (left.front().first > right.front().first) {
-            result.splice(result.end(), left, left.begin());
+    pairList leftHalf;
+    pairList rightHalf;
+    std::list<std::pair<int, int> >::iterator middle = std::next(pairs.begin(), pairs.size() / 2);
+
+    leftHalf.splice(leftHalf.begin(), pairs, pairs.begin(), middle);
+    rightHalf.splice(rightHalf.begin(), pairs, middle, pairs.end());
+
+    // Recursively sort the two halves
+    mergePairList(leftHalf);
+    mergePairList(rightHalf);
+
+    // Merge the sorted halves
+    mergePart(pairs, leftHalf, rightHalf);
+}
+
+void PmergeMe::mergePart(pairList& pairs, pairList& left, pairList& right) {
+    pairList::iterator leftIt = left.begin();
+    pairList::iterator rightIt = right.begin();
+
+    while (leftIt != left.end() && rightIt != right.end()) {
+        if (leftIt->first < rightIt->first) {
+            pairs.push_back(*leftIt);
+            leftIt++;
         } else {
-            result.splice(result.end(), right, right.begin());
+            pairs.push_back(*rightIt);
+            rightIt++;
         }
     }
 
-    result.splice(result.end(), left);
-    result.splice(result.end(), right);
-
-    return result;
+    pairs.splice(pairs.end(), left, leftIt, left.end());
+    pairs.splice(pairs.end(), right, rightIt, right.end());
 }
 
-void PmergeMe::makePairs(intList& list, pairList& pairList) {
+
+void PmergeMe::makePairList(intList& list, pairList& pairList) {
     for (intList::iterator it = list.begin(); it != list.end(); ) {
-        if (std::next(it) == list.end()) {
-            pairList.push_back(std::make_pair(*it, INT_MIN));
+        if (std::next(it) == list.end())
             break;
-        }
 
         int first = *it;
         int second = *std::next(it);
@@ -323,23 +342,18 @@ void PmergeMe::makePairs(intList& list, pairList& pairList) {
     }
 }
 
-void PmergeMe::updateListFromPairs(intList& list, pairList& pairs) {
-    list.clear();
-    for (pairList::const_iterator it = pairs.begin(); it != pairs.end(); ++it) {
-        const std::pair<int, int>& p = *it;
-        if (p.second != INT_MIN) {
-            list.push_back(p.first);
-            list.push_back(p.second);
-        } else {
-            list.push_back(p.first);
-        }
-    }
-}
-
 void PmergeMe::printList(intList& list) {
     std::cout << "After  :";
     for (intList::iterator it = list.begin(); it != list.end(); ++it) {
         std::cout << " " << *it;
+    }
+    std::cout << std::endl;
+}
+
+void PmergeMe::printPairList(pairList& pairList) {
+    std::cout << "Pair   :";
+    for (pairList::iterator it = pairList.begin(); it != pairList.end(); ++it) {
+        std::cout << " " << it->first << " " << it->second;
     }
     std::cout << std::endl;
 }
