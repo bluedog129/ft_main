@@ -50,6 +50,8 @@ public:
     void mergePairList(pairList& list);
     void mergePart(pairList& pairs, pairList& left, pairList& right);
     void reSettingList(intList& list, pairList& pairList);
+    void binaryInsertionList(intList& list, pairList& pairList);
+    void InsertForList(intList& list, int target);
     void printPairList(pairList& list);
 };
 

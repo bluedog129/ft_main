@@ -270,7 +270,40 @@ void PmergeMe::mergeList(intList& list) {
     mergePairList(pairList);
     printPairList(pairList);
     reSettingList(list, pairList);
+    binaryInsertionList(list, pairList);
     printList(list);
+}
+
+void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
+    int oddFlag = 0;
+    int lastElement = list.back();
+
+    if (list.size() % 2 == 1) {
+        oddFlag = 1;
+    }
+    list.clear();
+
+    // 우선 list에 pair의 first 원소들을 삽입 -> mainElements 우선 삽입
+    for (pairList::iterator it = pair.begin(); it != pair.end(); ++it) {
+        list.push_back(it->first);
+    }
+    
+    // mainElements에 대한 binary insertion 수행
+    // 1. pendigElements의 첫 번째 원소는 미리 삽입한다.
+    list.push_back(pair.front().second);
+    pair.pop_front();
+
+    // 2. pendingElements의 나머지 원소들은 Jacobsthal 수열에 따라 삽입한다.
+    size_t jacobSize = 0;
+    size_t i = 1;
+
+    if (oddFlag) {
+        list.push_back(lastElement);
+    }
+}
+
+void PmergeMe::InsertForList(intList& list, int target) {
+
 }
 
 void PmergeMe::reSettingList(intList& list, pairList& pairList) {
