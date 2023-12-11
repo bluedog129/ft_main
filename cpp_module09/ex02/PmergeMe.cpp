@@ -294,16 +294,36 @@ void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
     pair.pop_front();
 
     // 2. pendingElements의 나머지 원소들은 Jacobsthal 수열에 따라 삽입한다.
-    size_t jacobSize = 0;
-    size_t i = 1;
+
+    size_t i = 1; // Jacobsthal 함수에 전달할 인덱스
+    while (!pair.empty()) {
+    size_t jacobSize = jacobsthal(i); // Jacobsthal 수열의 i번째 값을 계산
+
+        // Jacobsthal 수열의 길이만큼 pairList의 second 원소를 역순으로 삽입
+        for (int j = jacobSize - 1; j >= 0 && !pair.empty(); --j) {
+            pairList::iterator pairIt = pair.begin();
+            advance(pairIt, j);
+
+            int pendingElement = pairIt->second;
+            intList::iterator pairFirstPos = find(list.begin(), list.end(), pairIt->first);
+            
+            // 이진 탐색을 사용하여 삽입할 위치를 찾는다
+            intList::iterator insertPos = std::lower_bound(list.begin(), pairFirstPos, pendingElement);
+
+            // pendingElement를 적절한 위치에 삽입한다
+            list.insert(insertPos, pendingElement);
+        }
+
+        // Jacobsthal 수열에 따라 삽입된 원소들을 pairList에서 제거
+        pair.erase(pair.begin(), next(pair.begin(), std::min(jacobSize, pair.size())));
+
+        i++; // Jacobsthal 수열의 다음 인덱스로 이동
+    }
 
     if (oddFlag) {
-        list.push_back(lastElement);
+        intList::iterator insertPos = std::lower_bound(list.begin(), list.end(), lastElement);
+        list.insert(insertPos, lastElement);
     }
-}
-
-void PmergeMe::InsertForList(intList& list, int target) {
-
 }
 
 void PmergeMe::reSettingList(intList& list, pairList& pairList) {

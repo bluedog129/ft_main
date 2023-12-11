@@ -7,6 +7,7 @@
 #include <string>
 #include <list>
 #include <ctime>
+#include <algorithm>
 
 
 typedef std::vector<int> intVec;
