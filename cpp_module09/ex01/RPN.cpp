@@ -58,14 +58,21 @@ bool RPN::isNumber(const std::string& token) {
     if (token.empty()) {
         return false;
     }
-    for (size_t i = 0; i < token.length(); i++) {
-        if (i == 0 && token[i] == '-') {
-            continue;
+
+    // Check if the string is a valid number
+    try {
+        double num = std::stod(token);  // Change to std::stoi if only integers are needed
+        if (num >= 10) {
+            throw std::runtime_error("Number exceeds the maximum limit of 9");
         }
-        if (!std::isdigit(token[i])) {
-            return false;
-        }
+    } catch (std::invalid_argument& e) {
+        // If conversion to number fails, it's not a valid number
+        return false;
+    } catch (std::out_of_range& e) {
+        // Handle numbers that are too large or small
+        throw std::runtime_error("Number out of range");
     }
+
     return true;
 }
 

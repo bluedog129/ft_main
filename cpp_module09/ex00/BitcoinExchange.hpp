@@ -30,6 +30,7 @@ public:
     bool loadExchangeRates(const std::string& filename);
     float getExchangeRate(const std::string& date) const;
     void printExchangeRateForDate(const std::string& date, float bitcoinAmount) const;
+    bool isValidDate(const std::string& date) const;
 };
 
 #endif

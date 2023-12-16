@@ -9,7 +9,6 @@
 #include <ctime>
 #include <algorithm>
 
-
 typedef std::vector<int> intVec;
 typedef std::vector<std::pair<int, int> > pairVec;
 typedef std::list<int> intList;
@@ -52,7 +51,6 @@ public:
     void mergePart(pairList& pairs, pairList& left, pairList& right);
     void reSettingList(intList& list, pairList& pairList);
     void binaryInsertionList(intList& list, pairList& pairList);
-    void InsertForList(intList& list, int target);
     void printPairList(pairList& list);
 };
 

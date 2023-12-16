@@ -57,6 +57,7 @@ void PmergeMe::binaryInsertion(intVec& vector) {
     for (size_t i = 0; i < aIndexPos.size(); ++i) {
         aIndexPos[i].second++;
     }
+    
     size_t i = 1;  // Jacobsthal 함수에 전달할 인덱스
     while (pendingElements.size() != 0) {
         size_t jacobSize = jacobsthal(i);
@@ -70,7 +71,7 @@ void PmergeMe::binaryInsertion(intVec& vector) {
         for (int j = insertVector.size() - 1; j >= 0; --j) {
             size_t resultInsertIndex = binarySearch(insertVector[j], result, aIndexPos[j].second);
             insertion(result, insertVector[j], resultInsertIndex, aIndexPos);
-        }  
+        }
 
         // 삽입된 원소 및 위치 정보 삭제
         pendingElements.erase(pendingElements.begin(), pendingElements.begin() + insertVector.size());
@@ -129,8 +130,8 @@ void PmergeMe::insertion(intVec& result, int target, size_t insertIndex, pairVec
 }
 
 size_t PmergeMe::jacobsthal(size_t n) {
-    if (n == 0) return 2;
-    if (n == 1) return 2;
+    if (n == 0) return 1;
+    if (n == 1) return 1;
     return jacobsthal(n - 1) + 2 * jacobsthal(n - 2);
 }
 
@@ -265,11 +266,8 @@ void PmergeMe::preSortList(intList& list) {
 void PmergeMe::mergeList(intList& list) {
     pairList pairList;
     
-    printList(list);
     makePairList(list, pairList);
     mergePairList(pairList);
-    printPairList(pairList);
-    reSettingList(list, pairList);
     binaryInsertionList(list, pairList);
     printList(list);
 }
@@ -288,14 +286,7 @@ void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
         list.push_back(it->first);
     }
     
-    // mainElements에 대한 binary insertion 수행
-    // 1. pendigElements의 첫 번째 원소는 미리 삽입한다.
-    list.push_back(pair.front().second);
-    pair.pop_front();
-
-    // 2. pendingElements의 나머지 원소들은 Jacobsthal 수열에 따라 삽입한다.
-
-    size_t i = 1; // Jacobsthal 함수에 전달할 인덱스
+    size_t i = 0; // Jacobsthal 함수에 전달할 인덱스
     while (!pair.empty()) {
     size_t jacobSize = jacobsthal(i); // Jacobsthal 수열의 i번째 값을 계산
 
@@ -312,11 +303,10 @@ void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
 
             // pendingElement를 적절한 위치에 삽입한다
             list.insert(insertPos, pendingElement);
+
+            // 다음 원소로 이터레이터를 이동시킨 후 현재 원소를 삭제한다
+            pair.erase(pairIt);
         }
-
-        // Jacobsthal 수열에 따라 삽입된 원소들을 pairList에서 제거
-        pair.erase(pair.begin(), next(pair.begin(), std::min(jacobSize, pair.size())));
-
         i++; // Jacobsthal 수열의 다음 인덱스로 이동
     }
 
