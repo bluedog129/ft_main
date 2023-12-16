@@ -14,8 +14,8 @@ void validateArgs(int argc, char* argv[])
         long value = std::strtol(arg.c_str(), &end, 10);
 
         // 변환 오류 또는 범위 초과 검사
-        if (*end != '\0' || value < INT_MIN || value > INT_MAX || value == 0) {
-            throw std::invalid_argument("Argument is invalid or out of int range: " + arg);
+        if (*end != '\0' || value < 1 || value > INT_MAX || value == 0) {
+            throw std::invalid_argument("Error : Argument is invalid or out of int range: " + arg);
         }
     }
 }
