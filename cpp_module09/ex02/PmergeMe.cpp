@@ -292,10 +292,13 @@ void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
 
         // Jacobsthal 수열의 길이만큼 pairList의 second 원소를 역순으로 삽입
         for (int j = jacobSize - 1; j >= 0 && !pair.empty(); --j) {
+            if ((size_t)j >= pair.size()) continue;
+
             pairList::iterator pairIt = pair.begin();
             advance(pairIt, j);
 
             int pendingElement = pairIt->second;
+            // pairIt->first 원소의 위치를 찾는다
             intList::iterator pairFirstPos = find(list.begin(), list.end(), pairIt->first);
             
             // 이진 탐색을 사용하여 삽입할 위치를 찾는다
@@ -305,6 +308,7 @@ void PmergeMe::binaryInsertionList(intList& list, pairList& pair) {
             list.insert(insertPos, pendingElement);
 
             // 다음 원소로 이터레이터를 이동시킨 후 현재 원소를 삭제한다
+            // 이미 erase()를 사용하여 삭제한 원소는 다시 삭제하지 않도록 한다
             pair.erase(pairIt);
         }
         i++; // Jacobsthal 수열의 다음 인덱스로 이동
