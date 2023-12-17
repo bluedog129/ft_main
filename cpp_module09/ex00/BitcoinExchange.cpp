@@ -110,7 +110,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const {
     return true;
 }
 
-void BitcoinExchange::processInputFile(const std::string& filename) {
+void BitcoinExchange::exchangeToBitcoin(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Error: could not open input file.");

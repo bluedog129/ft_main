@@ -13,7 +13,7 @@ int main(int argc, char **argv)
         if (!exchange.loadExchangeRates("data.csv")) {
             throw std::runtime_error("Error: could not open exchange rates file.");
         }
-        exchange.processInputFile(argv[1]);
+        exchange.exchangeToBitcoin(argv[1]);
     } catch (const std::exception& e) {
         std::cout << e.what() << std::endl;
         return 1;
