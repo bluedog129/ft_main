@@ -249,16 +249,19 @@ void PmergeMe::inputToList(intList& list, int size, char* numbers[]) {
 void PmergeMe::preSortList(intList& list) {
     for (intList::iterator it = list.begin(); it != list.end(); ) {
         // 마지막 원소인 경우에는 반복문을 종료
-        if (std::next(it) == list.end()) break;
+        intList::iterator next_it = it;
+        ++next_it;
+        if (next_it == list.end()) break;
         int first = *it;
-        int second = *std::next(it);
+        int second = *next_it;
         // 첫 번째 원소가 두 번째 원소보다 작은 경우 위치 교환
         if (first < second) {
             *it = second;
-            *std::next(it) = first;
+            *next_it = first;
         }
-        // 두 원소를 건너뛰기
-        std::advance(it, 2);
+        // 두 원소를 건너뛰기 (it를 두 번 증가시킴)
+        ++it;
+        ++it;
     }
 }
 
@@ -344,7 +347,13 @@ void PmergeMe::mergePairList(pairList& pairs) {
 
     pairList leftHalf;
     pairList rightHalf;
-    std::list<std::pair<int, int> >::iterator middle = std::next(pairs.begin(), pairs.size() / 2);
+    std::list<std::pair<int, int> >::iterator middle = pairs.begin();
+    
+    // 반복문을 사용하여 middle 반복자를 중간 위치로 이동
+    size_t halfSize = pairs.size() / 2;
+    for (size_t i = 0; i < halfSize; ++i) {
+        ++middle;
+    }
 
     leftHalf.splice(leftHalf.begin(), pairs, pairs.begin(), middle);
     rightHalf.splice(rightHalf.begin(), pairs, middle, pairs.end());
@@ -378,14 +387,17 @@ void PmergeMe::mergePart(pairList& pairs, pairList& left, pairList& right) {
 
 void PmergeMe::makePairList(intList& list, pairList& pairList) {
     for (intList::iterator it = list.begin(); it != list.end(); ) {
-        if (std::next(it) == list.end())
+        intList::iterator next_it = it;
+        ++next_it;
+        if (next_it == list.end())
             break;
 
         int first = *it;
-        int second = *std::next(it);
+        int second = *next_it;
         pairList.push_back(std::make_pair(std::max(first, second), std::min(first, second)));
         
-        std::advance(it, 2);
+        ++it; // 한 번 증가
+        if (it != list.end()) ++it; // 두 번째 증가 (리스트의 끝에 도달하지 않았는지 확인)
     }
 }
 

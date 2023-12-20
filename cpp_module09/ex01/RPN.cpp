@@ -59,18 +59,21 @@ bool RPN::isNumber(const std::string& token) {
         return false;
     }
 
-    // Check if the string is a valid number
-    try {
-        double num = std::stod(token);  // Change to std::stoi if only integers are needed
-        if (num >= 10) {
-            throw std::runtime_error("Number exceeds the maximum limit of 9");
-        }
-    } catch (std::invalid_argument& e) {
+    std::istringstream iss(token);
+    double num;
+    if (!(iss >> num)) {
         // If conversion to number fails, it's not a valid number
         return false;
-    } catch (std::out_of_range& e) {
-        // Handle numbers that are too large or small
-        throw std::runtime_error("Number out of range");
+    }
+
+    // Check for any remaining characters after the number
+    char remaining;
+    if (iss >> remaining) {
+        return false; // Extra characters after number, not a valid number
+    }
+
+    if (num >= 10) {
+        throw std::runtime_error("Number exceeds the maximum limit of 9");
     }
 
     return true;

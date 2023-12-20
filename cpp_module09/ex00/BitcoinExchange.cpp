@@ -23,7 +23,7 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other) {
 
 bool BitcoinExchange::loadExchangeRates(const std::string& filename)
 {
-    std::ifstream file(filename);
+    std::ifstream file(filename.c_str());
     if (!file.is_open()) {
         return false;
     }
@@ -111,7 +111,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const {
 }
 
 void BitcoinExchange::exchangeToBitcoin(const std::string& filename) {
-    std::ifstream file(filename);
+    std::ifstream file(filename.c_str());
     if (!file.is_open()) {
         throw std::runtime_error("Error: could not open input file.");
     }
