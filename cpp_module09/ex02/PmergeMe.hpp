@@ -8,6 +8,7 @@
 #include <list>
 #include <ctime>
 #include <algorithm>
+#include <climits>
 
 typedef std::vector<int> intVec;
 typedef std::vector<std::pair<int, int> > pairVec;
