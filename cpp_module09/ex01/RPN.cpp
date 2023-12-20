@@ -42,7 +42,10 @@ int RPN::evaluate(const std::string& expression) {
                 this->_stack.push(lhs / rhs);
             }
         } else if (isNumber(token)) {
-            this->_stack.push(std::stod(token));
+            std::istringstream iss(token);
+            double num;
+            iss >> num;
+            this->_stack.push(num);
         } else {
             throw std::runtime_error("ERROR");
         }
