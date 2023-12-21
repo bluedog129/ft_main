@@ -10,12 +10,6 @@
 #include <sstream>
 #include <limits.h>
 
-struct Entry
-{
-    std::string date;
-    float value;
-};
-
 class BitcoinExchange {
 private:
     std::map<std::string, float> exchangeRates;

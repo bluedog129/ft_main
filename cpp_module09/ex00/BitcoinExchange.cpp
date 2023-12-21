@@ -148,7 +148,7 @@ void BitcoinExchange::exchangeToBitcoin(const std::string& filename) {
                 throw std::out_of_range("Error: not a positive number.");
             }
             
-            if (doubleValue > static_cast<double>(INT_MAX)) {
+            if (doubleValue > 1000) {
                 throw std::out_of_range("Error: too large a number.");
             }
 
