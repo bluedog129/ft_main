@@ -62,17 +62,22 @@ bool RPN::isNumber(const std::string& token) {
         return false;
     }
 
+    // Check if the token contains a decimal point
+    if (token.find('.') != std::string::npos) {
+        throw std::runtime_error("Decimal numbers are not allowed");
+    }
+
     std::istringstream iss(token);
     double num;
     if (!(iss >> num)) {
         // If conversion to number fails, it's not a valid number
-        return false;
+        throw std::runtime_error("Invalid number format");
     }
 
     // Check for any remaining characters after the number
     char remaining;
     if (iss >> remaining) {
-        return false; // Extra characters after number, not a valid number
+        throw std::runtime_error("Invalid characters in number");
     }
 
     if (num >= 10) {
