@@ -138,8 +138,8 @@ size_t PmergeMe::jacobsthal(size_t n) {
 void PmergeMe::inputToPairVector(pairVec& pairVector, int inputSize, char* argv[]) {
     for (int i = 0; i < inputSize / 2; i++) {
         std::pair<int, int> pair;
-        pair.first = atoi(argv[i * 2]);
-        pair.second = atoi(argv[i * 2 + 1]);
+        pair.first = std::atoi(argv[i * 2]);
+        pair.second = std::atoi(argv[i * 2 + 1]);
         pairVector.push_back(pair);
     }
 }
@@ -150,7 +150,7 @@ void PmergeMe::inputToVector(intVec& vector, pairVec& pairVector, int size, char
         vector.push_back(it->second);
     }
     if (size & 1)
-        vector.push_back(atoi(numbers[size - 1]));
+        vector.push_back(std::atoi(numbers[size - 1]));
 }
 
 void PmergeMe::mergeVector(pairVec& pairVector) {
@@ -242,7 +242,7 @@ void PmergeMe::linkedListFordJohnson(int size, char* numbers[]) {
 
 void PmergeMe::inputToList(intList& list, int size, char* numbers[]) {
     for (int i = 0; i < size; i++) {
-        list.push_back(atoi(numbers[i]));
+        list.push_back(std::atoi(numbers[i]));
     }
 }
 
