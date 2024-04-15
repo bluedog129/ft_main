@@ -1,5 +1,5 @@
 ## Inner Circle
-![image](/image/inner_pipex.png)
+![image](/image/ft_graph.png)
 
 ### Circle Zero
 - [Libft][libft]
@@ -15,20 +15,20 @@
 - [pipex][pipex]
 
 ### Circle Three
-- minishell
+- [minishell][minishell]
 - NetPractice
 
 ### Circle Four
-- cub3d or miniRT
-- CPP Module 00 ~ 08
+- [cub3d][cub3d]
+- CPP Module 00 ~ 04
 
 ### Circle Five
 - Inception
-- ft_containers
-- webserv or ft_irc
+- CPP Module 05 ~ 09
+- [ft_irc][ft_irc]
 
 ### Circle Six
-- ft_transcendence
+- [ft_transcendence][ft_transcendence]
 
 [libft]: https://github.com/bluedog129/ft_main/tree/master/libft
 [born2beroot]: https://www.notion.so/born2beroot-22110fb7590d4e1cbefb44d9b9a234ab
@@ -37,3 +37,7 @@
 [so_long]: https://github.com/bluedog129/ft_main/tree/master/so_long
 [push_swap]: https://github.com/bluedog129/ft_main/tree/master/push_swap
 [pipex]: https://github.com/bluedog129/ft_main/tree/master/pipex
+[minishell]: https://github.com/bluedog129/ft_main/tree/master/minishell
+[cub3d]: https://github.com/bluedog129/cube_3d
+[ft_irc]: https://github.com/bluedog129/IRC
+[ft_transcendence]: https://github.com/GunGonGamLee/ft_transcendence
