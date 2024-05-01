@@ -48,11 +48,15 @@ brew install bash
 ### Built_in
 
 <details>
-<summary>makefile(excute)</summary>
+<summary>makefile & excute</summary>
+
+
+https://github.com/bluedog129/ft_main/assets/50707297/e79279a3-65c8-42e6-a930-0782509cc56a
+
 
 </details>
 <details>
-<summary>ls</summary>
+<summary>ls, cd, pwd, echo</summary>
 
 </details>
 
