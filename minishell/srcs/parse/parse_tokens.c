@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tokens.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minkim3 <minkim3@student.42.fr>            +#+  +:+       +#+        */
+/*   By: choihyojong <choihyojong@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:30:23 by minkim3           #+#    #+#             */
-/*   Updated: 2023/06/08 16:55:05 by minkim3          ###   ########.fr       */
+/*   Updated: 2024/05/01 14:32:42 by choihyojong      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,11 @@ static t_token	*finalize_token(t_token *tokens, char **env)
 t_binarytree	*parse_tokens(t_token **tokens_ptr, char **env)
 {
 	t_binarytree	*tree;
-	int				index;
 	t_token			*tokens;
 
 	tokens = *tokens_ptr;
 	if (!tokens)
 		return (NULL);
-	index = 0;
 	(void)env;
 	*tokens_ptr = finalize_token(tokens, env);
 	if (tokens->syntax_error == TRUE)
