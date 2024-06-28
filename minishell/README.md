@@ -67,11 +67,19 @@ https://github.com/bluedog129/ft_main/assets/50707297/590c8548-a19f-421e-8c5c-87
 <details>
 <summary>env, export, unset, exit</summary>
 
+
+https://github.com/bluedog129/ft_main/assets/50707297/2be8d4eb-6b84-43d0-88f7-3ca893c37163
+
+
 </details>
 
 <details>
 <summary>using pipe examples</summary>
-	
+
+
+https://github.com/bluedog129/ft_main/assets/50707297/fa6d4767-e9c9-465e-8678-f8321a820833
+
+
 </details>
 
 
