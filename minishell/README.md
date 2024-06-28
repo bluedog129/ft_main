@@ -43,7 +43,7 @@ brew install bash
 <<<<<<< HEAD
 </details>
 
-## Execute
+## Execute Example
 
 ### Built_in
 
@@ -59,6 +59,18 @@ https://github.com/bluedog129/ft_main/assets/50707297/e79279a3-65c8-42e6-a930-07
 <summary>ls, cd, pwd, echo</summary>
 
 </details>
+
+<details>
+<summary>env, export, unset, exit</summary>
+
+</details>
+
+<details>
+<summary>using pipe examples</summary>
+	
+</details>
+
+
 
 ## Built_in explain
 
