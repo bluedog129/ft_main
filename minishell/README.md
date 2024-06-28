@@ -58,6 +58,10 @@ https://github.com/bluedog129/ft_main/assets/50707297/e79279a3-65c8-42e6-a930-07
 <details>
 <summary>ls, cd, pwd, echo</summary>
 
+
+https://github.com/bluedog129/ft_main/assets/50707297/590c8548-a19f-421e-8c5c-875f717dea9d
+
+
 </details>
 
 <details>
