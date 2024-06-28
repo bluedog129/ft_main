@@ -5,6 +5,8 @@
 Welcome to our Minishell project! This project is deep into the inner workings of operating systems by building our own shell program. <br>
 Our Minishell, though compact, is a powerful tool designed to mimic the essential functionalities of traditional Unix shells.
 
+[Here is a blog documenting the implementation process.](https://blog.naver.com/bluedog129/223089456925)
+
 ## Setting for execute
 
 <details>
