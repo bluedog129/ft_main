@@ -5,7 +5,11 @@ C 언어로 구현된 식사하는 철학자 문제의 시뮬레이션입니다.
 ## Philosophers progrem visualizer
 ![image](https://github.com/bluedog129/ft_main/assets/50707297/27943bcc-9243-4170-8ecc-9cceb69a4159)
 
-## Philosophers progrem execute
+## Philosophers progrem testcases execute
+
+
+https://github.com/bluedog129/ft_main/assets/50707297/8ebf2072-f863-4d0e-bf17-16b0b30fac2c
+
 
 
 
